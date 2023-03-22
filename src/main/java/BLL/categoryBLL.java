@@ -5,22 +5,6 @@ import DAL.category;
 import DAL.categoryDAL;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 public class categoryBLL {
      private categoryDAL cateDAL;
     
