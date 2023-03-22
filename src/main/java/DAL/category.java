@@ -19,8 +19,9 @@ import lombok.Data;
 @Data
 @Entity
 @Table
-public class category {
-     @Id
+public class category { 
+    
+    @Id
     private int CatagoryID;
     @Column
     private String Name;

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GUI;
 
 import GUI.menuleftBLL;
@@ -18,12 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-/**
- *
- * @author DELL
- */
 public class menuLeft {
-     public String [] danhmuc={"Quản lý khóa học","Quản lý giảng dạy","Quản lý KQ học"};
+    public String [] danhmuc={"Nhập hàng","Lập hóa đơn","Quản lý KQ học"};
     public JLabel[] btn= new JLabel[danhmuc.length];
     JLabel user;
     JPanel pnl_menuleft;
