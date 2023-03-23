@@ -3,13 +3,10 @@ package GUI;
 import BLL.categoryBLL;
 import BLL.vegetableBLL;
 import DAL.category;
-import DAL.vegetable;
-import DAL.vegetableDAL;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -39,7 +36,7 @@ public class NhapHangGUI {
     public  JLabel lbl_timkiem_nv,lbl_idnv,lbl_anhnv,lbl_btnaddNV,lbl_imgnv;
     public  JTextField txt_timkiem_nv;
     
-    public  JComboBox combobox_vegeType;
+    public  JComboBox cb_categoryFilter, cb_categoryInput;
             
     public  JTable tbl_nv;
     public  DefaultTableModel tblm;
@@ -47,27 +44,29 @@ public class NhapHangGUI {
     public JLabel anh;
     public ImageIcon anhnv;
     public Image ic;
-    public int trangthai=0;
     
     public String idnv;
     vegetableBLL vegBLL = new vegetableBLL();
     categoryBLL cateBLL = new categoryBLL();
 
-    public NhapHangGUI(JPanel pnl_input, JPanel pnl_tuongtac, JPanel top_content, JPanel pnl_information,JPanel pnl_contentbottom) {
-        this.pnl_input = pnl_input;
-        this.pnl_tuongtac = pnl_tuongtac;
+    
+    category[] listCategory = cateBLL.convertList1(cateBLL.loadCategory());
+    
+    public NhapHangGUI(JPanel pnl_input, JPanel pnl_tuongtac, JPanel top_content,
+            JPanel pnl_information,JPanel pnl_contentbottom) {
+        this.pnl_input = pnl_input;//
+        this.pnl_tuongtac = pnl_tuongtac;//
         this.top_content = top_content;
-        this.pnl_congcu = pnl_congcu;
-        this.pnl_information = pnl_information;
+        this.pnl_congcu = pnl_congcu;//
+        this.pnl_information = pnl_information;//
         this.pnl_contentbottom = pnl_contentbottom;
         init();
     }
     public void init(){
         congcu();
-        inner_combobox_vegeType();
         nhanvienTBL();
     }
-        
+  
     public void congcu(){
         for(int i=0; i<title_ifm_nv.length;i++){
             ds_pnl_nv[i]=new JPanel();
@@ -107,6 +106,12 @@ public class NhapHangGUI {
         lbl_btnaddNV.setBounds(435, 137, 100, 40);
         pnl_input.add(lbl_btnaddNV);
 
+        CategoryModel categoryInputCBModel = new CategoryModel(listCategory);
+        cb_categoryInput=new JComboBox(categoryInputCBModel);
+        cb_categoryInput.setBounds(150, 20, 150, 60);
+        cb_categoryInput.setLightWeightPopupEnabled(true);
+        pnl_input.add(cb_categoryInput);
+        
         pnl_congcu=new JPanel();
         pnl_congcu.setBounds(560, 5, 140, 180);
         pnl_congcu.setBackground(null);
@@ -147,7 +152,7 @@ public class NhapHangGUI {
         pnl_tkborder.add(lbl_timkiem_nv);
     }
 
-    public void inner_imgVe(ImageIcon icon){
+    public void inner_img(ImageIcon icon){
         pnl_tuongtac.removeAll();
         lbl_anhnv=new JLabel(icon,JLabel.CENTER);
         lbl_anhnv.setBounds(0, 0, 260, 260);
@@ -182,20 +187,21 @@ public class NhapHangGUI {
         }
     }
     public void inner_combobox_vegeType(){
-        List listCate = cateBLL.loadCategory();
-        category[] newList = cateBLL.convertList1(listCate);
-        CategoryModel model= new CategoryModel(newList);
-        combobox_vegeType=new JComboBox(model);
-        combobox_vegeType.setBounds(400, 30, 150, 60);
-        combobox_vegeType.setLightWeightPopupEnabled(true);
-        pnl_input.add(combobox_vegeType);
-        combobox_vegeType.addItemListener(new ItemListener(){
+        CategoryModel categoryFilterCBModel = new CategoryModel(listCategory);
+        cb_categoryFilter=new JComboBox(categoryFilterCBModel);
+        cb_categoryFilter.addItem("All");
+        cb_categoryFilter.setSelectedItem("All");
+        cb_categoryFilter.setBounds(0, 0, 150, 60);
+        cb_categoryFilter.setLightWeightPopupEnabled(true);
+        pnl_tkborder.add(cb_categoryFilter);
+        cb_categoryFilter.addItemListener(new ItemListener(){
             @Override
             public void itemStateChanged(ItemEvent e) {
-                category cate = (category) e.getItem(); 
-                int cateid = cate.getCatagoryID();
-                loadNV(cateid);
-                
+                if(!e.getItem().equals("All")){
+                    category cate = (category) e.getItem(); 
+                    int cateid = cate.getCatagoryID();
+                    loadNV(cateid);
+                }
             }
         });
         
