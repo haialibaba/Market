@@ -14,24 +14,22 @@ import org.hibernate.query.Query;
  * @author DELL
  */
 public class vegetableDAL {
-        Session session;
+    
+    Session session;
  
-    public vegetableDAL()
-    {
+    public vegetableDAL(){
         this.session = session;
     }
-    public vegetable getVegetable(int vegetableID)
-    {
+    
+    public vegetable getVegetable(int vegetableID){
         vegetable obj;
-        
         session.beginTransaction();
         obj = session.get(vegetable.class, vegetableID);
         session.getTransaction().commit();
-        return obj;
-        
+        return obj;    
     }
-    public List getVegetableInCategory(int categoryID)
-    {
+    
+    public List getVegetableInCategory(int categoryID){
         List list;
         session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
@@ -41,21 +39,19 @@ public class vegetableDAL {
         transaction.commit();
         return list;
     }
-    public void addVegetable(vegetable obj)
-    {
+    public void addVegetable(vegetable obj){
         session.save(obj);
     }
-    public void updateVegetable(vegetable obj)
-    {
+    
+    public void updateVegetable(vegetable obj){
         session.update(obj);
     }
-    public void deleteVegetable(vegetable obj)
-    {
+    
+    public void deleteVegetable(vegetable obj){
         session.delete(obj);
     }
     
-    public static void main(String args[])
-    {
+    public static void main(String args[]){
         vegetableDAL dal = new vegetableDAL();
         //Vegetable obj = dal.getVegetable(1);
         //System.out.println(obj.getVegetableName());
@@ -66,8 +62,6 @@ public class vegetableDAL {
              System.out.print("ID: " + v.getVegetableID()); 
              System.out.print("Name: " + v.getVegetable_Name()); 
              
-          }
-        
-    
+          } 
     }
 }

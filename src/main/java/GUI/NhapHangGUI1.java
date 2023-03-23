@@ -22,11 +22,11 @@ import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class NhapHangGUI {
+public class NhapHangGUI1 {
     
     JPanel pnl_input,pnl_tuongtac,top_content,pnl_contentbottom,pnl_information;
     public  JPanel pnl_congcu,pnl_tk_nv,pnl_tkborder;
-    public  String[] title_ifm_nv={"Name","Unit","Amount","Price"};
+    public  String[] title_ifm_nv={"Name","Description"};
     public  JPanel[] ds_pnl_nv=new JPanel[title_ifm_nv.length];
     public  JTextField[] ds_input_nv= new JTextField[title_ifm_nv.length];
     
@@ -36,7 +36,6 @@ public class NhapHangGUI {
     public  JLabel lbl_timkiem_nv,lbl_idnv,lbl_anhnv,lbl_btnaddNV,lbl_imgnv;
     public  JTextField txt_timkiem_nv;
     
-    public  JComboBox cb_categoryFilter, cb_categoryInput;
             
     public  JTable tbl_nv;
     public  DefaultTableModel tblm;
@@ -47,13 +46,12 @@ public class NhapHangGUI {
     public int trangthai=0;
     
     public String idnv;
-    vegetableBLL vegBLL = new vegetableBLL();
     categoryBLL cateBLL = new categoryBLL();
 
     
     category[] listCategory = cateBLL.convertList1(cateBLL.loadCategory());
     
-    public NhapHangGUI(JPanel pnl_input, JPanel pnl_tuongtac, JPanel top_content,
+    public NhapHangGUI1(JPanel pnl_input, JPanel pnl_tuongtac, JPanel top_content,
             JPanel pnl_information,JPanel pnl_contentbottom) {
         this.pnl_input = pnl_input;//
         this.pnl_tuongtac = pnl_tuongtac;//
@@ -84,39 +82,13 @@ public class NhapHangGUI {
         }
         ds_pnl_nv[0].setBounds(205, 0, 180, 60);//name
         ds_pnl_nv[1].setBounds(20, 60, 180, 60);//unit
-        ds_pnl_nv[2].setBounds(205, 60, 180, 60);//amout
-        ds_pnl_nv[3].setBounds(390, 60, 180, 60);//price
 
-        CategoryModel categoryInputCBModel = new CategoryModel(listCategory);
-        cb_categoryInput=new JComboBox(categoryInputCBModel);
-        cb_categoryInput.setBounds(390, 0, 180, 60);
-        cb_categoryInput.setBackground(null);
-        cb_categoryInput.setBorder(BorderFactory.createTitledBorder("Category"));
-        cb_categoryInput.setLightWeightPopupEnabled(true);
-        pnl_input.add(cb_categoryInput);
-        
         lbl_idnv=new JLabel();
         lbl_idnv.setBounds(20, 0, 180, 60);
         lbl_idnv.setBackground(null);
         lbl_idnv.setBorder(BorderFactory.createTitledBorder("ID"));
         pnl_input.add(lbl_idnv);
 
-        lbl_imgnv=new JLabel("",JLabel.CENTER);
-        lbl_imgnv.setBounds(20, 120, 180, 60);
-        lbl_imgnv.setBackground(null);
-        lbl_imgnv.setBorder(BorderFactory.createTitledBorder("IMG"));
-        pnl_input.add(lbl_imgnv);
-
-        lbl_btnaddNV = new JLabel("",JLabel.CENTER);
-        lbl_btnaddNV.setBackground(new Color(0, 0, 60));
-        lbl_btnaddNV.setOpaque(true);
-        lbl_btnaddNV.setText("Chọn Ảnh");
-        lbl_btnaddNV.setForeground(Color.white);
-        lbl_btnaddNV.setBounds(202, 148, 70, 30);
-        pnl_input.add(lbl_btnaddNV);
-
-        
-        
         pnl_congcu=new JPanel();
         pnl_congcu.setBounds(560, 5, 140, 180);
         pnl_congcu.setBackground(null);
@@ -157,17 +129,8 @@ public class NhapHangGUI {
         pnl_tkborder.add(lbl_timkiem_nv);
     }
 
-    public void inner_img(ImageIcon icon){
-        pnl_tuongtac.removeAll();
-        lbl_anhnv=new JLabel(icon,JLabel.CENTER);
-        lbl_anhnv.setBounds(0, 0, 260, 260);
-        pnl_tuongtac.add(lbl_anhnv);
-        pnl_tuongtac.repaint();
-        pnl_tuongtac.validate();
-    }
-
     public void nhanvienTBL(){
-        String[] colum={"ID","Name","Category","Unit","Amount","Price","Image"};
+        String[] colum={"ID","Name","Description"};
         tblm=new DefaultTableModel(null, colum);
         tbl_nv=new JTable();
         tbl_nv.setModel(tblm);
@@ -178,37 +141,19 @@ public class NhapHangGUI {
         tbl_nv.getTableHeader().setForeground(Color.white);
         tbl_nv.setPreferredScrollableViewportSize(new Dimension(970, 320));
         pnl_information.add(new JScrollPane(tbl_nv));   
-        MouseAdapter mls_tblVe=new mls_tableVe(this);
+        MouseAdapter mls_tblVe = new mls_tableVe1(this);
         tbl_nv.addMouseListener(mls_tblVe);
-        inner_combobox_vegeType();
+        loadNV();
     }
         
-    public void loadNV(int cateID){
+    public void loadNV(){
         tblm.setRowCount(0);
-        List vegetableList = cateBLL.getCategory(cateID).getListVegetable();
-        Object[][] data = vegBLL.converVegetable(vegetableList);
+        List categoryList = cateBLL.loadCategory();
+        Object[][] data = cateBLL.convertList(categoryList);
         for (Object[] row : data) {
             tblm.addRow(row);
         }
     }
-    public void inner_combobox_vegeType(){
-        CategoryModel categoryFilterCBModel = new CategoryModel(listCategory);
-        cb_categoryFilter=new JComboBox(categoryFilterCBModel);
-        cb_categoryFilter.addItem("All");
-        cb_categoryFilter.setSelectedItem("All");
-        cb_categoryFilter.setBounds(0, 0, 150, 60);
-        cb_categoryFilter.setLightWeightPopupEnabled(true);
-        pnl_tkborder.add(cb_categoryFilter);
-        cb_categoryFilter.addItemListener(new ItemListener(){
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if(!e.getItem().equals("All")){
-                    category cate = (category) e.getItem(); 
-                    int cateid = cate.getCatagoryID();
-                    loadNV(cateid);
-                }
-            }
-        });
-        
-     }
+    
+
 }
