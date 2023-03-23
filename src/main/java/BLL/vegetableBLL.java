@@ -13,16 +13,14 @@ import java.util.List;
  * @author DELL
  */
 public class vegetableBLL {
-     private  vegetableDAL vegetableDAL;
+    private  vegetableDAL vegetableDAL;
      
-       public vegetableBLL()
-  {
-      vegetableDAL = new vegetableDAL();
-  }
+    public vegetableBLL(){
+        vegetableDAL = new vegetableDAL();
+    }
        
-         public Object[][] converVegetable(List<vegetable> list)
-  {
-      int rows = list.size();
+    public Object[][] converVegetable(List<vegetable> list){
+        int rows = list.size();
         int cols = 7;
         Object[][] obj = new Object[rows][cols];
         for(int i = 0; i < rows; i++)
@@ -36,5 +34,13 @@ public class vegetableBLL {
             obj[i][6] = list.get(i).getImage();
         }
         return obj;
-  }
+    }
+    public boolean isNumber(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        } 
+    }
 }

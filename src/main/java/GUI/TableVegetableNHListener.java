@@ -13,11 +13,11 @@ import javax.swing.ImageIcon;
  *
  * @author DELL
  */
-public class mls_tableVe extends MouseAdapter {
+public class TableVegetableNHListener extends MouseAdapter {
     
-    NhapHangGUI ve;
+    NhapHangVegetableGUI ve;
     
-    public mls_tableVe(NhapHangGUI ve) {
+    public TableVegetableNHListener(NhapHangVegetableGUI ve) {
         this.ve = ve;
     }
     

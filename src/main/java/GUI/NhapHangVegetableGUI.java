@@ -15,6 +15,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,7 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class NhapHangGUI {
+public class NhapHangVegetableGUI {
     
     JPanel pnl_input,pnl_tuongtac,top_content,pnl_contentbottom,pnl_information;
     public  JPanel pnl_congcu,pnl_tk_nv,pnl_tkborder;
@@ -30,7 +31,7 @@ public class NhapHangGUI {
     public  JPanel[] ds_pnl_nv=new JPanel[title_ifm_nv.length];
     public  JTextField[] ds_input_nv= new JTextField[title_ifm_nv.length];
     
-    public  String[] btn_congcu={"Thêm","Sửa","Xóa","Reset"};
+    public  String[] btn_congcu={"ADD","EDIT","DELETE","RESET","CANCEL"};
     public  JLabel[] ds_lbl_congcu=new JLabel[btn_congcu.length];
     
     public  JLabel lbl_timkiem_nv,lbl_idnv,lbl_anhnv,lbl_btnaddNV,lbl_imgnv;
@@ -47,13 +48,13 @@ public class NhapHangGUI {
     public int trangthai=0;
     
     public String idnv;
-    vegetableBLL vegBLL = new vegetableBLL();
-    categoryBLL cateBLL = new categoryBLL();
+    vegetableBLL vegetableBLL = new vegetableBLL();
+    categoryBLL categoryBLL = new categoryBLL();
 
     
-    category[] listCategory = cateBLL.convertList1(cateBLL.loadCategory());
+    category[] listCategory = categoryBLL.convertList1(categoryBLL.loadCategory());
     
-    public NhapHangGUI(JPanel pnl_input, JPanel pnl_tuongtac, JPanel top_content,
+    public NhapHangVegetableGUI(JPanel pnl_input, JPanel pnl_tuongtac, JPanel top_content,
             JPanel pnl_information,JPanel pnl_contentbottom) {
         this.pnl_input = pnl_input;//
         this.pnl_tuongtac = pnl_tuongtac;//
@@ -99,12 +100,13 @@ public class NhapHangGUI {
         lbl_idnv.setBounds(20, 0, 180, 60);
         lbl_idnv.setBackground(null);
         lbl_idnv.setBorder(BorderFactory.createTitledBorder("ID"));
+        lbl_idnv.setEnabled(false);
         pnl_input.add(lbl_idnv);
 
         lbl_imgnv=new JLabel("",JLabel.CENTER);
         lbl_imgnv.setBounds(20, 120, 180, 60);
         lbl_imgnv.setBackground(null);
-        lbl_imgnv.setBorder(BorderFactory.createTitledBorder("IMG"));
+        lbl_imgnv.setBorder(BorderFactory.createTitledBorder("Image"));
         pnl_input.add(lbl_imgnv);
 
         lbl_btnaddNV = new JLabel("",JLabel.CENTER);
@@ -116,7 +118,7 @@ public class NhapHangGUI {
         pnl_input.add(lbl_btnaddNV);
 
         
-        
+        //cong cu
         pnl_congcu=new JPanel();
         pnl_congcu.setBounds(560, 5, 140, 180);
         pnl_congcu.setBackground(null);
@@ -130,7 +132,19 @@ public class NhapHangGUI {
             ds_lbl_congcu[i].setPreferredSize(new Dimension(100, 40));
             pnl_congcu.add(ds_lbl_congcu[i]);
         }
-
+        
+        // xu ly su kien them
+        ds_lbl_congcu[0].addMouseListener(new BtnAddVegetableNHListener(this));
+        // xu ly su kien sua
+        ds_lbl_congcu[1].addMouseListener(new BtnEditVegetableNHListener(this));
+        // xu ly su kien xoa
+        ds_lbl_congcu[2].addMouseListener(new BtnDeleteVegetableNHListener(this));
+        // xu ly su kien lam moi
+        ds_lbl_congcu[3].addMouseListener(new BtnResetVegetableNHListener(this));
+        // xu ly su kien huy bo
+        ds_lbl_congcu[4].addMouseListener(new BtnCancelVegetableNHListener(this));
+        
+        //tim kiem
         pnl_tkborder=new JPanel();
         pnl_tkborder.setBackground(null);
         pnl_tkborder.setBorder(new MatteBorder(2, 0, 0, 0, new Color(0, 0, 60)));
@@ -155,6 +169,9 @@ public class NhapHangGUI {
         lbl_timkiem_nv.setForeground(Color.white);
         lbl_timkiem_nv.setPreferredSize(new Dimension(100, 40));
         pnl_tkborder.add(lbl_timkiem_nv);
+        
+        // xu ly su kien tim kiem
+        lbl_timkiem_nv.addMouseListener(new BtnSearchVegetableNHListener(this));
     }
 
     public void inner_img(ImageIcon icon){
@@ -178,15 +195,15 @@ public class NhapHangGUI {
         tbl_nv.getTableHeader().setForeground(Color.white);
         tbl_nv.setPreferredScrollableViewportSize(new Dimension(970, 320));
         pnl_information.add(new JScrollPane(tbl_nv));   
-        MouseAdapter mls_tblVe=new mls_tableVe(this);
+        MouseAdapter mls_tblVe=new TableVegetableNHListener(this);
         tbl_nv.addMouseListener(mls_tblVe);
         inner_combobox_vegeType();
     }
         
     public void loadNV(int cateID){
         tblm.setRowCount(0);
-        List vegetableList = cateBLL.getCategory(cateID).getListVegetable();
-        Object[][] data = vegBLL.converVegetable(vegetableList);
+        List vegetableList = categoryBLL.getCategory(cateID).getListVegetable();
+        Object[][] data = vegetableBLL.converVegetable(vegetableList);
         for (Object[] row : data) {
             tblm.addRow(row);
         }
@@ -208,7 +225,42 @@ public class NhapHangGUI {
                     loadNV(cateid);
                 }
             }
-        });
-        
-     }
+        });   
+    }
+    public void setNullAllInput(){
+        for(int i=0; i<title_ifm_nv.length;i++){
+            ds_input_nv[i].setText(null);
+        }
+    } 
+    public boolean checkDataInput(){
+        if ("".equals(ds_input_nv[0].getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter 'Name'!");
+            return false;
+        }
+        if ("".equals(ds_input_nv[1].getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter 'Unit'!");
+            return false;
+        }
+        if ("".equals(ds_input_nv[2].getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter 'Amount'!");
+            return false;
+        }
+        if(!(vegetableBLL.isNumber((String)ds_input_nv[2].getText()))){
+            JOptionPane.showMessageDialog(null, "'Amount' must be number!");
+            return false;
+        }
+        if ("".equals(ds_input_nv[3].getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter 'Price'!");
+            return false;
+        }
+        if(!(vegetableBLL.isNumber((String)ds_input_nv[3].getText()))){
+            JOptionPane.showMessageDialog(null, "'Price' must be number!");
+            return false;
+        }
+        if ("".equals(lbl_imgnv.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter 'Image'!");
+            return false;
+        }
+        return true;
+    }
 }
