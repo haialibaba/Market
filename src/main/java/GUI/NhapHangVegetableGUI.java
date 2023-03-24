@@ -195,8 +195,7 @@ public class NhapHangVegetableGUI {
         tbl_nv.getTableHeader().setForeground(Color.white);
         tbl_nv.setPreferredScrollableViewportSize(new Dimension(970, 320));
         pnl_information.add(new JScrollPane(tbl_nv));   
-        MouseAdapter mls_tblVe=new TableVegetableNHListener(this);
-        tbl_nv.addMouseListener(mls_tblVe);
+        tbl_nv.addMouseListener(new TableVegetableNHListener(this));
         inner_combobox_vegeType();
         Object[][] data = vegetableBLL.converVegetable(vegetableBLL.loadAllVegetable());
         loadNV(data);
