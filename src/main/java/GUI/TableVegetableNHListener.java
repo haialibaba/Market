@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import DAL.category;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -35,8 +36,9 @@ public class TableVegetableNHListener extends MouseAdapter {
         ve.ds_input_nv[2].setText(amountVe);
         ve.ds_input_nv[3].setText(priceVe);
         
-        ve.cb_categoryInput.setSelectedItem(ve.tbl_nv.getModel().getValueAt(
-                ve.tbl_nv.getSelectedRow(),2));
+        //category ca = (category) ve.tbl_nv.getModel().getValueAt(ve.tbl_nv.getSelectedRow(),2);
+        
+        //ve.cb_categoryInput.setSelectedItem(ve.categoryBLL.getCategory(1));
         
         ve.lbl_imgnv.setText(imageVe); 
 
