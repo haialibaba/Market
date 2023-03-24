@@ -29,6 +29,16 @@ public class vegetableDAL {
         return obj;    
     }
     
+    public List loadVegetable() {
+        List<vegetable> list;
+        session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        list = session.createQuery("FROM vegetable", vegetable.class).list();
+        transaction.commit();
+        return list;
+
+    }
+    
     public List getVegetableInCategory(int categoryID){
         List list;
         session = HibernateUtils.getSessionFactory().openSession();
@@ -49,6 +59,14 @@ public class vegetableDAL {
     
     public void deleteVegetable(vegetable obj){
         session.delete(obj);
+    }
+    
+    public List searchVegetableName(String name){
+        Transaction transaction = session.beginTransaction();
+        List<vegetable> list = session.createQuery(
+                "FROM vegetable where name like '%"+name+"%'", vegetable.class).list();
+        transaction.commit();
+        return list;
     }
     
     public static void main(String args[]){

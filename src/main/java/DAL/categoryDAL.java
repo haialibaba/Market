@@ -28,6 +28,13 @@ public class categoryDAL {
         return category;
 
     }
+    public List searchCategoryName(String name){
+        Transaction transaction = session.beginTransaction();
+        List<category> list = session.createQuery(
+                "FROM category where name like '%"+name+"%'", category.class).list();
+        transaction.commit();
+        return list;
+    }
     public category getCategory(int CategoryID)
     {
         category c = session.get(category.class, CategoryID);

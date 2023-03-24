@@ -198,12 +198,12 @@ public class NhapHangVegetableGUI {
         MouseAdapter mls_tblVe=new TableVegetableNHListener(this);
         tbl_nv.addMouseListener(mls_tblVe);
         inner_combobox_vegeType();
+        Object[][] data = vegetableBLL.converVegetable(vegetableBLL.loadAllVegetable());
+        loadNV(data);
     }
         
-    public void loadNV(int cateID){
+    public void loadNV(Object[][] data){
         tblm.setRowCount(0);
-        List vegetableList = categoryBLL.getCategory(cateID).getListVegetable();
-        Object[][] data = vegetableBLL.converVegetable(vegetableList);
         for (Object[] row : data) {
             tblm.addRow(row);
         }
@@ -222,7 +222,7 @@ public class NhapHangVegetableGUI {
                 if(!e.getItem().equals("All")){
                     category cate = (category) e.getItem(); 
                     int cateid = cate.getCatagoryID();
-                    loadNV(cateid);
+                    //loadNV(cateid);
                 }
             }
         });   

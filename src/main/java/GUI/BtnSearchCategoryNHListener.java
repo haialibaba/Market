@@ -4,6 +4,7 @@ package GUI;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -16,6 +17,8 @@ public class BtnSearchCategoryNHListener extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        //function search bll and load to table
+        String name = context.input_search.getText();
+        List list = context.categoryBLL.searchCategory(name);
+        context.loadCategoryTable(context.categoryBLL.convertList(list));
     }
 }

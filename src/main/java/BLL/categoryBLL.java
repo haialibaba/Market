@@ -44,4 +44,7 @@ public class categoryBLL {
         category c = cateDAL.getCategory(CategoryID);
         return c;
     }
+    public List searchCategory(String name){
+        return cateDAL.searchCategoryName(name);
+    }
 }

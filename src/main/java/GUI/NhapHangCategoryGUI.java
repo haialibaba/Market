@@ -111,7 +111,7 @@ public class NhapHangCategoryGUI {
         pnl_search=new JPanel();
         pnl_search.setPreferredSize(new Dimension(280,60));
         pnl_search.setBackground(null);
-        pnl_search.setBorder(BorderFactory.createTitledBorder("Tìm kiếm tên sản phẩm"));
+        pnl_search.setBorder(BorderFactory.createTitledBorder("Search by name"));
         pnl_search_border.add(pnl_search);
 
         input_search=new JTextField();
@@ -120,7 +120,7 @@ public class NhapHangCategoryGUI {
         input_search.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, new Color(0, 0, 60)));
         pnl_search.add(input_search);
 
-        lbl_search=new JLabel("Tìm kiếm",JLabel.CENTER);
+        lbl_search=new JLabel("SEARCH",JLabel.CENTER);
         lbl_search.setBackground(new Color(0, 0, 60));
         lbl_search.setOpaque(true);
         lbl_search.setForeground(Color.white);
@@ -143,13 +143,12 @@ public class NhapHangCategoryGUI {
         table_category.setPreferredScrollableViewportSize(new Dimension(970, 320));
         pnl_information.add(new JScrollPane(table_category));   
         table_category.addMouseListener(new TableCategoryNHListener(this));
-        loadCategory();
+        Object[][] data = categoryBLL.convertList(categoryBLL.loadCategory());
+        loadCategoryTable(data);
     }
-        
-    public void loadCategory(){
+
+    public void loadCategoryTable(Object[][] data){
         table_model_category.setRowCount(0);
-        List categoryList = categoryBLL.loadCategory();
-        Object[][] data = categoryBLL.convertList(categoryList);
         for (Object[] row : data) {
             table_model_category.addRow(row);
         }

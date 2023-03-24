@@ -18,7 +18,13 @@ public class vegetableBLL {
     public vegetableBLL(){
         vegetableDAL = new vegetableDAL();
     }
-       
+    
+    public List loadAllVegetable(){
+        List list;
+        list = vegetableDAL.loadVegetable();
+        return list;   
+    }
+    
     public Object[][] converVegetable(List<vegetable> list){
         int rows = list.size();
         int cols = 7;
@@ -42,5 +48,8 @@ public class vegetableBLL {
         } catch(NumberFormatException e){
             return false;
         } 
+    }
+    public List searchVegetable(String name){
+        return vegetableDAL.searchVegetableName(name);
     }
 }
