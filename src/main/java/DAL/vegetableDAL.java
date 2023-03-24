@@ -64,7 +64,7 @@ public class vegetableDAL {
     public List searchVegetableName(String name){
         Transaction transaction = session.beginTransaction();
         List<vegetable> list = session.createQuery(
-                "FROM vegetable where name like '%"+name+"%'", vegetable.class).list();
+                "FROM vegetable where Vegetable_Name like '%"+name+"%'", vegetable.class).list();
         transaction.commit();
         return list;
     }

@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
 public class categoryDAL {
      Session session;
 
-    public categoryDAL( ) {
+    public categoryDAL() {
         this.session = session;
     }
 
