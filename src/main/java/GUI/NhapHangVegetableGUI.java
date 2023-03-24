@@ -154,7 +154,7 @@ public class NhapHangVegetableGUI {
         pnl_tk_nv=new JPanel();
         pnl_tk_nv.setPreferredSize(new Dimension(280,60));
         pnl_tk_nv.setBackground(null);
-        pnl_tk_nv.setBorder(BorderFactory.createTitledBorder("Tìm kiếm tên sản phẩm"));
+        pnl_tk_nv.setBorder(BorderFactory.createTitledBorder("Search by name"));
         pnl_tkborder.add(pnl_tk_nv);
 
         txt_timkiem_nv=new JTextField();
@@ -163,7 +163,7 @@ public class NhapHangVegetableGUI {
         txt_timkiem_nv.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, new Color(0, 0, 60)));
         pnl_tk_nv.add(txt_timkiem_nv);
 
-        lbl_timkiem_nv=new JLabel("Tìm kiếm",JLabel.CENTER);
+        lbl_timkiem_nv=new JLabel("SEARCH",JLabel.CENTER);
         lbl_timkiem_nv.setBackground(new Color(0, 0, 60));
         lbl_timkiem_nv.setOpaque(true);
         lbl_timkiem_nv.setForeground(Color.white);
