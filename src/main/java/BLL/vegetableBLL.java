@@ -4,6 +4,7 @@
  */
 package BLL;
 
+import DAL.category;
 import DAL.vegetable;
 import DAL.vegetableDAL;
 import java.util.List;

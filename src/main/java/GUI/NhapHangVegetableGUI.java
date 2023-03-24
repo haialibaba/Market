@@ -9,8 +9,6 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -88,13 +86,7 @@ public class NhapHangVegetableGUI {
         ds_pnl_nv[2].setBounds(205, 60, 180, 60);//amout
         ds_pnl_nv[3].setBounds(390, 60, 180, 60);//price
 
-        CategoryModel categoryInputCBModel = new CategoryModel(listCategory);
-        cb_categoryInput=new JComboBox(categoryInputCBModel);
-        cb_categoryInput.setBounds(390, 0, 180, 60);
-        cb_categoryInput.setBackground(null);
-        cb_categoryInput.setBorder(BorderFactory.createTitledBorder("Category"));
-        cb_categoryInput.setLightWeightPopupEnabled(true);
-        pnl_input.add(cb_categoryInput);
+        
         
         lbl_idnv=new JLabel();
         lbl_idnv.setBounds(20, 0, 180, 60);
@@ -117,6 +109,13 @@ public class NhapHangVegetableGUI {
         lbl_btnaddNV.setBounds(202, 148, 70, 30);
         pnl_input.add(lbl_btnaddNV);
 
+        CategoryModel categoryInputCBModel = new CategoryModel(listCategory);
+        cb_categoryInput=new JComboBox(categoryInputCBModel);
+        cb_categoryInput.setBounds(390, 0, 180, 60);
+        cb_categoryInput.setBackground(null);
+        cb_categoryInput.setBorder(BorderFactory.createTitledBorder("Category"));
+        cb_categoryInput.setLightWeightPopupEnabled(true);
+        pnl_input.add(cb_categoryInput);
         
         //cong cu
         pnl_congcu=new JPanel();
