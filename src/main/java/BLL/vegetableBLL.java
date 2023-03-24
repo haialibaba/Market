@@ -50,7 +50,12 @@ public class vegetableBLL {
             return false;
         } 
     }
-    public List searchVegetable(String name){
-        return vegetableDAL.searchVegetableName(name);
+    public List searchVegetable(String name, Object categoryObject){
+        if (categoryObject.equals("All Category")) {
+            return vegetableDAL.searchVegetableName(name);
+        } else {
+            category category=(category) categoryObject;
+            return vegetableDAL.searchVegetableNameInCategory(name, category.getCatagoryID());
+        }
     }
 }

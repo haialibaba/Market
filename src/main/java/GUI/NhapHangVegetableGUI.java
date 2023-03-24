@@ -2,13 +2,13 @@ package GUI;
 
 import BLL.categoryBLL;
 import BLL.vegetableBLL;
-import DAL.category;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -49,8 +49,7 @@ public class NhapHangVegetableGUI {
     vegetableBLL vegetableBLL = new vegetableBLL();
     categoryBLL categoryBLL = new categoryBLL();
 
-    
-    category[] listCategory = categoryBLL.convertList1(categoryBLL.loadCategory());
+    List listCategory = categoryBLL.loadCategory();
     
     public NhapHangVegetableGUI(JPanel pnl_input, JPanel pnl_tuongtac, JPanel top_content,
             JPanel pnl_information,JPanel pnl_contentbottom) {
@@ -109,7 +108,8 @@ public class NhapHangVegetableGUI {
         lbl_btnaddNV.setBounds(202, 148, 70, 30);
         pnl_input.add(lbl_btnaddNV);
 
-        CategoryModel categoryInputCBModel = new CategoryModel(listCategory);
+        CategoryModel categoryInputCBModel = new CategoryModel(
+                categoryBLL.convertList1(listCategory));
         cb_categoryInput=new JComboBox(categoryInputCBModel);
         cb_categoryInput.setBounds(390, 0, 180, 60);
         cb_categoryInput.setBackground(null);
@@ -207,19 +207,18 @@ public class NhapHangVegetableGUI {
         }
     }
     public void inner_combobox_vegeType(){
-        CategoryModel categoryFilterCBModel = new CategoryModel(listCategory);
+        CategoryModel categoryFilterCBModel = new CategoryModel(
+                categoryBLL.convertList1(listCategory));
         cb_categoryFilter=new JComboBox(categoryFilterCBModel);
-        cb_categoryFilter.addItem("All");
-        cb_categoryFilter.setSelectedItem("All");
+        cb_categoryFilter.insertItemAt("All Category", 0);
+        cb_categoryFilter.setSelectedItem("All Category");
         cb_categoryFilter.setBounds(0, 0, 150, 60);
         cb_categoryFilter.setLightWeightPopupEnabled(true);
         pnl_tkborder.add(cb_categoryFilter);
         cb_categoryFilter.addItemListener(new ItemListener(){
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if(!e.getItem().equals("All")){
-                    category cate = (category) e.getItem(); 
-                    int cateid = cate.getCatagoryID();
+                if(!e.getItem().equals("All Category")){
                     //loadNV(cateid);
                 }
             }

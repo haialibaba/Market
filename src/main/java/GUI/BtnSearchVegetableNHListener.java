@@ -13,7 +13,8 @@ public class BtnSearchVegetableNHListener extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
         String name = context.txt_timkiem_nv.getText();
-        List list = context.vegetableBLL.searchVegetable(name);
+        Object categoryObject = context.cb_categoryFilter.getModel().getSelectedItem();
+        List list = context.vegetableBLL.searchVegetable(name, categoryObject);
         context.loadNV(context.vegetableBLL.converVegetable(list));
     }
 }

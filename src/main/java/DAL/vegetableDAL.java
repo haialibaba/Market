@@ -41,7 +41,6 @@ public class vegetableDAL {
     
     public List getVegetableInCategory(int categoryID){
         List list;
-        session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         Query q = session.createQuery("FROM vegetable WHERE CatagoryID = :categoryID");
         q.setParameter("categoryID", categoryID);
@@ -63,11 +62,24 @@ public class vegetableDAL {
     
     public List searchVegetableName(String name){
         Transaction transaction = session.beginTransaction();
-        List<vegetable> list = session.createQuery(
-                "FROM vegetable where Vegetable_Name like '%"+name+"%'", vegetable.class).list();
+        Query query = session.createQuery("FROM vegetable where Vegetable_Name like ?1");
+        query.setParameter(1, "%"+name+"%");
+        List<vegetable> list = query.list();
         transaction.commit();
         return list;
     }
+    public List searchVegetableNameInCategory(String name,int id){
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery(
+            "FROM vegetable where Vegetable_Name like ?1 and CatagoryID = ?2");
+        query.setParameter(1, "%"+name+"%");
+        query.setParameter(2, id);
+        List<vegetable> list = query.list();
+        transaction.commit();
+        return list;
+    }
+    
+    
     
     public static void main(String args[]){
         vegetableDAL dal = new vegetableDAL();

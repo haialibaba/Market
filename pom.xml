@@ -12,11 +12,6 @@
             <version>8.0.26</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.4.21.Final</version>
-        </dependency>
-        <dependency>
             <groupId>be.yildiz-games</groupId>
             <artifactId>bom-lombok</artifactId>
             <version>1.0.3</version>
@@ -36,6 +31,11 @@
             <groupId>io.earcam.wrapped</groupId>
             <artifactId>jdk.compiler</artifactId>
             <version>1.8.132</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.30.Final</version>
         </dependency>
     </dependencies>
     <properties>
