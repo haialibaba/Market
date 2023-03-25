@@ -17,8 +17,7 @@ public class BtnResetVegetableNHListener extends MouseAdapter {
                 context.setNullAllInput();
             }else{
                 context.setNullAllInput();
-                context.loadNV(context.vegetableBLL.converVegetable(
-                        context.vegetableBLL.loadAllVegetable()));
+                //reload table
             }
         }
 }
