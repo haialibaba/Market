@@ -66,6 +66,10 @@ public class vegetableBLL {
         return vegetableDAL.deleteVegetable(v);
     }
     
+    public boolean insertVegetable(vegetable v){
+        return vegetableDAL.addVegetable(v);
+    }
+    
     public vegetable getVegetable(String id){
         return vegetableDAL.getVegetable(id);
     }

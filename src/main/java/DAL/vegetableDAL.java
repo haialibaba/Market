@@ -48,8 +48,16 @@ public class vegetableDAL {
         transaction.commit();
         return list;
     }
-    public void addVegetable(vegetable obj){
-        session.save(obj);
+    public boolean addVegetable(vegetable v){
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(v);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
     }
     
     public boolean updateVegetable(vegetable v){
