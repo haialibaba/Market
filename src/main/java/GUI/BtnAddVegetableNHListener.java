@@ -18,7 +18,7 @@ public class BtnAddVegetableNHListener extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         if(context.ds_lbl_congcu[0].getText().equals("ADD")){
                 context.setNullAllInfo();
-                //tu dong tang id
+                context.lbl_idnv.setText("Auto Increment");
                 context.ds_lbl_congcu[0].setText("ADD NEW");
                 context.ds_lbl_congcu[0].setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 context.ds_lbl_congcu[1].setVisible(false);
