@@ -24,7 +24,7 @@ import lombok.Data;
 public class category { 
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int CatagoryID;
     @Column
     private String Name;

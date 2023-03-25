@@ -6,9 +6,8 @@ import DAL.categoryDAL;
 import java.util.List;
 
 public class categoryBLL {
-     private categoryDAL cateDAL;
-    
-    
+    private categoryDAL cateDAL;
+
     public categoryBLL(){
         cateDAL = new categoryDAL();
     }
@@ -19,7 +18,7 @@ public class categoryBLL {
         return list;   
     }
     
-    public category[] convertList1 (List<category> list){
+    public category[] convertList1(List<category> list){
         int rows = list.size();
         category[] newList = new category[rows];
         for(int i = 0; i < rows; i++){
@@ -47,4 +46,15 @@ public class categoryBLL {
     public List searchCategory(String name){
         return cateDAL.searchCategoryName(name);
     }
+    public boolean updateCategory(category c){
+        return cateDAL.updateCategory(c);
+    }
+    
+    public boolean deleteCategory(category c){
+        return cateDAL.deleteCategory(c);
+    }
+    public boolean insertCategory(category c){
+        return cateDAL.addCategory(c);
+    }
+    
 }

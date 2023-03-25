@@ -1,43 +1,69 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DAL;
 
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-/**
- *
- * @author DELL
- */
 public class categoryDAL {
-     Session session = HibernateUtils.getSessionFactory().openSession();
-
+    Session session;
     public categoryDAL() {
         this.session = session;
     }
-
     public List loadCategory() {
-        List<category> category;
-        //session = HibernateUtils.getSessionFactory().openSession();
+        session = HibernateUtils.getSessionFactory().openSession();
+        List<category> list;
         Transaction transaction = session.beginTransaction();
-        category = session.createQuery("FROM category", category.class).list();
+        list = session.createQuery("FROM category", category.class).list();
         transaction.commit();
-        return category;
+        return list;
 
     }
     public List searchCategoryName(String name){
         Transaction transaction = session.beginTransaction();
-        List<category> list = session.createQuery(
-                "FROM category where name like '%"+name+"%'", category.class).list();
+        Query query = session.createQuery("FROM category where name like ?1");
+        query.setParameter(1, "%"+name+"%");
+        List<category> list = query.list();
         transaction.commit();
         return list;
     }
-    public category getCategory(int CategoryID)
-    {
+    public category getCategory(int CategoryID){
         category c = session.get(category.class, CategoryID);
         return c;
+    }
+    public boolean updateCategory(category c){
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(c);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
+    }
+    public boolean deleteCategory(category c){
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.delete(c);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
+    }
+    public boolean addCategory(category c){
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(c);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
     }
 }

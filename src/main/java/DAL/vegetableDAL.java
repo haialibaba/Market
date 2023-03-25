@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DAL;
 import java.util.Iterator;
 import java.util.List;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-/**
- *
- * @author DELL
- */
+
 public class vegetableDAL {
     
     Session session = HibernateUtils.getSessionFactory().openSession();
@@ -24,11 +17,11 @@ public class vegetableDAL {
     }
     
     public vegetable getVegetable(String vegetableID){
-        vegetable obj;
+        vegetable v;
         session.beginTransaction();
-        obj = session.get(vegetable.class, vegetableID);
+        v = session.get(vegetable.class, vegetableID);
         session.getTransaction().commit();
-        return obj;    
+        return v;    
     }
     
     public List loadVegetable() {

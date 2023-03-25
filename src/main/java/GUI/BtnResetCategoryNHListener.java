@@ -18,8 +18,8 @@ public class BtnResetCategoryNHListener extends MouseAdapter {
             }else if (context.ds_lbl_congcu[1].getText().equals("SAVE EDIT")) {
                 context.setNullAllInput();
             }else{
-                context.setNullAllInput();
-                //reload table
+                context.setNullAllInfo();
+                context.loadCategoryTable(context.categoryBLL.loadCategory());
             }
         }
 }
