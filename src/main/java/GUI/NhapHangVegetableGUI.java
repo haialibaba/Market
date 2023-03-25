@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
@@ -19,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableModel;
 
 public class NhapHangVegetableGUI {
@@ -215,12 +218,15 @@ public class NhapHangVegetableGUI {
         cb_categoryFilter.setBounds(0, 0, 150, 60);
         cb_categoryFilter.setLightWeightPopupEnabled(true);
         pnl_tkborder.add(cb_categoryFilter);
-        cb_categoryFilter.addItemListener(new ItemListener(){
+        cb_categoryFilter.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
-                
+            public void actionPerformed(ActionEvent e) {
+                String name = txt_timkiem_nv.getText();
+                Object categoryObject = cb_categoryFilter.getModel().getSelectedItem();
+                List list = vegetableBLL.searchVegetable(name, categoryObject);
+                loadNV(vegetableBLL.converVegetable(list));
             }
-        });        
+        });   
     }
     public void setNullAllInput(){
         for(int i=0; i<title_ifm_nv.length;i++){

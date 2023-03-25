@@ -49,12 +49,14 @@ public class vegetableBLL {
             return false;
         } 
     }
-    public List searchVegetable(String name, Object categoryObject){
-        if (categoryObject.equals("All Category")) {
+    public List searchVegetable(String name, Object obj){
+        try {
+            category c = (category) obj;
+            System.err.println("Chay loai");
+            return vegetableDAL.searchVegetableNameInCategory(name, c.getCatagoryID());
+        } catch (Exception e) {
+            System.out.println("Chay all");
             return vegetableDAL.searchVegetableName(name);
-        } else {
-            category category=(category) categoryObject;
-            return vegetableDAL.searchVegetableNameInCategory(name, category.getCatagoryID());
         }
     }
      
