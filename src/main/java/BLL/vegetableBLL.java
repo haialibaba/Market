@@ -52,16 +52,18 @@ public class vegetableBLL {
     public List searchVegetable(String name, Object obj){
         try {
             category c = (category) obj;
-            System.err.println("Chay loai");
             return vegetableDAL.searchVegetableNameInCategory(name, c.getCatagoryID());
         } catch (Exception e) {
-            System.out.println("Chay all");
             return vegetableDAL.searchVegetableName(name);
         }
     }
      
     public boolean updateVegetable(vegetable v){
         return vegetableDAL.updateVegetable(v);
+    }
+    
+    public boolean deleteVegetable(vegetable v){
+        return vegetableDAL.deleteVegetable(v);
     }
     
     public vegetable getVegetable(String id){

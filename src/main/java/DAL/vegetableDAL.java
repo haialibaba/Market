@@ -33,12 +33,10 @@ public class vegetableDAL {
     
     public List loadVegetable() {
         List<vegetable> list;
-        //session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         list = session.createQuery("FROM vegetable", vegetable.class).list();
         transaction.commit();
         return list;
-
     }
     
     public List getVegetableInCategory(int categoryID){
@@ -54,11 +52,11 @@ public class vegetableDAL {
         session.save(obj);
     }
     
-    public boolean updateVegetable(vegetable obj){
+    public boolean updateVegetable(vegetable v){
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.update(obj);
+            session.update(v);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
@@ -66,8 +64,16 @@ public class vegetableDAL {
         return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
     }
     
-    public void deleteVegetable(vegetable obj){
-        session.delete(obj);
+    public boolean deleteVegetable(vegetable v){
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.delete(v);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
     }
     
     public List searchVegetableName(String name){
@@ -88,6 +94,17 @@ public class vegetableDAL {
         transaction.commit();
         return list;
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

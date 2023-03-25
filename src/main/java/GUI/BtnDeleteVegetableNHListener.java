@@ -1,6 +1,7 @@
 
 package GUI;
 
+import DAL.vegetable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
@@ -21,10 +22,19 @@ public class BtnDeleteVegetableNHListener extends MouseAdapter {
                 +"\n"+"Name: "+ context.tbl_nv.getValueAt(i,1),"Delete",
                 JOptionPane.YES_NO_OPTION);
             if(dialog_del == JOptionPane.YES_OPTION){
-                // function delele bll
-                //reload table
-                context.setNullAllInfo();
-                JOptionPane.showMessageDialog(null, "Deleted"); 
+                String id = (String) context.tbl_nv.getValueAt(i, 0);
+                vegetable v = context.vegetableBLL.getVegetable(id);
+                boolean status = context.vegetableBLL.deleteVegetable(v);
+                if(status){
+                    JOptionPane.showMessageDialog(null,"Delete successfully","Delete",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    context.setNullAllInfo();
+                    //sua lai
+                    //context.loadNV(context.vegetableBLL.loadAllVegetable());
+                }else{
+                    JOptionPane.showMessageDialog(null,"Delete failure","Delete",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }

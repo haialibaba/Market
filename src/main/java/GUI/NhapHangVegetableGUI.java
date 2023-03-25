@@ -8,8 +8,6 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,7 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableModel;
 
 public class NhapHangVegetableGUI {
@@ -88,9 +85,8 @@ public class NhapHangVegetableGUI {
         ds_pnl_nv[2].setBounds(205, 60, 180, 60);//amout
         ds_pnl_nv[3].setBounds(390, 60, 180, 60);//price
 
-        
-        
         lbl_idnv=new JLabel();
+        lbl_idnv.setText(null);
         lbl_idnv.setBounds(20, 0, 180, 60);
         lbl_idnv.setBackground(null);
         lbl_idnv.setBorder(BorderFactory.createTitledBorder("ID"));
@@ -199,11 +195,12 @@ public class NhapHangVegetableGUI {
         pnl_information.add(new JScrollPane(tbl_nv));   
         tbl_nv.addMouseListener(new TableVegetableNHListener(this));
         inner_combobox_vegeType();
-        Object[][] data = vegetableBLL.converVegetable(vegetableBLL.loadAllVegetable());
-        loadNV(data);
+        //load all vegetable
+        loadNV(vegetableBLL.loadAllVegetable());
     }
         
-    public void loadNV(Object[][] data){
+    public void loadNV(List list){
+        Object[][] data = vegetableBLL.converVegetable(list);
         tblm.setRowCount(0);
         for (Object[] row : data) {
             tblm.addRow(row);
@@ -218,21 +215,20 @@ public class NhapHangVegetableGUI {
         cb_categoryFilter.setBounds(0, 0, 150, 60);
         cb_categoryFilter.setLightWeightPopupEnabled(true);
         pnl_tkborder.add(cb_categoryFilter);
-        cb_categoryFilter.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String name = txt_timkiem_nv.getText();
-                Object categoryObject = cb_categoryFilter.getModel().getSelectedItem();
-                List list = vegetableBLL.searchVegetable(name, categoryObject);
-                loadNV(vegetableBLL.converVegetable(list));
-            }
+        cb_categoryFilter.addActionListener((ActionEvent e) -> {
+            String name = txt_timkiem_nv.getText();
+            Object categoryObject = cb_categoryFilter.getModel().getSelectedItem();
+            List list = vegetableBLL.searchVegetable(name, categoryObject);
+            loadNV(list);
         });   
     }
+    
     public void setNullAllInput(){
         for(int i=0; i<title_ifm_nv.length;i++){
             ds_input_nv[i].setText(null);
         }
     }
+    
     public void setNullAllInfo(){
         for(int i=0; i<title_ifm_nv.length;i++){
             ds_input_nv[i].setText(null);
