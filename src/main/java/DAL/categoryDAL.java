@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
  * @author DELL
  */
 public class categoryDAL {
-     Session session;
+     Session session = HibernateUtils.getSessionFactory().openSession();
 
     public categoryDAL() {
         this.session = session;
@@ -21,7 +21,7 @@ public class categoryDAL {
 
     public List loadCategory() {
         List<category> category;
-        session = HibernateUtils.getSessionFactory().openSession();
+        //session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         category = session.createQuery("FROM category", category.class).list();
         transaction.commit();

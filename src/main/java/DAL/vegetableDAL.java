@@ -5,9 +5,11 @@
 package DAL;
 import java.util.Iterator;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 /**
  *
@@ -15,13 +17,13 @@ import org.hibernate.query.Query;
  */
 public class vegetableDAL {
     
-    Session session;
+    Session session = HibernateUtils.getSessionFactory().openSession();
  
     public vegetableDAL(){
         this.session = session;
     }
     
-    public vegetable getVegetable(int vegetableID){
+    public vegetable getVegetable(String vegetableID){
         vegetable obj;
         session.beginTransaction();
         obj = session.get(vegetable.class, vegetableID);
@@ -31,7 +33,7 @@ public class vegetableDAL {
     
     public List loadVegetable() {
         List<vegetable> list;
-        session = HibernateUtils.getSessionFactory().openSession();
+        //session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         list = session.createQuery("FROM vegetable", vegetable.class).list();
         transaction.commit();
@@ -52,8 +54,16 @@ public class vegetableDAL {
         session.save(obj);
     }
     
-    public void updateVegetable(vegetable obj){
-        session.update(obj);
+    public boolean updateVegetable(vegetable obj){
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(obj);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
     }
     
     public void deleteVegetable(vegetable obj){

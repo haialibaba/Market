@@ -183,7 +183,7 @@ public class NhapHangVegetableGUI {
     }
 
     public void nhanvienTBL(){
-        String[] colum={"ID","Name","Category","Unit","Amount","Price","Image"};
+        String[] colum={"ID","Name","Category","Unit","Amount","Price"};
         tblm=new DefaultTableModel(null, colum);
         tbl_nv=new JTable();
         tbl_nv.setModel(tblm);
@@ -218,17 +218,23 @@ public class NhapHangVegetableGUI {
         cb_categoryFilter.addItemListener(new ItemListener(){
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if(!e.getItem().equals("All Category")){
-                    //loadNV(cateid);
-                }
+                
             }
-        });   
+        });        
     }
     public void setNullAllInput(){
         for(int i=0; i<title_ifm_nv.length;i++){
             ds_input_nv[i].setText(null);
         }
-    } 
+    }
+    public void setNullAllInfo(){
+        for(int i=0; i<title_ifm_nv.length;i++){
+            ds_input_nv[i].setText(null);
+        }
+        lbl_idnv.setText(null);
+        lbl_imgnv.setText(null);
+    }
+    
     public boolean checkDataInput(){
         if ("".equals(ds_input_nv[0].getText())) {
             JOptionPane.showMessageDialog(null, "Please enter 'Name'!");
@@ -250,10 +256,10 @@ public class NhapHangVegetableGUI {
             JOptionPane.showMessageDialog(null, "Please enter 'Price'!");
             return false;
         }
-        if(!(vegetableBLL.isNumber((String)ds_input_nv[3].getText()))){
-            JOptionPane.showMessageDialog(null, "'Price' must be number!");
-            return false;
-        }
+//        if(!(vegetableBLL.isNumber((String)ds_input_nv[3].getText()))){
+//            JOptionPane.showMessageDialog(null, "'Price' must be number!");
+//            return false;
+//        }
         if ("".equals(lbl_imgnv.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter 'Image'!");
             return false;

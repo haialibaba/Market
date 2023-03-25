@@ -28,7 +28,7 @@ public class vegetableBLL {
     
     public Object[][] converVegetable(List<vegetable> list){
         int rows = list.size();
-        int cols = 7;
+        int cols = 6;
         Object[][] obj = new Object[rows][cols];
         for(int i = 0; i < rows; i++)
         {
@@ -38,13 +38,12 @@ public class vegetableBLL {
             obj[i][3] = list.get(i).getUnit();
             obj[i][4] = list.get(i).getAmount();
             obj[i][5] = list.get(i).getPrice();
-            obj[i][6] = list.get(i).getImage();
         }
         return obj;
     }
     public boolean isNumber(String str) {
         try {
-            Integer.parseInt(str);
+            Integer.valueOf(str);
             return true;
         } catch(NumberFormatException e){
             return false;
@@ -58,4 +57,13 @@ public class vegetableBLL {
             return vegetableDAL.searchVegetableNameInCategory(name, category.getCatagoryID());
         }
     }
+     
+    public boolean updateVegetable(vegetable v){
+        return vegetableDAL.updateVegetable(v);
+    }
+    
+    public vegetable getVegetable(String id){
+        return vegetableDAL.getVegetable(id);
+    }
+    
 }

@@ -23,7 +23,7 @@ public class BtnDeleteVegetableNHListener extends MouseAdapter {
             if(dialog_del == JOptionPane.YES_OPTION){
                 // function delele bll
                 //reload table
-                context.setNullAllInput();
+                context.setNullAllInfo();
                 JOptionPane.showMessageDialog(null, "Deleted"); 
             }
         }
