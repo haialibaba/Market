@@ -147,7 +147,7 @@ public class NhapHangCategoryGUI {
     }
 
     public void loadCategory(List list){
-        Object[][] data = categoryBLL.convertList(list);
+        Object[][] data = categoryBLL.convertListTable(list);
         table_model_category.setRowCount(0);
         for (Object[] row : data) {
             table_model_category.addRow(row);

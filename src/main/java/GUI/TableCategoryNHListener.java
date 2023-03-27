@@ -14,7 +14,7 @@ public class TableCategoryNHListener extends MouseAdapter {
     public void mouseClicked(MouseEvent e){
         String id= context.table_category.getModel().getValueAt(
                 context.table_category.getSelectedRow(),0).toString();
-        category c = context.categoryBLL.getCategory(Integer.parseInt(id));
+        category c = context.categoryBLL.getCategory(id);
         context.lbl_id_category.setText(id);
         context.list_input_category[0].setText(c.getName());
         context.list_input_category[1].setText(c.getDescription());

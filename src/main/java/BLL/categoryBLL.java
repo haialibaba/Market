@@ -6,19 +6,19 @@ import DAL.categoryDAL;
 import java.util.List;
 
 public class categoryBLL {
-    private categoryDAL cateDAL;
+    private categoryDAL categoryDAL;
 
     public categoryBLL(){
-        cateDAL = new categoryDAL();
+        categoryDAL = new categoryDAL();
     }
     
     public List loadCategory(){
         List list;
-        list = cateDAL.loadCategory();
+        list = categoryDAL.loadCategory();
         return list;   
     }
     
-    public category[] convertList1(List<category> list){
+    public category[] convertListComboBox(List<category> list){
         int rows = list.size();
         category[] newList = new category[rows];
         for(int i = 0; i < rows; i++){
@@ -26,7 +26,7 @@ public class categoryBLL {
         }
         return newList;
     }
-    public Object[][] convertList(List<category> list){
+    public Object[][] convertListTable(List<category> list){
         int rows = list.size();
         int cols = 4;
         Object[][] obj = new Object[rows][cols];
@@ -39,22 +39,22 @@ public class categoryBLL {
         return obj;
     }
     
-    public category getCategory(int CategoryID){
-        category c = cateDAL.getCategory(CategoryID);
+    public category getCategory(String CategoryID){
+        category c = categoryDAL.getCategory(CategoryID);
         return c;
     }
     public List searchCategory(String name){
-        return cateDAL.searchCategoryName(name);
+        return categoryDAL.searchCategoryName(name);
     }
     public boolean updateCategory(category c){
-        return cateDAL.updateCategory(c);
+        return categoryDAL.updateCategory(c);
     }
     
     public boolean deleteCategory(category c){
-        return cateDAL.deleteCategory(c);
+        return categoryDAL.deleteCategory(c);
     }
     public boolean insertCategory(category c){
-        return cateDAL.addCategory(c);
+        return categoryDAL.addCategory(c);
     }
     
 }

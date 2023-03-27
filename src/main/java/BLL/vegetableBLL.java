@@ -29,7 +29,7 @@ public class vegetableBLL {
         } 
     }
     
-    public Object[][] convertVegetable(List<vegetable> list){
+    public Object[][] convertListTable(List<vegetable> list){
         int rows = list.size();
         int cols = 6;
         Object[][] obj = new Object[rows][cols];

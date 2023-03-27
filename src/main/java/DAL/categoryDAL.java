@@ -29,7 +29,7 @@ public class categoryDAL {
         transaction.commit();
         return list;
     }
-    public category getCategory(int CategoryID){
+    public category getCategory(String CategoryID){
         category c = session.get(category.class, CategoryID);
         return c;
     }

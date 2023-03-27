@@ -32,11 +32,13 @@ public class menuleftBLL implements MouseListener {
         }
         if (e.getSource().equals(lfm.btn[0])) {
             flag = 1;
+            MenuNhapHang menuNhapHang = new MenuNhapHang(lfm.btn[0]);
+            menuNhapHang.show(lfm.btn[0], lfm.btn[0].getWidth(), 0);
             lfm.btn[0].setBorder(new MatteBorder(0, 4, 0, 0, Color.yellow));
-            content.pnl_content.removeAll();
-            new innercontent();
-            content.pnl_content.repaint();
-            content.pnl_content.validate();
+//            content.pnl_content.removeAll();
+//            new innercontent();
+//            content.pnl_content.repaint();
+//            content.pnl_content.validate();
 
         } else if (e.getSource().equals(lfm.btn[1])) {
             lfm.btn[1].setBorder(new MatteBorder(0, 4, 0, 0, Color.yellow));

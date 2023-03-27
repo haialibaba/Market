@@ -107,7 +107,7 @@ public class NhapHangVegetableGUI {
         
         //combobox input
         CategoryModel categoryInputCBModel = new CategoryModel(
-                categoryBLL.convertList1(listCategory));
+                categoryBLL.convertListComboBox(listCategory));
         cb_categoryInput=new JComboBox(categoryInputCBModel);
         cb_categoryInput.setBounds(390, 0, 180, 60);
         cb_categoryInput.setBackground(null);
@@ -199,7 +199,7 @@ public class NhapHangVegetableGUI {
     }
         
     public void loadVegetable(List list){
-        Object[][] data = vegetableBLL.convertVegetable(list);
+        Object[][] data = vegetableBLL.convertListTable(list);
         tb_vege_model.setRowCount(0);
         for (Object[] row : data) {
             tb_vege_model.addRow(row);
@@ -207,7 +207,7 @@ public class NhapHangVegetableGUI {
     }
     public void inner_combobox_vegeTypeFilter(){
         CategoryModel categoryFilterCBModel = new CategoryModel(
-                categoryBLL.convertList1(listCategory));
+                categoryBLL.convertListComboBox(listCategory));
         cb_categoryFilter=new JComboBox(categoryFilterCBModel);
         cb_categoryFilter.insertItemAt("All Category", 0);
         cb_categoryFilter.setSelectedItem("All Category");
