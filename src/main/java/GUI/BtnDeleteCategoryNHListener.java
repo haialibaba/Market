@@ -7,9 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
 public class BtnDeleteCategoryNHListener extends MouseAdapter {
-    
     NhapHangCategoryGUI context;
-    
     public BtnDeleteCategoryNHListener(NhapHangCategoryGUI context) {
         this.context = context;
     }
@@ -20,7 +18,8 @@ public class BtnDeleteCategoryNHListener extends MouseAdapter {
             JOptionPane.showMessageDialog(null, "Please choose category from the table!");
         }else{
             int dialog_del = JOptionPane.showConfirmDialog(null,
-                "Do you want to delete category?\n"+"ID: "+ context.table_category.getValueAt(i,0)
+                "Do you want to delete category?\n"+"ID: "+
+                context.table_category.getValueAt(i,0)
                 +"\n"+"Name: "+ context.table_category.getValueAt(i,1),"Delete",
                 JOptionPane.YES_NO_OPTION);
             if(dialog_del == JOptionPane.YES_OPTION){
@@ -31,7 +30,7 @@ public class BtnDeleteCategoryNHListener extends MouseAdapter {
                     JOptionPane.showMessageDialog(null,"Delete successfully","Delete",
                             JOptionPane.INFORMATION_MESSAGE);
                     context.setNullAllInfo();
-                    context.loadCategoryTable(context.categoryBLL.loadCategory());
+                    context.loadCategory(context.categoryBLL.loadCategory());
                 }else{
                     JOptionPane.showMessageDialog(null,"Delete failure","Delete",
                             JOptionPane.ERROR_MESSAGE);

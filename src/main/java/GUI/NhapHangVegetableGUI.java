@@ -7,7 +7,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -23,29 +22,26 @@ import javax.swing.table.DefaultTableModel;
 
 public class NhapHangVegetableGUI {
     
-    JPanel pnl_input,pnl_tuongtac,top_content,pnl_contentbottom,pnl_information;
-    public  JPanel pnl_congcu,pnl_tk_nv,pnl_tkborder;
-    public  String[] title_ifm_nv={"Name","Unit","Amount","Price"};
-    public  JPanel[] ds_pnl_nv=new JPanel[title_ifm_nv.length];
-    public  JTextField[] ds_input_nv= new JTextField[title_ifm_nv.length];
+    JPanel pnl_input,pnl_image,top_content,pnl_contentbottom,pnl_information;
+    public  JPanel pnl_congcu,pnl_search_vege,pnl_search_container;
+    public  String[] title_ifm_vege={"Name","Unit","Amount","Price"};
+    public  JPanel[] list_pnl_vege=new JPanel[title_ifm_vege.length];
+    public  JTextField[] list_input_vege= new JTextField[title_ifm_vege.length];
     
     public  String[] btn_congcu={"ADD","EDIT","DELETE","RESET","CANCEL"};
     public  JLabel[] ds_lbl_congcu=new JLabel[btn_congcu.length];
     
-    public  JLabel lbl_timkiem_nv,lbl_idnv,lbl_anhnv,lbl_btnaddNV,lbl_imgnv;
-    public  JTextField txt_timkiem_nv;
+    public  JLabel lbl_timkiem,lbl_id,lbl_image,lbl_btn_image,lbl_input_image;
+    public  JTextField txt_timkiem;
     
     public  JComboBox cb_categoryFilter, cb_categoryInput;
             
-    public  JTable tbl_nv;
-    public  DefaultTableModel tblm;
+    public  JTable table_vege;
+    public  DefaultTableModel tb_vege_model;
     
-    public JLabel anh;
-    public ImageIcon anhnv;
-    public Image ic;
-    public int trangthai=0;
+    public ImageIcon image_icon;
+    public Image image;
     
-    public String idnv;
     vegetableBLL vegetableBLL = new vegetableBLL();
     categoryBLL categoryBLL = new categoryBLL();
 
@@ -54,7 +50,7 @@ public class NhapHangVegetableGUI {
     public NhapHangVegetableGUI(JPanel pnl_input, JPanel pnl_tuongtac, JPanel top_content,
             JPanel pnl_information,JPanel pnl_contentbottom) {
         this.pnl_input = pnl_input;//
-        this.pnl_tuongtac = pnl_tuongtac;//
+        this.pnl_image = pnl_tuongtac;//
         this.top_content = top_content;
         this.pnl_congcu = pnl_congcu;//
         this.pnl_information = pnl_information;//
@@ -63,50 +59,53 @@ public class NhapHangVegetableGUI {
     }
     public void init(){
         congcu();
-        nhanvienTBL();
+        VegetableTable();
     }
   
     public void congcu(){
-        for(int i=0; i<title_ifm_nv.length;i++){
-            ds_pnl_nv[i]=new JPanel();
-            ds_pnl_nv[i].setBorder(BorderFactory.createTitledBorder(title_ifm_nv[i]));
-            ds_pnl_nv[i].setBackground(null);
-            ds_pnl_nv[i].setLayout(new FlowLayout());
-            pnl_input.add(ds_pnl_nv[i]);
+        for(int i=0; i<title_ifm_vege.length;i++){
+            list_pnl_vege[i]=new JPanel();
+            list_pnl_vege[i].setBorder(BorderFactory.createTitledBorder(title_ifm_vege[i]));
+            list_pnl_vege[i].setBackground(null);
+            list_pnl_vege[i].setLayout(new FlowLayout());
+            pnl_input.add(list_pnl_vege[i]);
 
-            ds_input_nv[i]=new JTextField();
-            ds_input_nv[i].setBackground(null);
-            ds_input_nv[i].setBorder(new MatteBorder(0, 0, 3, 0, new Color(0, 0, 60)));
-            ds_input_nv[i].setPreferredSize(new Dimension(150, 20));
-            ds_pnl_nv[i].add(ds_input_nv[i]);
+            list_input_vege[i]=new JTextField();
+            list_input_vege[i].setBackground(null);
+            list_input_vege[i].setBorder(new MatteBorder(0, 0, 3, 0, new Color(0, 0, 60)));
+            list_input_vege[i].setPreferredSize(new Dimension(150, 20));
+            list_pnl_vege[i].add(list_input_vege[i]);
         }
-        ds_pnl_nv[0].setBounds(205, 0, 180, 60);//name
-        ds_pnl_nv[1].setBounds(20, 60, 180, 60);//unit
-        ds_pnl_nv[2].setBounds(205, 60, 180, 60);//amout
-        ds_pnl_nv[3].setBounds(390, 60, 180, 60);//price
+        list_pnl_vege[0].setBounds(205, 0, 180, 60);//name
+        list_pnl_vege[1].setBounds(20, 60, 180, 60);//unit
+        list_pnl_vege[2].setBounds(205, 60, 180, 60);//amout
+        list_pnl_vege[3].setBounds(390, 60, 180, 60);//price
+        
+        //id
+        lbl_id=new JLabel();
+        lbl_id.setText(null);
+        lbl_id.setBounds(20, 0, 180, 60);
+        lbl_id.setBackground(null);
+        lbl_id.setBorder(BorderFactory.createTitledBorder("ID"));
+        lbl_id.setEnabled(false);
+        pnl_input.add(lbl_id);
+        
+        // image
+        lbl_input_image=new JLabel("",JLabel.CENTER);
+        lbl_input_image.setBounds(20, 120, 180, 60);
+        lbl_input_image.setBackground(null);
+        lbl_input_image.setBorder(BorderFactory.createTitledBorder("Image"));
+        pnl_input.add(lbl_input_image);
 
-        lbl_idnv=new JLabel();
-        lbl_idnv.setText(null);
-        lbl_idnv.setBounds(20, 0, 180, 60);
-        lbl_idnv.setBackground(null);
-        lbl_idnv.setBorder(BorderFactory.createTitledBorder("ID"));
-        lbl_idnv.setEnabled(false);
-        pnl_input.add(lbl_idnv);
-
-        lbl_imgnv=new JLabel("",JLabel.CENTER);
-        lbl_imgnv.setBounds(20, 120, 180, 60);
-        lbl_imgnv.setBackground(null);
-        lbl_imgnv.setBorder(BorderFactory.createTitledBorder("Image"));
-        pnl_input.add(lbl_imgnv);
-
-        lbl_btnaddNV = new JLabel("",JLabel.CENTER);
-        lbl_btnaddNV.setBackground(new Color(0, 0, 60));
-        lbl_btnaddNV.setOpaque(true);
-        lbl_btnaddNV.setText("Chọn Ảnh");
-        lbl_btnaddNV.setForeground(Color.white);
-        lbl_btnaddNV.setBounds(202, 148, 70, 30);
-        pnl_input.add(lbl_btnaddNV);
-
+        lbl_btn_image = new JLabel("",JLabel.CENTER);
+        lbl_btn_image.setBackground(new Color(0, 0, 60));
+        lbl_btn_image.setOpaque(true);
+        lbl_btn_image.setText("Chọn Ảnh");
+        lbl_btn_image.setForeground(Color.white);
+        lbl_btn_image.setBounds(202, 148, 70, 30);
+        pnl_input.add(lbl_btn_image);
+        
+        //combobox input
         CategoryModel categoryInputCBModel = new CategoryModel(
                 categoryBLL.convertList1(listCategory));
         cb_categoryInput=new JComboBox(categoryInputCBModel);
@@ -143,126 +142,132 @@ public class NhapHangVegetableGUI {
         ds_lbl_congcu[4].addMouseListener(new BtnCancelVegetableNHListener(this));
         
         //tim kiem
-        pnl_tkborder=new JPanel();
-        pnl_tkborder.setBackground(null);
-        pnl_tkborder.setBorder(new MatteBorder(2, 0, 0, 0, new Color(0, 0, 60)));
-        pnl_tkborder.setBounds(0, 190, 700, 70);
-        pnl_input.add(pnl_tkborder);
+        pnl_search_container=new JPanel();
+        pnl_search_container.setBackground(null);
+        pnl_search_container.setBorder(new MatteBorder(2, 0, 0, 0, new Color(0, 0, 60)));
+        pnl_search_container.setBounds(0, 190, 700, 70);
+        pnl_input.add(pnl_search_container);
 
-        pnl_tk_nv=new JPanel();
-        pnl_tk_nv.setPreferredSize(new Dimension(280,60));
-        pnl_tk_nv.setBackground(null);
-        pnl_tk_nv.setBorder(BorderFactory.createTitledBorder("Search by name"));
-        pnl_tkborder.add(pnl_tk_nv);
+        pnl_search_vege=new JPanel();
+        pnl_search_vege.setPreferredSize(new Dimension(280,60));
+        pnl_search_vege.setBackground(null);
+        pnl_search_vege.setBorder(BorderFactory.createTitledBorder("Search by name"));
+        pnl_search_container.add(pnl_search_vege);
 
-        txt_timkiem_nv=new JTextField();
-        txt_timkiem_nv.setPreferredSize(new Dimension(260, 30));
-        txt_timkiem_nv.setBackground(null);
-        txt_timkiem_nv.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, new Color(0, 0, 60)));
-        pnl_tk_nv.add(txt_timkiem_nv);
+        txt_timkiem=new JTextField();
+        txt_timkiem.setPreferredSize(new Dimension(260, 30));
+        txt_timkiem.setBackground(null);
+        txt_timkiem.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, new Color(0, 0, 60)));
+        pnl_search_vege.add(txt_timkiem);
 
-        lbl_timkiem_nv=new JLabel("SEARCH",JLabel.CENTER);
-        lbl_timkiem_nv.setBackground(new Color(0, 0, 60));
-        lbl_timkiem_nv.setOpaque(true);
-        lbl_timkiem_nv.setForeground(Color.white);
-        lbl_timkiem_nv.setPreferredSize(new Dimension(100, 40));
-        pnl_tkborder.add(lbl_timkiem_nv);
+        lbl_timkiem=new JLabel("SEARCH",JLabel.CENTER);
+        lbl_timkiem.setBackground(new Color(0, 0, 60));
+        lbl_timkiem.setOpaque(true);
+        lbl_timkiem.setForeground(Color.white);
+        lbl_timkiem.setPreferredSize(new Dimension(100, 40));
+        pnl_search_container.add(lbl_timkiem);
         
         // xu ly su kien tim kiem
-        lbl_timkiem_nv.addMouseListener(new BtnSearchVegetableNHListener(this));
+        lbl_timkiem.addMouseListener(new BtnSearchVegetableNHListener(this));
     }
 
     public void inner_img(ImageIcon icon){
-        pnl_tuongtac.removeAll();
-        lbl_anhnv=new JLabel(icon,JLabel.CENTER);
-        lbl_anhnv.setBounds(0, 0, 260, 260);
-        pnl_tuongtac.add(lbl_anhnv);
-        pnl_tuongtac.repaint();
-        pnl_tuongtac.validate();
+        pnl_image.removeAll();
+        lbl_image=new JLabel(icon,JLabel.CENTER);
+        lbl_image.setBounds(0, 0, 260, 260);
+        pnl_image.add(lbl_image);
+        pnl_image.repaint();
+        pnl_image.validate();
     }
 
-    public void nhanvienTBL(){
+    public void VegetableTable(){
         String[] colum={"ID","Name","Category","Unit","Amount","Price"};
-        tblm=new DefaultTableModel(null, colum);
-        tbl_nv=new JTable();
-        tbl_nv.setModel(tblm);
-        tbl_nv.setRowHeight(30);
-        tbl_nv.setGridColor(new Color(0, 0, 60));
-        tbl_nv.setAutoCreateRowSorter(true);
-        tbl_nv.getTableHeader().setBackground(new Color(0, 0, 60));
-        tbl_nv.getTableHeader().setForeground(Color.white);
-        tbl_nv.setPreferredScrollableViewportSize(new Dimension(970, 320));
-        pnl_information.add(new JScrollPane(tbl_nv));   
-        tbl_nv.addMouseListener(new TableVegetableNHListener(this));
-        inner_combobox_vegeType();
-        //load all vegetable
-        loadNV(vegetableBLL.loadAllVegetable());
+        tb_vege_model=new DefaultTableModel(null, colum);
+        table_vege=new JTable();
+        table_vege.setModel(tb_vege_model);
+        table_vege.setRowHeight(30);
+        table_vege.setGridColor(new Color(0, 0, 60));
+        table_vege.setAutoCreateRowSorter(true);
+        table_vege.getTableHeader().setBackground(new Color(0, 0, 60));
+        table_vege.getTableHeader().setForeground(Color.white);
+        table_vege.setPreferredScrollableViewportSize(new Dimension(970, 320));
+        pnl_information.add(new JScrollPane(table_vege));   
+        table_vege.addMouseListener(new TableVegetableNHListener(this));
+        inner_combobox_vegeTypeFilter();
+        //load vegetable
+        loadVegetable(vegetableBLL.loadVegetable(getCateFilter()));
     }
         
-    public void loadNV(List list){
-        Object[][] data = vegetableBLL.converVegetable(list);
-        tblm.setRowCount(0);
+    public void loadVegetable(List list){
+        Object[][] data = vegetableBLL.convertVegetable(list);
+        tb_vege_model.setRowCount(0);
         for (Object[] row : data) {
-            tblm.addRow(row);
+            tb_vege_model.addRow(row);
         }
     }
-    public void inner_combobox_vegeType(){
+    public void inner_combobox_vegeTypeFilter(){
         CategoryModel categoryFilterCBModel = new CategoryModel(
                 categoryBLL.convertList1(listCategory));
         cb_categoryFilter=new JComboBox(categoryFilterCBModel);
         cb_categoryFilter.insertItemAt("All Category", 0);
         cb_categoryFilter.setSelectedItem("All Category");
         cb_categoryFilter.setBounds(0, 0, 150, 60);
+        cb_categoryFilter.setBackground(null);
+        cb_categoryFilter.setBorder(BorderFactory.createTitledBorder("Category"));
         cb_categoryFilter.setLightWeightPopupEnabled(true);
-        pnl_tkborder.add(cb_categoryFilter);
+        pnl_search_container.add(cb_categoryFilter);
         cb_categoryFilter.addActionListener((ActionEvent e) -> {
-            String name = txt_timkiem_nv.getText();
-            Object categoryObject = cb_categoryFilter.getModel().getSelectedItem();
-            List list = vegetableBLL.searchVegetable(name, categoryObject);
-            loadNV(list);
+            String name = txt_timkiem.getText();
+            List list = vegetableBLL.searchVegetable(name, getCateFilter());
+            loadVegetable(list);
         });   
     }
     
     public void setNullAllInput(){
-        for(int i=0; i<title_ifm_nv.length;i++){
-            ds_input_nv[i].setText(null);
+        for(int i=0; i<title_ifm_vege.length;i++){
+            list_input_vege[i].setText(null);
         }
     }
     
     public void setNullAllInfo(){
-        for(int i=0; i<title_ifm_nv.length;i++){
-            ds_input_nv[i].setText(null);
+        for(int i=0; i<title_ifm_vege.length;i++){
+            list_input_vege[i].setText(null);
         }
-        lbl_idnv.setText(null);
-        lbl_imgnv.setText(null);
+        lbl_id.setText(null);
+        lbl_input_image.setText(null);
+        txt_timkiem.setText(null);
     }
     
+    public Object getCateFilter(){
+        return cb_categoryFilter.getModel().getSelectedItem();
+    }
+
     public boolean checkDataInput(){
-        if ("".equals(ds_input_nv[0].getText())) {
+        if ("".equals(list_input_vege[0].getText())) {
             JOptionPane.showMessageDialog(null, "Please enter 'Name'!");
             return false;
         }
-        if ("".equals(ds_input_nv[1].getText())) {
+        if ("".equals(list_input_vege[1].getText())) {
             JOptionPane.showMessageDialog(null, "Please enter 'Unit'!");
             return false;
         }
-        if ("".equals(ds_input_nv[2].getText())) {
+        if ("".equals(list_input_vege[2].getText())) {
             JOptionPane.showMessageDialog(null, "Please enter 'Amount'!");
             return false;
         }
-        if(!(vegetableBLL.isNumber((String)ds_input_nv[2].getText()))){
+        if(!(vegetableBLL.isInteger((String)list_input_vege[2].getText()))){
             JOptionPane.showMessageDialog(null, "'Amount' must be number!");
             return false;
         }
-        if ("".equals(ds_input_nv[3].getText())) {
+        if ("".equals(list_input_vege[3].getText())) {
             JOptionPane.showMessageDialog(null, "Please enter 'Price'!");
             return false;
         }
-//        if(!(vegetableBLL.isNumber((String)ds_input_nv[3].getText()))){
-//            JOptionPane.showMessageDialog(null, "'Price' must be number!");
-//            return false;
-//        }
-        if ("".equals(lbl_imgnv.getText())) {
+        if(!(vegetableBLL.isFloat((String)list_input_vege[3].getText()))){
+            JOptionPane.showMessageDialog(null, "'Price' must be number!");
+            return false;
+        }
+        if ("".equals(lbl_input_image.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter 'Image'!");
             return false;
         }

@@ -19,7 +19,7 @@ public class BtnResetCategoryNHListener extends MouseAdapter {
                 context.setNullAllInput();
             }else{
                 context.setNullAllInfo();
-                context.loadCategoryTable(context.categoryBLL.loadCategory());
+                context.loadCategory(context.categoryBLL.loadCategory());
             }
         }
 }

@@ -21,7 +21,6 @@ public class innercontent {
     
     public  JPanel pnl_contentmenu_ncc;
     
-    
     public innercontent()
     {
             top_content= new JPanel();
@@ -58,7 +57,7 @@ public class innercontent {
             pnl_information.setLayout(new FlowLayout());
             pnl_contentbottom.add(pnl_information);
          if(menuleftBLL.flag == 1){
-             new NhapHangCategoryGUI(pnl_input,  pnl_tuongtac,  top_content,  pnl_information, pnl_contentbottom);
+             new NhapHangVegetableGUI(pnl_input,  pnl_tuongtac,  top_content,  pnl_information, pnl_contentbottom);
         }       
     }
 }

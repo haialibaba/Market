@@ -4,10 +4,8 @@ package GUI;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class BtnCancelCategoryNHListener extends MouseAdapter {
-    
+public class BtnCancelCategoryNHListener extends MouseAdapter { 
     NhapHangCategoryGUI context;
-    
     public BtnCancelCategoryNHListener(NhapHangCategoryGUI context) {
         this.context = context;
     }

@@ -31,7 +31,7 @@ public class BtnAddCategoryNHListener extends MouseAdapter {
                 if(status){
                     JOptionPane.showMessageDialog(null,"Add successfully","Insert",
                             JOptionPane.INFORMATION_MESSAGE);
-                    context.loadCategoryTable(context.categoryBLL.loadCategory());
+                    context.loadCategory(context.categoryBLL.loadCategory());
                     context.setNullAllInfo();
                     context.ds_lbl_congcu[0].setText("ADD");
                     context.ds_lbl_congcu[0].setBorder(null);

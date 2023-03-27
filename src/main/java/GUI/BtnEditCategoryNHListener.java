@@ -8,10 +8,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
-public class BtnEditCategoryNHListener extends MouseAdapter {
-    
+public class BtnEditCategoryNHListener extends MouseAdapter { 
     NhapHangCategoryGUI context;
-    
     public BtnEditCategoryNHListener(NhapHangCategoryGUI context) {
         this.context = context;
     }
@@ -38,7 +36,7 @@ public class BtnEditCategoryNHListener extends MouseAdapter {
                 context.ds_lbl_congcu[0].setVisible(true);
                 context.ds_lbl_congcu[2].setVisible(true);
                 context.ds_lbl_congcu[4].setVisible(false);
-                context.loadCategoryTable(context.categoryBLL.loadCategory());
+                context.loadCategory(context.categoryBLL.loadCategory());
             }else{
                 JOptionPane.showMessageDialog(null,"Save failure","Save",
                         JOptionPane.ERROR_MESSAGE);

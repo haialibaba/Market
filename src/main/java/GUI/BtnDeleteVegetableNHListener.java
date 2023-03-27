@@ -13,24 +13,25 @@ public class BtnDeleteVegetableNHListener extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        int i=context.tbl_nv.getSelectedRow();
+        int i=context.table_vege.getSelectedRow();
         if(i<0){
             JOptionPane.showMessageDialog(null, "Please choose vegetable from the table!");
         }else{
             int dialog_del = JOptionPane.showConfirmDialog(null,
-                "Do you want to delete vegetable?\n"+"ID: "+ context.tbl_nv.getValueAt(i,0)
-                +"\n"+"Name: "+ context.tbl_nv.getValueAt(i,1),"Delete",
+                "Do you want to delete vegetable?\n"+"ID: "+
+                context.table_vege.getValueAt(i,0)
+                +"\n"+"Name: "+ context.table_vege.getValueAt(i,1),"Delete",
                 JOptionPane.YES_NO_OPTION);
             if(dialog_del == JOptionPane.YES_OPTION){
-                String id = (String) context.tbl_nv.getValueAt(i, 0);
+                String id = (String) context.table_vege.getValueAt(i, 0);
                 vegetable v = context.vegetableBLL.getVegetable(id);
                 boolean status = context.vegetableBLL.deleteVegetable(v);
                 if(status){
                     JOptionPane.showMessageDialog(null,"Delete successfully","Delete",
                             JOptionPane.INFORMATION_MESSAGE);
                     context.setNullAllInfo();
-                    //sua lai
-                    //context.loadNV(context.vegetableBLL.loadAllVegetable());
+                    Object category = context.getCateFilter();
+                    context.loadVegetable(context.vegetableBLL.loadVegetable(category));
                 }else{
                     JOptionPane.showMessageDialog(null,"Delete failure","Delete",
                             JOptionPane.ERROR_MESSAGE);

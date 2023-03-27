@@ -45,11 +45,11 @@ public class NhapHangCategoryGUI {
         init();
     }
     private void init(){
-        congCu();
-        categoryTable();
+        CongCu();
+        CategoryTable();
     }
   
-    private void congCu(){
+    private void CongCu(){
         for(int i=0; i<title_info_category.length;i++){
             list_pnl_category[i]=new JPanel();
             list_pnl_category[i].setBorder(BorderFactory.createTitledBorder(title_info_category[i]));
@@ -130,7 +130,7 @@ public class NhapHangCategoryGUI {
         lbl_search.addMouseListener(new BtnSearchCategoryNHListener(this));
     }
 
-    private void categoryTable(){
+    private void CategoryTable(){
         String[] colum={"ID","Name","Description"};
         table_model_category=new DefaultTableModel(null, colum);
         table_category=new JTable();
@@ -143,10 +143,10 @@ public class NhapHangCategoryGUI {
         table_category.setPreferredScrollableViewportSize(new Dimension(970, 320));
         pnl_information.add(new JScrollPane(table_category));   
         table_category.addMouseListener(new TableCategoryNHListener(this));
-        loadCategoryTable(categoryBLL.loadCategory());
+        loadCategory(categoryBLL.loadCategory());
     }
 
-    public void loadCategoryTable(List list){
+    public void loadCategory(List list){
         Object[][] data = categoryBLL.convertList(list);
         table_model_category.setRowCount(0);
         for (Object[] row : data) {

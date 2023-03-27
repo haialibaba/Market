@@ -20,18 +20,20 @@ public class vegetableBLL {
         vegetableDAL = new vegetableDAL();
     }
     
-    public List loadAllVegetable(){
-        List list;
-        list = vegetableDAL.loadVegetable();
-        return list;   
+    public List loadVegetable(Object cate){
+        try {
+            category c = (category) cate;
+            return vegetableDAL.loadVegetableInCategory(c.getCatagoryID());
+        } catch (Exception e) {
+            return vegetableDAL.loadVegetable();
+        } 
     }
     
-    public Object[][] converVegetable(List<vegetable> list){
+    public Object[][] convertVegetable(List<vegetable> list){
         int rows = list.size();
         int cols = 6;
         Object[][] obj = new Object[rows][cols];
-        for(int i = 0; i < rows; i++)
-        {
+        for(int i = 0; i < rows; i++){
             obj[i][0] = list.get(i).getVegetableID();
             obj[i][1] = list.get(i).getVegetable_Name();
             obj[i][2] = list.get(i).getCatagory();
@@ -41,7 +43,7 @@ public class vegetableBLL {
         }
         return obj;
     }
-    public boolean isNumber(String str) {
+    public boolean isInteger(String str) {
         try {
             Integer.valueOf(str);
             return true;
@@ -49,9 +51,17 @@ public class vegetableBLL {
             return false;
         } 
     }
-    public List searchVegetable(String name, Object obj){
+    public boolean isFloat(String str) {
         try {
-            category c = (category) obj;
+            Float.valueOf(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        } 
+    }
+    public List searchVegetable(String name, Object cate){
+        try {
+            category c = (category) cate;
             return vegetableDAL.searchVegetableNameInCategory(name, c.getCatagoryID());
         } catch (Exception e) {
             return vegetableDAL.searchVegetableName(name);

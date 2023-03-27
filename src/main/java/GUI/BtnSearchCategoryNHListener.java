@@ -14,6 +14,6 @@ public class BtnSearchCategoryNHListener extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         String name = context.input_search.getText();
         List list = context.categoryBLL.searchCategory(name);
-        context.loadCategoryTable(list);
+        context.loadCategory(list);
     }
 }

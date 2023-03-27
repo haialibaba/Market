@@ -32,11 +32,11 @@ public class vegetableDAL {
         return list;
     }
     
-    public List getVegetableInCategory(int categoryID){
+    public List loadVegetableInCategory(String cateID){
         List list;
         Transaction transaction = session.beginTransaction();
-        Query q = session.createQuery("FROM vegetable WHERE CatagoryID = :categoryID");
-        q.setParameter("categoryID", categoryID);
+        Query q = session.createQuery("FROM vegetable WHERE CatagoryID = ?1");
+        q.setParameter(1, cateID);
         list = q.list();
         transaction.commit();
         return list;
@@ -85,7 +85,7 @@ public class vegetableDAL {
         transaction.commit();
         return list;
     }
-    public List searchVegetableNameInCategory(String name,int id){
+    public List searchVegetableNameInCategory(String name, String id){
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery(
             "FROM vegetable where Vegetable_Name like ?1 and CatagoryID = ?2");
@@ -110,16 +110,15 @@ public class vegetableDAL {
     
     
     public static void main(String args[]){
-        vegetableDAL dal = new vegetableDAL();
+        //vegetableDAL dal = new vegetableDAL();
         //Vegetable obj = dal.getVegetable(1);
         //System.out.println(obj.getVegetableName());
-        List list = dal.getVegetableInCategory(1);
-        
-        for (Iterator iterator = list.iterator(); iterator.hasNext();){
-             vegetable v = (vegetable) iterator.next(); 
-             System.out.print("ID: " + v.getVegetableID()); 
-             System.out.print("Name: " + v.getVegetable_Name()); 
-             
-          } 
+        //List list = dal.getVegetableInCategory(1);
+//        for (Iterator iterator = list.iterator(); iterator.hasNext();){
+//             vegetable v = (vegetable) iterator.next(); 
+//             System.out.print("ID: " + v.getVegetableID()); 
+//             System.out.print("Name: " + v.getVegetable_Name()); 
+//             
+//          } 
     }
 }

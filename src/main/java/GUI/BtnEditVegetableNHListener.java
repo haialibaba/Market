@@ -16,7 +16,7 @@ public class BtnEditVegetableNHListener extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(context.lbl_idnv.getText() == null){
+        if(context.lbl_id.getText() == null){
             JOptionPane.showMessageDialog(null, "Please choose vegetable from the table!");
         }else if(context.ds_lbl_congcu[1].getText().equals("EDIT")){
             context.ds_lbl_congcu[1].setText("SAVE EDIT");
@@ -25,13 +25,13 @@ public class BtnEditVegetableNHListener extends MouseAdapter {
             context.ds_lbl_congcu[2].setVisible(false);
             context.ds_lbl_congcu[4].setVisible(true);
         }else if(context.checkDataInput()){
-            vegetable v = context.vegetableBLL.getVegetable(context.lbl_idnv.getText());
-            v.setVegetable_Name(context.ds_input_nv[0].getText());
-            v.setUnit(context.ds_input_nv[1].getText());
-            v.setAmount(context.ds_input_nv[2].getText());
-            v.setPrice(context.ds_input_nv[3].getText());
+            vegetable v = context.vegetableBLL.getVegetable(context.lbl_id.getText());
+            v.setVegetable_Name(context.list_input_vege[0].getText());
+            v.setUnit(context.list_input_vege[1].getText());
+            v.setAmount(context.list_input_vege[2].getText());
+            v.setPrice(context.list_input_vege[3].getText());
             v.setCatagory((category) context.cb_categoryInput.getModel().getSelectedItem());
-            v.setImage(context.lbl_imgnv.getText());
+            v.setImage(context.lbl_input_image.getText());
             boolean status = context.vegetableBLL.updateVegetable(v); 
             if(status){
                 JOptionPane.showMessageDialog(null,"Save successfully","Save",
@@ -42,7 +42,8 @@ public class BtnEditVegetableNHListener extends MouseAdapter {
                 context.ds_lbl_congcu[0].setVisible(true);
                 context.ds_lbl_congcu[2].setVisible(true);
                 context.ds_lbl_congcu[4].setVisible(false);
-                //them load lai bang
+                Object category = context.getCateFilter();
+                context.loadVegetable(context.vegetableBLL.loadVegetable(category));
             }else{
                 JOptionPane.showMessageDialog(null,"Save failure","Save",
                         JOptionPane.ERROR_MESSAGE);
