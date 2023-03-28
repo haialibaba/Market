@@ -23,8 +23,9 @@ public class TableVegetableNHListener extends MouseAdapter {
         context.list_input_vege[3].setText(ve.getPrice());
         context.cb_categoryInput.getModel().setSelectedItem(ve.getCatagory());
         context.lbl_input_image.setText(ve.getImage()); 
+        String imageName = ve.getImage().replace("images/", "");
         imgs img=new imgs();
-        ImageIcon icon=new ImageIcon(img.imgs("banhbao.jpg"));
+        ImageIcon icon=new ImageIcon(img.imgs(imageName));
         Image ic=icon.getImage().getScaledInstance(260, 260, Image.SCALE_SMOOTH);
         icon=new ImageIcon(ic);
         context.inner_img(icon);  
