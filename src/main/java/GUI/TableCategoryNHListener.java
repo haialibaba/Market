@@ -17,6 +17,6 @@ public class TableCategoryNHListener extends MouseAdapter {
         category c = context.categoryBLL.getCategory(Integer.parseInt(id));
         context.lbl_id_category.setText(id);
         context.list_input_category[0].setText(c.getName());
-        context.list_input_category[1].setText(c.getDescription());
+        context.txt_description.setText(c.getDescription());
     }
 }

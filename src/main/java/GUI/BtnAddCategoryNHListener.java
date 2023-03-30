@@ -26,7 +26,7 @@ public class BtnAddCategoryNHListener extends MouseAdapter {
             }else if (context.checkDataInput()){
                 category c = new category();
                 c.setName(context.list_input_category[0].getText());
-                c.setDescription(context.list_input_category[1].getText());
+                c.setDescription(context.txt_description.getText());
                 boolean status = context.categoryBLL.insertCategory(c);
                 if(status){
                     JOptionPane.showMessageDialog(null,"Add successfully","Insert",

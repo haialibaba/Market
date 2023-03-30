@@ -62,7 +62,6 @@ public class categoryDAL {
             session.save(c);
             transaction.commit();
         } catch (Exception e) {
-            System.out.println(e);
             transaction.rollback();
         }
         return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);

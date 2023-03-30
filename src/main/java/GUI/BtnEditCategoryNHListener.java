@@ -25,7 +25,7 @@ public class BtnEditCategoryNHListener extends MouseAdapter {
                 String id = context.lbl_id_category.getText();
                 category c = context.categoryBLL.getCategory(Integer.parseInt(id));
                 c.setName(context.list_input_category[0].getText());
-                c.setDescription(context.list_input_category[1].getText());
+                c.setDescription(context.txt_description.getText());
                 boolean status = context.categoryBLL.updateCategory(c); 
                 if(status){
                 JOptionPane.showMessageDialog(null,"Save successfully","Save",

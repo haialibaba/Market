@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +20,7 @@ public class NhapHangCategoryGUI {
     
     JPanel pnl_input,pnl_tuongtac,top_content,pnl_contentbottom,pnl_information;
     public  JPanel pnl_congcu,pnl_search,pnl_search_border;
-    public  String[] title_info_category={"Name","Description"};
+    public  String[] title_info_category={"Name"};
     public  JPanel[] list_pnl_category=new JPanel[title_info_category.length];
     public  JTextField[] list_input_category= new JTextField[title_info_category.length];
     
@@ -28,7 +29,9 @@ public class NhapHangCategoryGUI {
     
     public  JLabel lbl_search,lbl_id_category;
     public  JTextField input_search;
-     
+    
+    public JTextArea txt_description;
+    
     public  JTable table_category;
     public  DefaultTableModel table_model_category;
     
@@ -64,7 +67,6 @@ public class NhapHangCategoryGUI {
             list_pnl_category[i].add(list_input_category[i]);
         }
         list_pnl_category[0].setBounds(205, 0, 180, 60);//name
-        list_pnl_category[1].setBounds(20, 60, 180, 60);//description
         
         //id
         lbl_id_category=new JLabel();
@@ -73,13 +75,30 @@ public class NhapHangCategoryGUI {
         lbl_id_category.setBorder(BorderFactory.createTitledBorder("ID"));
         lbl_id_category.setEnabled(false);
         pnl_input.add(lbl_id_category);
+
+        //description
+
+        JPanel pnl_description=new JPanel();
+        pnl_description.setBounds(20, 60, 365, 120);
+        pnl_description.setBorder(BorderFactory.createTitledBorder("Description"));
+        pnl_description.setBackground(null);
+        pnl_description.setLayout(new FlowLayout());
+        pnl_input.add(pnl_description);
         
+        txt_description=new JTextArea();
+        txt_description.setBackground(null);
+        txt_description.setLineWrap(true);
+        txt_description.setPreferredSize(new Dimension(350, 80));
+        pnl_description.add(txt_description);
+        
+        
+        
+        //cong cu
         pnl_congcu=new JPanel();
         pnl_congcu.setBounds(560, 5, 140, 180);
         pnl_congcu.setBackground(null);
         pnl_input.add(pnl_congcu);
         
-        //cong cu
         for(int i=0;i<btn_congcu.length;i++){           
             ds_lbl_congcu[i]=new JLabel(btn_congcu[i],JLabel.CENTER);
             ds_lbl_congcu[i].setBackground(new Color(0, 0, 60));
@@ -158,6 +177,7 @@ public class NhapHangCategoryGUI {
         for(int i=0; i<title_info_category.length;i++){
             list_input_category[i].setText(null);   
         }
+        txt_description.setText(null);
     }
     
     public void setNullAllInfo(){
@@ -165,6 +185,7 @@ public class NhapHangCategoryGUI {
             list_input_category[i].setText(null);   
         }
         lbl_id_category.setText(null);
+        txt_description.setText(null);
     }
     
     public boolean checkDataInput(){
