@@ -104,7 +104,6 @@ public class NhapHangVegetableGUI {
         lbl_btn_image.setForeground(Color.white);
         lbl_btn_image.setBounds(202, 148, 70, 30);
         pnl_input.add(lbl_btn_image);
-        lbl_btn_image.addMouseListener(new BtnChooseImageVegetableNHListener(this));
         
         //combobox input
         CategoryModel categoryInputCBModel = new CategoryModel(
