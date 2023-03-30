@@ -24,7 +24,7 @@ public class BtnDeleteCategoryNHListener extends MouseAdapter {
                 JOptionPane.YES_NO_OPTION);
             if(dialog_del == JOptionPane.YES_OPTION){
                 String id = (String) context.table_category.getValueAt(i,0);
-                category c = context.categoryBLL.getCategory(id);
+                category c = context.categoryBLL.getCategory(Integer.parseInt(id));
                 boolean status = context.categoryBLL.deleteCategory(c);
                 if(status){
                     JOptionPane.showMessageDialog(null,"Delete successfully","Delete",

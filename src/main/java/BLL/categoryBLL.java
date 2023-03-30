@@ -39,7 +39,7 @@ public class categoryBLL {
         return obj;
     }
     
-    public category getCategory(String CategoryID){
+    public category getCategory(int CategoryID){
         category c = categoryDAL.getCategory(CategoryID);
         return c;
     }

@@ -31,7 +31,7 @@ public class vegetableDAL {
         return list;
     }
     
-    public List loadVegetableInCategory(String cateID){
+    public List loadVegetableInCategory(int cateID){
         List list;
         Transaction transaction = session.beginTransaction();
         Query q = session.createQuery("FROM vegetable WHERE CatagoryID = ?1");
@@ -84,7 +84,7 @@ public class vegetableDAL {
         transaction.commit();
         return list;
     }
-    public List searchVegetableNameInCategory(String name, String id){
+    public List searchVegetableNameInCategory(String name, int id){
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery(
             "FROM vegetable where Vegetable_Name like ?1 and CatagoryID = ?2");

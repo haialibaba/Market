@@ -29,7 +29,7 @@ public class categoryDAL {
         transaction.commit();
         return list;
     }
-    public category getCategory(String CategoryID){
+    public category getCategory(int CategoryID){
         category c = session.get(category.class, CategoryID);
         return c;
     }
@@ -62,6 +62,7 @@ public class categoryDAL {
             session.save(c);
             transaction.commit();
         } catch (Exception e) {
+            System.out.println(e);
             transaction.rollback();
         }
         return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
