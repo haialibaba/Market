@@ -108,16 +108,16 @@ public class vegetableDAL {
     
     
     
-    public static void main(String args[]){
-        //vegetableDAL dal = new vegetableDAL();
-        //Vegetable obj = dal.getVegetable(1);
-        //System.out.println(obj.getVegetableName());
-        //List list = dal.getVegetableInCategory(1);
+//    public static void main(String args[]){
+//        vegetableDAL dal = new vegetableDAL();
+//        Vegetable obj = dal.getVegetable(1);
+//        System.out.println(obj.getVegetableName());
+//        List list = dal.getVegetableInCategory(1);
 //        for (Iterator iterator = list.iterator(); iterator.hasNext();){
 //             vegetable v = (vegetable) iterator.next(); 
 //             System.out.print("ID: " + v.getVegetableID()); 
 //             System.out.print("Name: " + v.getVegetable_Name()); 
 //             
 //          } 
-    }
+//    }
 }

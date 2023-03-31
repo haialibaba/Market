@@ -33,6 +33,9 @@ public class customers {
     private String Address;
     @Column
     private String City;
-
+    @Override
+    public String toString(){
+        return this.Fullname;
+    }
     
 }

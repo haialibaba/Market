@@ -43,19 +43,20 @@ public class HibernateUtils {
     }
     
     
-    public static void main(String[] args) {
-        // TODO code application logic here
-        try (Session session = HibernateUtils.getSessionFactory().openSession();) {
-            // Begin a unit of work
-            session.beginTransaction();
-            List<category> category = session.createQuery("FROM Category", category.class).list();
-            
-            //xem danh sách
-            category.forEach(System.out::println);
-            
-            //thêm mới
-            
-            session.getTransaction().commit();
-                    
-    }
-}}
+//    public static void main(String[] args) {
+//        // TODO code application logic here
+//        try (Session session = HibernateUtils.getSessionFactory().openSession();) {
+//            // Begin a unit of work
+//            session.beginTransaction();
+//            List<category> category = session.createQuery("FROM Category", category.class).list();
+//            
+//            //xem danh sách
+//            category.forEach(System.out::println);
+//            
+//            //thêm mới
+//            
+//            session.getTransaction().commit();
+//                    
+//        }
+//    }
+}

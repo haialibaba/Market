@@ -14,7 +14,7 @@ import org.hibernate.Transaction;
  */
 
 public class orderDAL {
-    Session session = HibernateUtils.getSessionFactory().openSession();
+    Session session;
     public orderDAL(){
         this.session = session;
     }
@@ -26,22 +26,30 @@ public class orderDAL {
         return o;
     }
     
-    
-    
-    public static void main(String[] args) {
-        orderDAL dal = new orderDAL();
-        order o = dal.getOrder(2);
-        customers c = o.getCustomer();
-        System.err.println("ID:"+o.getOrderID());
-        System.err.println(c.getCustomerID()+"::"+c.getFullname()+"::"+c.getAddress()+"::"+c.getCity());
-        System.err.println(o.getDate());
-        System.err.println(o.getNote());
-        System.err.println(o.getTotal());
-        List<vegetable> list = o.getVegetable();
-        for (int i = 0; i < list.size(); i++) {
-            System.err.println(list.get(i).getVegetableID()+"::"+list.get(i).getVegetable_Name());
-        }
-        
+    public List loadOrder(){
+        session  = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        List order = session.createQuery("FROM order", order.class).list();
+        transaction.commit();
+        return order;
     }
+    
+    
+    
+//    public static void main(String[] args) {
+//        orderDAL dal = new orderDAL();
+//        order o = dal.getOrder(2);
+//        customers c = o.getCustomer();
+//        System.err.println("ID:"+o.getOrderID());
+//        System.err.println(c.getCustomerID()+"::"+c.getFullname()+"::"+c.getAddress()+"::"+c.getCity());
+//        System.err.println(o.getDate());
+//        System.err.println(o.getNote());
+//        System.err.println(o.getTotal());
+//        List<vegetable> list = o.getVegetable();
+//        for (int i = 0; i < list.size(); i++) {
+//            System.err.println(list.get(i).getVegetableID()+"::"+list.get(i).getVegetable_Name());
+//        }
+//        
+//    }
 }
 

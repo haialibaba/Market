@@ -59,6 +59,9 @@ public class innercontent {
         if(menuleftBLL.flag == 1 && MenuNhapHang.menu == 2){
             new NhapHangCategoryGUI(pnl_input,  pnl_tuongtac,  top_content,  pnl_information, pnl_contentbottom);    
         }
+        if(menuleftBLL.flag == 2){
+            new HoaDonGUI(pnl_input,  pnl_tuongtac,  top_content,  pnl_information, pnl_contentbottom);    
+        }
     }
 }
 

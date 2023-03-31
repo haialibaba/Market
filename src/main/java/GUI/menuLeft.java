@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class menuLeft {
-    public String [] danhmuc={"Nhập hàng","Lập hóa đơn","Quản lý KQ học"};
+    public String [] danhmuc={"Nhập hàng","Hóa đơn","Quản lý KQ học"};
     public JLabel[] btn= new JLabel[danhmuc.length];
     JLabel user;
     JPanel pnl_menuleft;
