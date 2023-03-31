@@ -20,6 +20,8 @@
         <property name="show_sql">true</property>
         <mapping class="DAL.category" />
         <mapping class="DAL.vegetable" />
+        <mapping class="DAL.order" />
+        <mapping class="DAL.customers" />
         
     </session-factory>
 </hibernate-configuration>
