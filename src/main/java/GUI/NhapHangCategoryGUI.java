@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -63,33 +64,34 @@ public class NhapHangCategoryGUI {
             list_input_category[i]=new JTextField();
             list_input_category[i].setBackground(null);
             list_input_category[i].setBorder(new MatteBorder(0, 0, 3, 0, new Color(0, 0, 60)));
-            list_input_category[i].setPreferredSize(new Dimension(150, 20));
+            list_input_category[i].setPreferredSize(new Dimension(410, 20));
             list_pnl_category[i].add(list_input_category[i]);
         }
-        list_pnl_category[0].setBounds(205, 0, 180, 60);//name
+        list_pnl_category[0].setBounds(120, 0, 440, 60);//name
         
         //id
         lbl_id_category=new JLabel();
-        lbl_id_category.setBounds(20, 0, 180, 60);
+        lbl_id_category.setBounds(20, 0, 100, 60);
         lbl_id_category.setBackground(null);
+        lbl_id_category.setHorizontalAlignment(JLabel.CENTER);
         lbl_id_category.setBorder(BorderFactory.createTitledBorder("ID"));
-        lbl_id_category.setEnabled(false);
         pnl_input.add(lbl_id_category);
 
-        //description
-
+        //textArea description
+        JScrollPane scrollPaneDescrip = new JScrollPane(txt_description,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         JPanel pnl_description=new JPanel();
-        pnl_description.setBounds(20, 60, 365, 120);
+        pnl_description.setBounds(20, 60, 540, 120);
         pnl_description.setBorder(BorderFactory.createTitledBorder("Description"));
         pnl_description.setBackground(null);
         pnl_description.setLayout(new FlowLayout());
         pnl_input.add(pnl_description);
         
-        txt_description=new JTextArea();
-        txt_description.setBackground(null);
+        txt_description=new JTextArea(5,51);
+        txt_description.setBackground(Color.white); 
         txt_description.setLineWrap(true);
-        txt_description.setPreferredSize(new Dimension(350, 80));
-        pnl_description.add(txt_description);
+        scrollPaneDescrip.setViewportView(txt_description);
+        pnl_description.add(scrollPaneDescrip);
         
         
         

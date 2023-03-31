@@ -87,7 +87,6 @@ public class NhapHangVegetableGUI {
         lbl_id.setBounds(20, 0, 180, 60);
         lbl_id.setBackground(null);
         lbl_id.setBorder(BorderFactory.createTitledBorder("ID"));
-        lbl_id.setEnabled(false);
         pnl_input.add(lbl_id);
         
         // image
