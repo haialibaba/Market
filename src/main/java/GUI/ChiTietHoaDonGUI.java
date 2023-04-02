@@ -1,9 +1,8 @@
 
 package GUI;
 
-import java.awt.Dialog;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Dimension;
 
 public class ChiTietHoaDonGUI extends javax.swing.JFrame {
 
@@ -14,9 +13,14 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
+        dialog_searchProduct = new javax.swing.JDialog();
+        container_searchProduct = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        container_all = new javax.swing.JPanel();
+        scroll_tableProduct = new javax.swing.JScrollPane();
+        table_product = new javax.swing.JTable();
         pnl_note = new javax.swing.JPanel();
         scroll_note = new javax.swing.JScrollPane();
         text_note = new javax.swing.JTextArea();
@@ -31,66 +35,128 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         pnl_city = new javax.swing.JPanel();
         text_city = new javax.swing.JTextField();
         label_total = new javax.swing.JLabel();
-        scroll_tableProduct = new javax.swing.JScrollPane();
-        table_product = new javax.swing.JTable();
         label_product = new javax.swing.JLabel();
         btn_addProduct = new javax.swing.JButton();
 
-        jDialog1.setMinimumSize(new java.awt.Dimension(200, 200));
-        jDialog1.setUndecorated(true);
-        jDialog1.setResizable(false);
-        jDialog1.addWindowListener(new java.awt.event.WindowAdapter() {
+        dialog_searchProduct.setMaximumSize(new java.awt.Dimension(450, 300));
+        dialog_searchProduct.setMinimumSize(new java.awt.Dimension(450, 300));
+        dialog_searchProduct.setUndecorated(true);
+        dialog_searchProduct.setPreferredSize(new java.awt.Dimension(450, 300));
+        dialog_searchProduct.setResizable(false);
+        dialog_searchProduct.setType(java.awt.Window.Type.POPUP);
+        dialog_searchProduct.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowDeactivated(java.awt.event.WindowEvent evt) {
-                jDialog1WindowDeactivated(evt);
+                dialog_searchProductWindowDeactivated(evt);
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        container_searchProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        container_searchProduct.setMaximumSize(new java.awt.Dimension(450, 300));
+        container_searchProduct.setMinimumSize(new java.awt.Dimension(450, 300));
+        container_searchProduct.setPreferredSize(new java.awt.Dimension(450, 300));
+        container_searchProduct.setLayout(null);
 
         jTextField1.setText("jTextField1");
+        container_searchProduct.add(jTextField1);
+        jTextField1.setBounds(10, 10, 430, 30);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
-        );
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, "", null, ""},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
-        jDialog1.getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        container_searchProduct.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 50, 430, 240);
+
+        dialog_searchProduct.getContentPane().add(container_searchProduct, java.awt.BorderLayout.CENTER);
+
+        dialog_searchProduct.getAccessibleContext().setAccessibleDescription("");
+        dialog_searchProduct.getAccessibleContext().setAccessibleParent(container_all);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Order 1");
         setBackground(null);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(1000, 650));
-        setMinimumSize(new java.awt.Dimension(1000, 650));
+        setMaximumSize(new java.awt.Dimension(770, 690));
+        setMinimumSize(new java.awt.Dimension(770, 690));
         setName("Hoa Don 1"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1000, 650));
+        setPreferredSize(new java.awt.Dimension(770, 690));
         setResizable(false);
-        setSize(new java.awt.Dimension(1000, 650));
+        setSize(new java.awt.Dimension(770, 690));
         getContentPane().setLayout(null);
+
+        container_all.setBackground(new java.awt.Color(255, 255, 255));
+        container_all.setLayout(null);
+
+        table_product.setAutoCreateRowSorter(true);
+        table_product.getTableHeader().setBackground(new Color(0, 0, 60));
+        table_product.getTableHeader().setForeground(Color.white);
+        table_product.setPreferredScrollableViewportSize(new Dimension(970, 320));
+        table_product.setBackground(java.awt.Color.white);
+        table_product.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        table_product.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "STT", "Name", "Quantity", "Unit", "Price", "Tool"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        table_product.setToolTipText("");
+        table_product.setGridColor(new java.awt.Color(0, 0, 60));
+        table_product.setInheritsPopupMenu(true);
+        table_product.setRowHeight(30);
+        scroll_tableProduct.setViewportView(table_product);
+        if (table_product.getColumnModel().getColumnCount() > 0) {
+            table_product.getColumnModel().getColumn(0).setMinWidth(50);
+            table_product.getColumnModel().getColumn(0).setPreferredWidth(50);
+            table_product.getColumnModel().getColumn(0).setMaxWidth(50);
+            table_product.getColumnModel().getColumn(2).setMinWidth(100);
+            table_product.getColumnModel().getColumn(2).setPreferredWidth(100);
+            table_product.getColumnModel().getColumn(2).setMaxWidth(100);
+            table_product.getColumnModel().getColumn(3).setMinWidth(100);
+            table_product.getColumnModel().getColumn(3).setPreferredWidth(100);
+            table_product.getColumnModel().getColumn(3).setMaxWidth(100);
+            table_product.getColumnModel().getColumn(5).setMinWidth(70);
+            table_product.getColumnModel().getColumn(5).setPreferredWidth(70);
+            table_product.getColumnModel().getColumn(5).setMaxWidth(70);
+        }
+
+        container_all.add(scroll_tableProduct);
+        scroll_tableProduct.setBounds(20, 360, 700, 210);
 
         pnl_note.setBackground(null);
         pnl_note.setBorder(javax.swing.BorderFactory.createTitledBorder("Note"));
+        pnl_note.setForeground(new java.awt.Color(0, 0, 0));
 
         scroll_note.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        text_note.setBackground(null);
+        text_note.setBackground(new java.awt.Color(0, 255, 0));
         text_note.setColumns(20);
         text_note.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        text_note.setForeground(new java.awt.Color(0, 0, 0));
         text_note.setLineWrap(true);
-        text_note.setRows(3);
+        text_note.setRows(1);
+        text_note.setText("wssdsadasdasdasdasdasda");
         scroll_note.setViewportView(text_note);
 
         javax.swing.GroupLayout pnl_noteLayout = new javax.swing.GroupLayout(pnl_note);
@@ -99,24 +165,26 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             pnl_noteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_noteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scroll_note, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .addComponent(scroll_note, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_noteLayout.setVerticalGroup(
             pnl_noteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_noteLayout.createSequentialGroup()
-                .addComponent(scroll_note, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(scroll_note, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnl_note);
-        pnl_note.setBounds(30, 230, 600, 90);
+        container_all.add(pnl_note);
+        pnl_note.setBounds(20, 230, 700, 90);
 
         pnl_id.setBackground(null);
         pnl_id.setBorder(javax.swing.BorderFactory.createTitledBorder("ID"));
+        pnl_id.setForeground(new java.awt.Color(0, 0, 0));
+        pnl_id.setMinimumSize(new java.awt.Dimension(170, 60));
+        pnl_id.setPreferredSize(new java.awt.Dimension(170, 60));
 
-        text_id.setBackground(null);
+        text_id.setBackground(new java.awt.Color(204, 204, 0));
         text_id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        text_id.setForeground(new java.awt.Color(0, 0, 0));
         text_id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         text_id.setText("1");
         text_id.setBorder(null);
@@ -127,26 +195,26 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             pnl_idLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_idLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(text_id, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addComponent(text_id, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_idLayout.setVerticalGroup(
             pnl_idLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_idLayout.createSequentialGroup()
-                .addComponent(text_id)
-                .addContainerGap())
+            .addComponent(text_id, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
         );
 
         text_id.getAccessibleContext().setAccessibleName("");
 
-        getContentPane().add(pnl_id);
-        pnl_id.setBounds(20, 10, 170, 54);
+        container_all.add(pnl_id);
+        pnl_id.setBounds(20, 10, 110, 60);
 
         pnl_customer.setBackground(null);
         pnl_customer.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer"));
+        pnl_customer.setForeground(new java.awt.Color(0, 0, 0));
 
-        text_customer.setBackground(null);
-        text_customer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        text_customer.setBackground(new java.awt.Color(0, 255, 0));
+        text_customer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        text_customer.setForeground(new java.awt.Color(0, 0, 0));
         text_customer.setText("Join Smith");
         text_customer.setBorder(null);
 
@@ -156,24 +224,26 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             pnl_customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_customerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(text_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addComponent(text_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_customerLayout.setVerticalGroup(
             pnl_customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_customerLayout.createSequentialGroup()
-                .addComponent(text_customer)
-                .addContainerGap())
+            .addComponent(text_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnl_customer);
-        pnl_customer.setBounds(230, 10, 200, 54);
+        container_all.add(pnl_customer);
+        pnl_customer.setBounds(300, 10, 420, 60);
 
         pnl_date.setBackground(null);
         pnl_date.setBorder(javax.swing.BorderFactory.createTitledBorder("Date"));
+        pnl_date.setForeground(new java.awt.Color(0, 0, 0));
+        pnl_date.setMinimumSize(new java.awt.Dimension(300, 60));
+        pnl_date.setPreferredSize(new java.awt.Dimension(300, 60));
 
-        text_date.setBackground(null);
-        text_date.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        text_date.setBackground(new java.awt.Color(153, 0, 0));
+        text_date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        text_date.setForeground(new java.awt.Color(0, 0, 0));
         text_date.setText("2020-10-30");
         text_date.setBorder(null);
 
@@ -183,24 +253,26 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             pnl_dateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_dateLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(text_date, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addComponent(text_date, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_dateLayout.setVerticalGroup(
             pnl_dateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_dateLayout.createSequentialGroup()
-                .addComponent(text_date)
-                .addContainerGap())
+            .addComponent(text_date, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnl_date);
-        pnl_date.setBounds(20, 80, 170, 54);
+        container_all.add(pnl_date);
+        pnl_date.setBounds(20, 80, 200, 60);
 
         pnl_address.setBackground(null);
         pnl_address.setBorder(javax.swing.BorderFactory.createTitledBorder("Address"));
+        pnl_address.setForeground(new java.awt.Color(0, 0, 0));
+        pnl_address.setMinimumSize(new java.awt.Dimension(300, 60));
+        pnl_address.setPreferredSize(new java.awt.Dimension(300, 60));
 
-        text_address.setBackground(null);
-        text_address.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        text_address.setBackground(new java.awt.Color(0, 255, 102));
+        text_address.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        text_address.setForeground(new java.awt.Color(0, 0, 0));
         text_address.setText("123 Nguyen Trai");
         text_address.setBorder(null);
 
@@ -210,24 +282,26 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             pnl_addressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_addressLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(text_address, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addComponent(text_address, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_addressLayout.setVerticalGroup(
             pnl_addressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_addressLayout.createSequentialGroup()
-                .addComponent(text_address)
-                .addContainerGap())
+            .addComponent(text_address, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnl_address);
-        pnl_address.setBounds(230, 80, 200, 54);
+        container_all.add(pnl_address);
+        pnl_address.setBounds(300, 80, 420, 60);
 
         pnl_city.setBackground(null);
         pnl_city.setBorder(javax.swing.BorderFactory.createTitledBorder("City"));
+        pnl_city.setForeground(new java.awt.Color(153, 0, 102));
+        pnl_city.setMinimumSize(new java.awt.Dimension(300, 60));
+        pnl_city.setPreferredSize(new java.awt.Dimension(300, 60));
 
-        text_city.setBackground(null);
-        text_city.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        text_city.setBackground(new java.awt.Color(204, 255, 204));
+        text_city.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        text_city.setForeground(new java.awt.Color(0, 0, 0));
         text_city.setText("Ho Chi Minh");
         text_city.setBorder(null);
 
@@ -237,61 +311,57 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             pnl_cityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_cityLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(text_city, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addComponent(text_city, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_cityLayout.setVerticalGroup(
             pnl_cityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_cityLayout.createSequentialGroup()
-                .addComponent(text_city)
-                .addContainerGap())
+            .addComponent(text_city, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnl_city);
-        pnl_city.setBounds(230, 150, 200, 54);
+        container_all.add(pnl_city);
+        pnl_city.setBounds(300, 150, 420, 60);
 
-        label_total.setText("Total: ");
-        getContentPane().add(label_total);
-        label_total.setBounds(540, 580, 60, 30);
+        label_total.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_total.setForeground(new java.awt.Color(0, 0, 0));
+        label_total.setText("Total: 3333333444");
+        container_all.add(label_total);
+        label_total.setBounds(550, 580, 170, 40);
 
-        table_product.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "STT", "Name", "Quantity", "Unit", "Price", "Tool"
-            }
-        ));
-        scroll_tableProduct.setViewportView(table_product);
-
-        getContentPane().add(scroll_tableProduct);
-        scroll_tableProduct.setBounds(30, 360, 600, 210);
-
+        label_product.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_product.setForeground(new java.awt.Color(0, 0, 0));
         label_product.setText("Product");
-        getContentPane().add(label_product);
-        label_product.setBounds(30, 330, 60, 16);
+        container_all.add(label_product);
+        label_product.setBounds(20, 330, 90, 20);
 
+        btn_addProduct.setBackground(new java.awt.Color(0, 0, 60));
+        btn_addProduct.setForeground(java.awt.Color.white);
         btn_addProduct.setText("Add Product");
+        btn_addProduct.setFocusPainted(false);
         btn_addProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addProductActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_addProduct);
-        btn_addProduct.setBounds(520, 330, 110, 23);
+        container_all.add(btn_addProduct);
+        btn_addProduct.setBounds(610, 330, 110, 23);
+
+        getContentPane().add(container_all);
+        container_all.setBounds(10, 10, 740, 630);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_addProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addProductActionPerformed
         
-        jDialog1.setLocation(500, 350);
-        jDialog1.setVisible(true);
+        
+        dialog_searchProduct.setLocation(500, 350);
+        dialog_searchProduct.setVisible(true);
     }//GEN-LAST:event_btn_addProductActionPerformed
 
-    private void jDialog1WindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog1WindowDeactivated
-        jDialog1.setVisible(false);
-    }//GEN-LAST:event_jDialog1WindowDeactivated
+    private void dialog_searchProductWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dialog_searchProductWindowDeactivated
+        dialog_searchProduct.setVisible(false);
+    }//GEN-LAST:event_dialog_searchProductWindowDeactivated
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -303,8 +373,11 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addProduct;
-    private javax.swing.JDialog jDialog1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel container_all;
+    private javax.swing.JPanel container_searchProduct;
+    private javax.swing.JDialog dialog_searchProduct;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel label_product;
     private javax.swing.JLabel label_total;
