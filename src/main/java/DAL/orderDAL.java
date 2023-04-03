@@ -4,6 +4,7 @@
  */
 package DAL;
 
+import BLL.vegetableBLL;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -14,7 +15,7 @@ import org.hibernate.Transaction;
  */
 
 public class orderDAL {
-    Session session;
+    Session session = HibernateUtils.getSessionFactory().openSession();
     public orderDAL(){
         this.session = session;
     }
@@ -36,20 +37,23 @@ public class orderDAL {
     
     
     
-//    public static void main(String[] args) {
-//        orderDAL dal = new orderDAL();
-//        order o = dal.getOrder(2);
-//        customers c = o.getCustomer();
-//        System.err.println("ID:"+o.getOrderID());
-//        System.err.println(c.getCustomerID()+"::"+c.getFullname()+"::"+c.getAddress()+"::"+c.getCity());
-//        System.err.println(o.getDate());
-//        System.err.println(o.getNote());
-//        System.err.println(o.getTotal());
+    public static void main(String[] args) {
+        orderDAL dal = new orderDAL();
+        order o = dal.getOrder(2);
+        vegetableBLL veLL = new vegetableBLL();
+        customers c = o.getCustomer();
+        System.err.println("ID:"+o.getOrderID());
+        System.err.println(c.getCustomerID()+"::"+c.getFullname()+"::"+c.getAddress()+"::"+c.getCity());
+        System.err.println(o.getDate());
+        System.err.println(o.getNote());
+        System.err.println(o.getTotal());
+        
+//        System.err.println(o.getVegetable());
 //        List<vegetable> list = o.getVegetable();
 //        for (int i = 0; i < list.size(); i++) {
 //            System.err.println(list.get(i).getVegetableID()+"::"+list.get(i).getVegetable_Name());
 //        }
-//        
-//    }
+         //o.getOrderdetails().forEach((vegetable) -> System.err.println(vegetable.getQuantity()));
+    }
 }
 

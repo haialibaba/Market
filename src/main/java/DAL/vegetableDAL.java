@@ -15,7 +15,7 @@ public class vegetableDAL {
         this.session = session;
     }
     
-    public vegetable getVegetable(String vegetableID){
+    public vegetable getVegetable(int vegetableID){
         vegetable v;
         session.beginTransaction();
         v = session.get(vegetable.class, vegetableID);

@@ -80,7 +80,7 @@ public class vegetableBLL {
         return vegetableDAL.addVegetable(v);
     }
     
-    public vegetable getVegetable(String id){
+    public vegetable getVegetable(int id){
         return vegetableDAL.getVegetable(id);
     }
     

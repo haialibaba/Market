@@ -14,9 +14,9 @@ public class TableVegetableNHListener extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e){
-        String id=(String) context.table_vege.getValueAt(context.table_vege.getSelectedRow(),0);
+        int id=(int) context.table_vege.getValueAt(context.table_vege.getSelectedRow(),0);
         vegetable ve = context.vegetableBLL.getVegetable(id);
-        context.lbl_id.setText(id);
+        context.lbl_id.setText(String.valueOf(id));
         context.list_input_vege[0].setText(ve.getVegetable_Name());
         context.list_input_vege[1].setText(ve.getUnit());
         context.list_input_vege[2].setText(ve.getAmount());

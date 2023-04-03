@@ -23,7 +23,7 @@ public class BtnDeleteVegetableNHListener extends MouseAdapter {
                 +"\n"+"Name: "+ context.table_vege.getValueAt(i,1),"Delete",
                 JOptionPane.YES_NO_OPTION);
             if(dialog_del == JOptionPane.YES_OPTION){
-                String id = (String) context.table_vege.getValueAt(i, 0);
+                int id = (int) context.table_vege.getValueAt(i, 0);
                 vegetable v = context.vegetableBLL.getVegetable(id);
                 boolean status = context.vegetableBLL.deleteVegetable(v);
                 if(status){

@@ -25,7 +25,8 @@ public class BtnEditVegetableNHListener extends MouseAdapter {
             context.ds_lbl_congcu[2].setVisible(false);
             context.ds_lbl_congcu[4].setVisible(true);
         }else if(context.checkDataInput()){
-            vegetable v = context.vegetableBLL.getVegetable(context.lbl_id.getText());
+            vegetable v = context.vegetableBLL.getVegetable(
+                    Integer.parseInt(context.lbl_id.getText()));
             v.setVegetable_Name(context.list_input_vege[0].getText());
             v.setUnit(context.list_input_vege[1].getText());
             v.setAmount(context.list_input_vege[2].getText());

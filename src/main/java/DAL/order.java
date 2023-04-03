@@ -4,17 +4,18 @@
  */
 package DAL;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,7 +28,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "`order`")
-public class order {
+public class order implements Serializable{
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int OrderID;
@@ -41,8 +42,10 @@ public class order {
     @ManyToOne
     @JoinColumn(name = "CustomerID")
     private customers Customer;
-    @ManyToMany
-    @JoinTable(name = "orderdetail", joinColumns={@JoinColumn(name = "orderID")},
-            inverseJoinColumns = {@JoinColumn(name = "VegetableID")})
-    private List<vegetable> vegetable;
+//    @ManyToMany
+//    @JoinTable(name = "orderdetail", joinColumns={@JoinColumn(name = "OrderID")},
+//            inverseJoinColumns = {@JoinColumn(name = "VegetableID")})
+//    private List<vegetable> vegetable;
+//    
+    
 }
