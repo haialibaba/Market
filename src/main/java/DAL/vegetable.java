@@ -4,12 +4,7 @@
  */
 package DAL;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +24,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table
-public class vegetable implements Serializable{
+public class vegetable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

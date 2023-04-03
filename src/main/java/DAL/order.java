@@ -4,7 +4,6 @@
  */
 package DAL;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -30,7 +29,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "`order`")
-public class order implements Serializable{
+public class order{
     
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)

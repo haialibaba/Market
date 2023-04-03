@@ -96,12 +96,12 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         setTitle("Order 1");
         setBackground(null);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(770, 690));
-        setMinimumSize(new java.awt.Dimension(770, 690));
+        setMaximumSize(new java.awt.Dimension(1000, 655));
+        setMinimumSize(new java.awt.Dimension(1000, 655));
         setName("HoaDon"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(770, 690));
+        setPreferredSize(new java.awt.Dimension(1000, 655));
         setResizable(false);
-        setSize(new java.awt.Dimension(770, 690));
+        setSize(new java.awt.Dimension(1000, 655));
         getContentPane().setLayout(null);
 
         container_all.setBackground(new java.awt.Color(255, 255, 255));
@@ -152,7 +152,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         }
 
         container_all.add(scroll_tableProduct);
-        scroll_tableProduct.setBounds(20, 360, 700, 210);
+        scroll_tableProduct.setBounds(30, 290, 920, 270);
 
         pnl_note.setBackground(java.awt.Color.white);
         pnl_note.setBorder(javax.swing.BorderFactory.createTitledBorder("Note"));
@@ -176,18 +176,18 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             pnl_noteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_noteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scroll_note, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addComponent(scroll_note, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_noteLayout.setVerticalGroup(
             pnl_noteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_noteLayout.createSequentialGroup()
-                .addComponent(scroll_note, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                .addComponent(scroll_note, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         container_all.add(pnl_note);
-        pnl_note.setBounds(20, 230, 700, 90);
+        pnl_note.setBounds(30, 150, 920, 100);
 
         pnl_id.setBackground(java.awt.Color.white);
         pnl_id.setBorder(javax.swing.BorderFactory.createTitledBorder("ID"));
@@ -208,7 +208,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             pnl_idLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_idLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(text_id, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addComponent(text_id, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_idLayout.setVerticalGroup(
@@ -221,7 +221,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         text_id.getAccessibleContext().setAccessibleName("");
 
         container_all.add(pnl_id);
-        pnl_id.setBounds(20, 10, 110, 60);
+        pnl_id.setBounds(30, 10, 200, 60);
 
         pnl_customer.setBackground(java.awt.Color.white);
         pnl_customer.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer"));
@@ -250,7 +250,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         );
 
         container_all.add(pnl_customer);
-        pnl_customer.setBounds(300, 10, 420, 60);
+        pnl_customer.setBounds(260, 10, 420, 60);
 
         pnl_date.setBackground(java.awt.Color.white);
         pnl_date.setBorder(javax.swing.BorderFactory.createTitledBorder("Date"));
@@ -281,7 +281,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         );
 
         container_all.add(pnl_date);
-        pnl_date.setBounds(20, 80, 200, 60);
+        pnl_date.setBounds(30, 80, 200, 60);
 
         pnl_address.setBackground(java.awt.Color.white);
         pnl_address.setBorder(javax.swing.BorderFactory.createTitledBorder("Address"));
@@ -312,7 +312,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         );
 
         container_all.add(pnl_address);
-        pnl_address.setBounds(300, 80, 420, 60);
+        pnl_address.setBounds(260, 80, 420, 60);
 
         pnl_city.setBackground(java.awt.Color.white);
         pnl_city.setBorder(javax.swing.BorderFactory.createTitledBorder("City"));
@@ -332,7 +332,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             pnl_cityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_cityLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(text_city, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addComponent(text_city, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_cityLayout.setVerticalGroup(
@@ -343,19 +343,19 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         );
 
         container_all.add(pnl_city);
-        pnl_city.setBounds(300, 150, 420, 60);
+        pnl_city.setBounds(710, 80, 240, 60);
 
         label_total.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_total.setForeground(new java.awt.Color(0, 0, 0));
         label_total.setText("Total: 3333333444");
         container_all.add(label_total);
-        label_total.setBounds(550, 580, 170, 40);
+        label_total.setBounds(760, 560, 170, 40);
 
         label_product.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_product.setForeground(new java.awt.Color(0, 0, 0));
         label_product.setText("Product");
         container_all.add(label_product);
-        label_product.setBounds(20, 330, 90, 20);
+        label_product.setBounds(30, 260, 90, 20);
 
         btn_addProduct.setBackground(new java.awt.Color(0, 0, 60));
         btn_addProduct.setForeground(java.awt.Color.white);
@@ -370,10 +370,10 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             }
         });
         container_all.add(btn_addProduct);
-        btn_addProduct.setBounds(600, 330, 120, 25);
+        btn_addProduct.setBounds(830, 260, 120, 25);
 
         getContentPane().add(container_all);
-        container_all.setBounds(10, 10, 740, 630);
+        container_all.setBounds(10, 10, 970, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

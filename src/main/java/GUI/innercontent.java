@@ -60,7 +60,7 @@ public class innercontent {
             new NhapHangCategoryGUI(pnl_input,  pnl_tuongtac,  top_content,  pnl_information, pnl_contentbottom);    
         }
         if(menuleftBLL.flag == 2){
-            new HoaDonGUI(pnl_input,  pnl_tuongtac,  top_content,  pnl_information, pnl_contentbottom);    
+            new HoaDonGUI(pnl_input,top_content,pnl_information,pnl_contentbottom,pnl_tuongtac);    
         }
     }
 }
