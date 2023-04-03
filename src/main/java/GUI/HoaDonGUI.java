@@ -104,10 +104,18 @@ public class HoaDonGUI {
     }
 
     private void CategoryTable(){
-        String[] colum={"ID","Customer","Date","Total","Note"};
-        table_model=new DefaultTableModel(null, colum);
+        String[] column={"ID","Customer","Date","Total","Note"};
         table=new JTable();
-        table.setModel(table_model);
+        table.setModel(new DefaultTableModel(null,column){
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        table_model = (DefaultTableModel) table.getModel();
         table.setRowHeight(30);
         table.setGridColor(new Color(0, 0, 60));
         table.setAutoCreateRowSorter(true);
