@@ -18,6 +18,7 @@
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property> 
         <!-- Show all executed SQL to console -->
         <property name="show_sql">true</property>
+        <mapping class="DAL.OrderVegetable" />
         <mapping class="DAL.category" />
         <mapping class="DAL.vegetable" />
         <mapping class="DAL.order" />
