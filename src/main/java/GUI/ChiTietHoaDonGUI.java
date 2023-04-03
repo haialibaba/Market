@@ -1,24 +1,28 @@
 
 package GUI;
 
+import BLL.orderBLL;
 import DAL.order;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.TableCellRenderer;
+import javax.swing.table.*;
 
 public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     order order = new order();
+    orderBLL orderBLL = new orderBLL();
     
     public ChiTietHoaDonGUI(order order) {
         this.order = order;
         initComponents();
         CustomCode();
         SetInfomation();
+        LoadVegtableOrder();
     }
     
     public ChiTietHoaDonGUI() {
@@ -169,7 +173,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
 
         scroll_note.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        text_note.setEditable(false);
         text_note.setBackground(java.awt.Color.white);
         text_note.setColumns(20);
         text_note.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -204,7 +207,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         pnl_id.setMinimumSize(new java.awt.Dimension(170, 60));
         pnl_id.setPreferredSize(new java.awt.Dimension(170, 60));
 
-        text_id.setEditable(false);
         text_id.setBackground(java.awt.Color.white);
         text_id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         text_id.setForeground(new java.awt.Color(0, 0, 0));
@@ -236,7 +238,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         pnl_customer.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer"));
         pnl_customer.setForeground(new java.awt.Color(0, 0, 0));
 
-        text_customer.setEditable(false);
         text_customer.setBackground(java.awt.Color.white);
         text_customer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_customer.setForeground(new java.awt.Color(0, 0, 0));
@@ -272,7 +273,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         pnl_date.setMinimumSize(new java.awt.Dimension(300, 60));
         pnl_date.setPreferredSize(new java.awt.Dimension(300, 60));
 
-        text_date.setEditable(false);
         text_date.setBackground(java.awt.Color.white);
         text_date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_date.setForeground(new java.awt.Color(0, 0, 0));
@@ -303,7 +303,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         pnl_address.setMinimumSize(new java.awt.Dimension(300, 60));
         pnl_address.setPreferredSize(new java.awt.Dimension(300, 60));
 
-        text_address.setEditable(false);
         text_address.setBackground(java.awt.Color.white);
         text_address.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_address.setForeground(new java.awt.Color(0, 0, 0));
@@ -334,7 +333,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         pnl_city.setMinimumSize(new java.awt.Dimension(300, 60));
         pnl_city.setPreferredSize(new java.awt.Dimension(300, 60));
 
-        text_city.setEditable(false);
         text_city.setBackground(java.awt.Color.white);
         text_city.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_city.setForeground(new java.awt.Color(0, 0, 0));
@@ -395,13 +393,20 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     private void CustomCode(){
         //this.setLocationRelativeTo(rootPane);
         dialog_searchProduct.setLocationRelativeTo(this);
-        table_product.getColumnModel().getColumn(2).setCellRenderer(new SpinnerTableCellRenderer());
-        table_product.getColumnModel().getColumn(2).setCellEditor(new SpinnerTableCellEditer(new JTextField()));
+        //table_product.getColumnModel().getColumn(2).setCellRenderer(new SpinnerTableCellRenderer());
+        //table_product.getColumnModel().getColumn(2).setCellEditor(new SpinnerTableCellEditer(new JTextField()));
         this.setVisible(true);
         this.setLocation(380,120);
     }
     
     private void SetInfomation(){
+        text_id.setEditable(false);
+        text_date.setEditable(false);
+        text_address.setEditable(false);
+        text_city.setEditable(false);
+        text_note.setEditable(false);
+        text_customer.setEditable(false);
+        
         text_id.setText(String.valueOf(order.getOrderID()));
         text_date.setText(String.valueOf(order.getDate()));
         text_address.setText(order.getCustomer().getAddress());
@@ -409,7 +414,20 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         text_note.setText(order.getNote());
         text_customer.setText(order.getCustomer().toString());
         label_total.setText("Total: "+order.getTotal());
+        
     }
+    
+    private void LoadVegtableOrder(){
+        DefaultTableModel table_product_model = (DefaultTableModel) table_product.getModel();
+        List list = order.getOrderVegetables();
+        Object[][] data = orderBLL.convertListVegetableInOrder(list);
+        table_product_model.setRowCount(0);
+        for (Object[] row : data) {
+            table_product_model.addRow(row);
+        }
+        
+    }
+    
     
  
     private void btn_addProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addProductActionPerformed

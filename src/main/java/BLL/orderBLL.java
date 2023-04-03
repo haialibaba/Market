@@ -2,6 +2,7 @@
 
 package BLL;
 
+import DAL.OrderVegetable;
 import DAL.order;
 import DAL.orderDAL;
 import java.util.List;
@@ -32,6 +33,21 @@ public class orderBLL {
         }
         return obj;
     }
+    
+    public Object[][] convertListVegetableInOrder(List<OrderVegetable> list){
+        int rows = list.size();
+        int cols = 5;
+        Object[][] obj = new Object[rows][cols];
+        for(int i = 0; i < rows; i++){
+            obj[i][0] = i+1;
+            obj[i][1] = list.get(i).getVegetable().getVegetable_Name();
+            obj[i][2] = list.get(i).getQuantity();
+            obj[i][3] = list.get(i).getVegetable().getUnit();
+            obj[i][4] = list.get(i).getPrice();
+        }
+        return obj;
+    }
+    
     
     public order getOrder(int OrderID){
         order o = orderDAL.getOrder(OrderID);
