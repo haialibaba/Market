@@ -6,6 +6,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -28,6 +29,7 @@ public class Jframe {
         f.setLocationRelativeTo(null);
         f.setResizable(false);
         f.setVisible(true);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
     public void goi(){
         
