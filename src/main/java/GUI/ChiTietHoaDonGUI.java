@@ -5,12 +5,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.DefaultCellEditor;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableCellRenderer;
 
 public class ChiTietHoaDonGUI extends javax.swing.JFrame {
@@ -26,9 +23,9 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
 
         dialog_searchProduct = new javax.swing.JDialog();
         container_searchProduct = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        text_search_vegetable = new javax.swing.JTextField();
+        scrollpane_add_vegetable = new javax.swing.JScrollPane();
+        table_add_vegetable = new javax.swing.JTable();
         container_all = new javax.swing.JPanel();
         scroll_tableProduct = new javax.swing.JScrollPane();
         table_product = new javax.swing.JTable();
@@ -50,10 +47,10 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         btn_addProduct = new javax.swing.JButton();
 
         dialog_searchProduct.setLocation(new java.awt.Point(0, 0));
-        dialog_searchProduct.setMaximumSize(new java.awt.Dimension(450, 300));
-        dialog_searchProduct.setMinimumSize(new java.awt.Dimension(450, 300));
+        dialog_searchProduct.setMaximumSize(new java.awt.Dimension(630, 345));
+        dialog_searchProduct.setMinimumSize(new java.awt.Dimension(630, 345));
         dialog_searchProduct.setUndecorated(true);
-        dialog_searchProduct.setPreferredSize(new java.awt.Dimension(450, 300));
+        dialog_searchProduct.setPreferredSize(new java.awt.Dimension(630, 345));
         dialog_searchProduct.setResizable(false);
         dialog_searchProduct.setType(java.awt.Window.Type.POPUP);
         dialog_searchProduct.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -68,11 +65,15 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         container_searchProduct.setPreferredSize(new java.awt.Dimension(450, 300));
         container_searchProduct.setLayout(null);
 
-        jTextField1.setText("jTextField1");
-        container_searchProduct.add(jTextField1);
-        jTextField1.setBounds(10, 10, 430, 30);
+        text_search_vegetable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_search_vegetableActionPerformed(evt);
+            }
+        });
+        container_searchProduct.add(text_search_vegetable);
+        text_search_vegetable.setBounds(10, 10, 600, 30);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_add_vegetable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, "", null, ""},
                 {null, null, null, null},
@@ -83,10 +84,10 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
                 "Name", "Price", "Quantity", "+"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        scrollpane_add_vegetable.setViewportView(table_add_vegetable);
 
-        container_searchProduct.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 50, 430, 240);
+        container_searchProduct.add(scrollpane_add_vegetable);
+        scrollpane_add_vegetable.setBounds(10, 50, 600, 290);
 
         dialog_searchProduct.getContentPane().add(container_searchProduct, java.awt.BorderLayout.CENTER);
 
@@ -166,7 +167,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         text_note.setForeground(new java.awt.Color(0, 0, 0));
         text_note.setLineWrap(true);
         text_note.setRows(1);
-        text_note.setText("wssdsadasdasdasdasdasda");
         text_note.setBorder(null);
         scroll_note.setViewportView(text_note);
 
@@ -199,7 +199,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         text_id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         text_id.setForeground(new java.awt.Color(0, 0, 0));
         text_id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_id.setText("1");
         text_id.setBorder(null);
 
         javax.swing.GroupLayout pnl_idLayout = new javax.swing.GroupLayout(pnl_id);
@@ -230,8 +229,12 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         text_customer.setBackground(java.awt.Color.white);
         text_customer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_customer.setForeground(new java.awt.Color(0, 0, 0));
-        text_customer.setText("Join Smith");
         text_customer.setBorder(null);
+        text_customer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_customerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_customerLayout = new javax.swing.GroupLayout(pnl_customer);
         pnl_customer.setLayout(pnl_customerLayout);
@@ -261,7 +264,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         text_date.setBackground(java.awt.Color.white);
         text_date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_date.setForeground(new java.awt.Color(0, 0, 0));
-        text_date.setText("2020-10-30");
         text_date.setBorder(null);
 
         javax.swing.GroupLayout pnl_dateLayout = new javax.swing.GroupLayout(pnl_date);
@@ -292,7 +294,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         text_address.setBackground(java.awt.Color.white);
         text_address.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_address.setForeground(new java.awt.Color(0, 0, 0));
-        text_address.setText("123 Nguyen Trai");
         text_address.setBorder(null);
 
         javax.swing.GroupLayout pnl_addressLayout = new javax.swing.GroupLayout(pnl_address);
@@ -323,7 +324,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         text_city.setBackground(java.awt.Color.white);
         text_city.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_city.setForeground(new java.awt.Color(0, 0, 0));
-        text_city.setText("Ho Chi Minh");
         text_city.setBorder(null);
 
         javax.swing.GroupLayout pnl_cityLayout = new javax.swing.GroupLayout(pnl_city);
@@ -386,13 +386,21 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     }
  
     private void btn_addProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addProductActionPerformed
-        dialog_searchProduct.setLocation(this.getX()+287,this.getY()+360);
+        dialog_searchProduct.setLocation(this.getX()+335,this.getY()+300);
         dialog_searchProduct.setVisible(true);
     }//GEN-LAST:event_btn_addProductActionPerformed
 
     private void dialog_searchProductWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dialog_searchProductWindowDeactivated
         dialog_searchProduct.setVisible(false);
     }//GEN-LAST:event_dialog_searchProductWindowDeactivated
+
+    private void text_search_vegetableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_search_vegetableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_search_vegetableActionPerformed
+
+    private void text_customerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_customerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_customerActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -407,9 +415,6 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     private javax.swing.JPanel container_all;
     private javax.swing.JPanel container_searchProduct;
     private javax.swing.JDialog dialog_searchProduct;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel label_product;
     private javax.swing.JLabel label_total;
     private javax.swing.JPanel pnl_address;
@@ -420,6 +425,8 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_note;
     private javax.swing.JScrollPane scroll_note;
     private javax.swing.JScrollPane scroll_tableProduct;
+    private javax.swing.JScrollPane scrollpane_add_vegetable;
+    private javax.swing.JTable table_add_vegetable;
     private javax.swing.JTable table_product;
     private javax.swing.JTextField text_address;
     private javax.swing.JTextField text_city;
@@ -427,6 +434,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     private javax.swing.JTextField text_date;
     private javax.swing.JTextField text_id;
     private javax.swing.JTextArea text_note;
+    private javax.swing.JTextField text_search_vegetable;
     // End of variables declaration//GEN-END:variables
     private class SpinnerTableCellRenderer extends JSpinner implements TableCellRenderer{
 
@@ -440,6 +448,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
+            setValue((value==null) ? 0:value);
             return this;
         }
         
@@ -472,6 +481,10 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         @Override
         protected void fireEditingStopped() {
             super.fireEditingStopped();
+        }
+        @Override
+        public String toString(){
+            return (String) spinner.getValue();
         }
     }
 

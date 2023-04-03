@@ -6,6 +6,7 @@ package GUI;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 /**
  *
@@ -19,7 +20,7 @@ public class BtnSearchHoaDonListener extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e){
-        
-        
+        List list = context.orderBLL.searchVegetable(context.input_search.getText());
+        context.loadOrders(list);
     }
 }

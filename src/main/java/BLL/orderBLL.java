@@ -37,6 +37,11 @@ public class orderBLL {
         order o = orderDAL.getOrder(OrderID);
         return o;
     }
+    public List searchVegetable(String key){
+        return orderDAL.searchOrder(key);
+    }
+    
+    
     
 //    public boolean updateOrder(order o){
 //        return orderDAL.updateOrder(o);

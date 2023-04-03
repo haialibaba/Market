@@ -13,7 +13,6 @@ public class BtnResetHoaDonListener extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e){
-        
-        
+        context.loadOrders(context.orderBLL.loadOrder());  
     }
 }

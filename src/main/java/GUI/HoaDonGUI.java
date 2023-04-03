@@ -78,7 +78,7 @@ public class HoaDonGUI {
         pnl_search=new JPanel();
         pnl_search.setPreferredSize(new Dimension(280,60));
         pnl_search.setBackground(null);
-        pnl_search.setBorder(BorderFactory.createTitledBorder("Search by name"));
+        pnl_search.setBorder(BorderFactory.createTitledBorder("Search by name customer"));
         pnl_search_border.add(pnl_search);
 
         input_search=new JTextField();
@@ -116,10 +116,10 @@ public class HoaDonGUI {
         table.setPreferredScrollableViewportSize(new Dimension(970, 470));
         pnl_information.add(new JScrollPane(table));   
         table.addMouseListener(new TableHoaDonListener(this));
-        loadCategory(orderBLL.loadOrder());
+        loadOrders(orderBLL.loadOrder());
     }
 
-    public void loadCategory(List list){
+    public void loadOrders(List list){
         Object[][] data = orderBLL.convertListTable(list);
         table_model.setRowCount(0);
         for (Object[] row : data) {
