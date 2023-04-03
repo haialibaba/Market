@@ -48,5 +48,9 @@ public class vegetable implements Serializable{
     @ManyToOne
     @JoinColumn(name="CatagoryID")
     private category catagory;
+    
+    @OneToMany(mappedBy = "primaryKey.vegetable",cascade = CascadeType.ALL)
+    private List<OrderVegetable> orderVegetables;
+
   
 }
