@@ -20,7 +20,7 @@ public class BtnSearchHoaDonListener extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e){
-        List list = context.orderBLL.searchVegetable(context.input_search.getText());
+        List list = context.orderBLL.searchOrder(context.input_search.getText());
         context.loadOrders(list);
     }
 }

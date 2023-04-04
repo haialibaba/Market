@@ -4,6 +4,7 @@
  */
 package DAL;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +26,6 @@ import lombok.Data;
 @Entity
 @Table
 public class vegetable{
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int VegetableID;
@@ -45,7 +45,8 @@ public class vegetable{
     private category catagory;
     
     @OneToMany(mappedBy = "primaryKey.vegetable",cascade = CascadeType.ALL)
-    private List<OrderVegetable> orderVegetables;
-
+    private List<OrderVegetable> orderVegetables = new ArrayList<>();
+    
+    
   
 }

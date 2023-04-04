@@ -17,7 +17,7 @@ public class OrderVegetable{
     
     private OrderVegetableID primaryKey = new OrderVegetableID();
 
-    private int Quantity;
+    private String Quantity;
     private String Price;
     
     
@@ -35,7 +35,7 @@ public class OrderVegetable{
         return getPrimaryKey().getOrder();
     }
  
-    public void setUser(order order) {
+    public void setOrder(order order) {
         getPrimaryKey().setOrder(order);
     }
 
@@ -49,11 +49,11 @@ public class OrderVegetable{
     }
     
     @Column(name = "Quantity")
-    public int getQuantity() {
+    public String getQuantity() {
         return Quantity;
     }
 
-    public void setQuantity(int Quantity) {
+    public void setQuantity(String Quantity) {
         this.Quantity = Quantity;
     }
     

@@ -8,6 +8,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 /**
  *
@@ -28,7 +29,6 @@ public class orderDAL {
     }
     
     public List loadOrder(){
-        session  = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         List order = session.createQuery("FROM order", order.class).list();
         transaction.commit();
@@ -44,10 +44,20 @@ public class orderDAL {
         return list;
     }
     
+    public boolean addOrder(order o){
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(o);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
+    }
     
     
     public static void main(String[] args) {
-        orderDAL dal = new orderDAL();
 //        order o = dal.getOrder(2);
 //        customers c = o.getCustomer();
 //        System.err.println("ID:"+o.getOrderID());

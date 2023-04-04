@@ -2,14 +2,15 @@
 
 package BLL;
 
+import DAL.HibernateUtils;
 import DAL.OrderVegetable;
 import DAL.order;
 import DAL.orderDAL;
+import DAL.vegetable;
 import java.util.List;
 
 public class orderBLL {
     private orderDAL orderDAL;
-
     public orderBLL(){
          orderDAL = new orderDAL();
     }
@@ -20,7 +21,7 @@ public class orderBLL {
         return list;   
     }
     
-    public Object[][] convertListTable(List<order> list){
+    public Object[][] convertListTableOrder(List<order> list){
         int rows = list.size();
         int cols = 5;
         Object[][] obj = new Object[rows][cols];
@@ -36,35 +37,52 @@ public class orderBLL {
     
     public Object[][] convertListVegetableInOrder(List<OrderVegetable> list){
         int rows = list.size();
-        int cols = 5;
+        int cols = 8;
         Object[][] obj = new Object[rows][cols];
         for(int i = 0; i < rows; i++){
             obj[i][0] = i+1;
-            obj[i][1] = list.get(i).getVegetable().getVegetable_Name();
-            obj[i][2] = list.get(i).getQuantity();
-            obj[i][3] = list.get(i).getVegetable().getUnit();
-            obj[i][4] = list.get(i).getPrice();
+            obj[i][1] = list.get(i).getVegetable().getVegetableID();
+            obj[i][2] = list.get(i).getVegetable().getVegetable_Name();
+            obj[i][3] = list.get(i).getQuantity();
+            obj[i][4] = list.get(i).getVegetable().getUnit();
+            obj[i][5] = list.get(i).getVegetable().getPrice();
+            obj[i][6] = list.get(i).getPrice();
+            obj[i][7] = "Delete";
         }
         return obj;
     }
     
-    
+    public Object[][] convertListSearchVe(List<vegetable> list){
+        int rows = list.size();
+        int cols = 6;
+        Object[][] obj = new Object[rows][cols];
+        for(int i = 0; i < rows; i++){
+            obj[i][0] = list.get(i).getVegetableID();
+            obj[i][1] = list.get(i).getVegetable_Name();
+            obj[i][2] = list.get(i).getPrice();
+            obj[i][3] = list.get(i).getUnit();
+            obj[i][4] = "1";
+            obj[i][5] = "Add";
+        }
+        return obj;
+    }
+
     public order getOrder(int OrderID){
         order o = orderDAL.getOrder(OrderID);
         return o;
     }
-    public List searchVegetable(String key){
+    public List searchOrder(String key){
         return orderDAL.searchOrder(key);
     }
-    
+    public boolean insertOrder(order o){
+        return orderDAL.addOrder(o);
+    }
     
     
 //    public boolean updateOrder(order o){
 //        return orderDAL.updateOrder(o);
 //    }
 //
-//    public boolean insertOrder(order o){
-//        return orderDAL.addOrder(o);
-//    }
+
     
 }

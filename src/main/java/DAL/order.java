@@ -4,6 +4,7 @@
  */
 package DAL;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -22,43 +23,87 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
 
-/**
- *
- * @author PC
- */
-@Data
+
 @Entity
 @Table(name = "`order`")
 public class order{
+    private List<OrderVegetable> orderVegetable = new ArrayList<>();
+    private int OrderID;
+    private Date Date;
+    private String Total;
+    private String Note;
+    private customers Customer;
     
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    private int OrderID;
+    public int getOrderID() {
+        return OrderID;
+    }
+    public void setOrderID(int OrderID) {
+        this.OrderID = OrderID;
+    }
     
     @Column
     @Temporal(value = TemporalType.DATE)
-    private Date Date;
-    
+    public Date getDate() {
+        return Date;
+    }
+    public void setDate(Date Date) {
+        this.Date = Date;
+    }
     @Column
-    private String Total;
-    
+    public String getNote() {
+        return Note;
+    }
+
+    public void setNote(String Note) {
+        this.Note = Note;
+    }
     @Column
-    private String Note;
+    public String getTotal() {
+        return Total;
+    }
+
+    public void setTotal(String Total) {
+        this.Total = Total;
+    }
     
     @ManyToOne
     @JoinColumn(name = "CustomerID")
-    private customers Customer;
+    public customers getCustomer() {
+        return Customer;
+    }
+
+    public void setCustomer(customers Customer) {
+        this.Customer = Customer;
+    }
     
     @OneToMany(mappedBy = "primaryKey.order",cascade = CascadeType.ALL)
-    private List<OrderVegetable> orderVegetables;
+    public List<OrderVegetable> getOrderVegetable() {
+        return orderVegetable;
+    }
+
+    public void setOrderVegetable(List<OrderVegetable> orderVegetable) {
+        this.orderVegetable = orderVegetable;
+    }
+    
+
+//    @ManyToMany
+//    @JoinTable(name = "orderdetail", joinColumns={@JoinColumn(name = "OrderID")},
+//            inverseJoinColumns = {@JoinColumn(name = "VegetableID")})
+//    private List<vegetable> vegetable;
 
     
     
+    public void addOrderVegetable(OrderVegetable orderVegetable) {
+        this.orderVegetable.add(orderVegetable);
+    }  
+
     
-    @ManyToMany
-    @JoinTable(name = "orderdetail", joinColumns={@JoinColumn(name = "OrderID")},
-            inverseJoinColumns = {@JoinColumn(name = "VegetableID")})
-    private List<vegetable> vegetable;
+
     
+
+    
+
     
 }

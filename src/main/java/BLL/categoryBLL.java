@@ -2,6 +2,7 @@
 
 package BLL;
 
+import DAL.HibernateUtils;
 import DAL.category;
 import DAL.categoryDAL;
 import java.util.List;

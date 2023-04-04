@@ -4,6 +4,7 @@
  */
 package BLL;
 
+import DAL.HibernateUtils;
 import DAL.category;
 import DAL.vegetable;
 import DAL.vegetableDAL;

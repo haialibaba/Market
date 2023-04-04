@@ -128,7 +128,7 @@ public class HoaDonGUI {
     }
 
     public void loadOrders(List list){
-        Object[][] data = orderBLL.convertListTable(list);
+        Object[][] data = orderBLL.convertListTableOrder(list);
         table_model.setRowCount(0);
         for (Object[] row : data) {
             table_model.addRow(row);

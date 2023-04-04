@@ -8,12 +8,11 @@ import org.hibernate.query.Query;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 public class categoryDAL {
-    Session session;
+    Session session = HibernateUtils.getSessionFactory().openSession();
     public categoryDAL() {
         this.session = session;
     }
     public List loadCategory() {
-        session = HibernateUtils.getSessionFactory().openSession();
         List<category> list;
         Transaction transaction = session.beginTransaction();
         list = session.createQuery("FROM category", category.class).list();
