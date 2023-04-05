@@ -78,11 +78,10 @@ public class orderBLL {
         return orderDAL.addOrder(o);
     }
     
-    
-//    public boolean updateOrder(order o){
-//        return orderDAL.updateOrder(o);
-//    }
-//
+    public boolean editOrder(order o, List l){
+        return orderDAL.updateOrder(o, l);
+    }
+
 
     
 }

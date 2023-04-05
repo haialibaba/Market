@@ -265,7 +265,7 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="70" minWidth="70" prefWidth="70" resizable="true">
+                    <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -471,6 +471,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="text_customer">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
@@ -535,6 +536,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="text_date">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
@@ -599,6 +601,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="text_address">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
@@ -663,6 +666,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="text_city">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                 </Property>
@@ -766,13 +770,16 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Save" postCode="btn_saveAdd.setVisible(false);"/>
+                <Property name="text" type="java.lang.String" value="Save"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_saveAddMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btn_saveAdd.setVisible(false);"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btn_saveEdit">
               <Properties>

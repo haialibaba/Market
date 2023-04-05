@@ -42,9 +42,9 @@ public class NhapHangVegetableGUI {
     public ImageIcon image_icon;
     public Image image;
     
-    vegetableBLL vegetableBLL = new vegetableBLL();
     categoryBLL categoryBLL = new categoryBLL();
-
+    vegetableBLL vegetableBLL = new vegetableBLL();
+    
     List listCategory = categoryBLL.loadCategory();
     
     public NhapHangVegetableGUI(JPanel pnl_input, JPanel pnl_tuongtac, JPanel top_content,

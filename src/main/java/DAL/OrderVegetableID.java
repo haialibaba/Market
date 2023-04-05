@@ -5,6 +5,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 @Embeddable
@@ -12,7 +13,7 @@ public class OrderVegetableID implements Serializable {
     private order order;
     private vegetable vegetable;
  
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch =FetchType.LAZY)
     public order getOrder() {
         return order;
     }
@@ -21,7 +22,7 @@ public class OrderVegetableID implements Serializable {
         this.order = order;
     }
  
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch =FetchType.LAZY)
     public vegetable getVegetable() {
         return vegetable;
     }

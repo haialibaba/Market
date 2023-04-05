@@ -16,12 +16,13 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
  */
 
 public class orderDAL {
-    Session session = HibernateUtils.getSessionFactory().openSession();
+    Session session;
     public orderDAL(){
         this.session = session;
     }
     public order getOrder(int id){
         order o;
+        session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         o = session.get(order.class, id);
         transaction.commit();
@@ -29,6 +30,7 @@ public class orderDAL {
     }
     
     public List loadOrder(){
+        session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         List order = session.createQuery("FROM order", order.class).list();
         transaction.commit();
@@ -36,8 +38,9 @@ public class orderDAL {
     }
     
     public List searchOrder(String key){
+        session = HibernateUtils.getSessionFactory().getCurrentSession();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("FROM order where Customer.Fullname like ?1");
+        Query query = session.createQuery("FROM order where customer.Fullname like ?1");
         query.setParameter(1, "%"+key+"%");
         List<order> list = query.list();
         transaction.commit();
@@ -45,6 +48,7 @@ public class orderDAL {
     }
     
     public boolean addOrder(order o){
+        session = HibernateUtils.getSessionFactory().getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -54,6 +58,29 @@ public class orderDAL {
             transaction.rollback();
         }
         return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
+    }
+    
+    public boolean updateOrder(order o, List l){
+        deteteAllList(o,l);
+        session = HibernateUtils.getSessionFactory().getCurrentSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(o);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return transaction.getStatus().isOneOf(TransactionStatus.COMMITTED);
+    }
+    
+    public void deteteAllList(order o, List<OrderVegetable> l){
+        session = HibernateUtils.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        for (OrderVegetable l1 : l) {
+            session.delete(l1);
+        }
+        transaction.commit();
     }
     
     

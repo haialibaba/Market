@@ -28,7 +28,7 @@ public class vegetableDAL {
         Transaction transaction = session.beginTransaction();
         list = session.createQuery("FROM vegetable", vegetable.class).list();
         transaction.commit();
-        return list;
+        return list;    
     }
     
     public List loadVegetableInCategory(int cateID){

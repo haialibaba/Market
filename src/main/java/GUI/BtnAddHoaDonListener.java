@@ -13,6 +13,6 @@ public class BtnAddHoaDonListener extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e){
-        new ChiTietHoaDonGUI("");
+        new ChiTietHoaDonGUI(context.orderBLL);
     }
 }

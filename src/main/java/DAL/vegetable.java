@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class vegetable{
     @JoinColumn(name="CatagoryID")
     private category catagory;
     
-    @OneToMany(mappedBy = "primaryKey.vegetable",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "primaryKey.vegetable",cascade = CascadeType.ALL,fetch =FetchType.LAZY)
     private List<OrderVegetable> orderVegetables = new ArrayList<>();
     
     

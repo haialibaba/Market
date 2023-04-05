@@ -17,7 +17,7 @@ public class TableHoaDonListener extends MouseAdapter {
             e.consume();
             int id = (int) context.table.getValueAt(context.table.getSelectedRow(), 0);
             order order = context.orderBLL.getOrder(id);
-            new ChiTietHoaDonGUI(order);
+            new ChiTietHoaDonGUI(order, context.orderBLL);
         } 
     }
 }

@@ -13,7 +13,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultCellEditor;
@@ -27,24 +26,25 @@ import javax.swing.table.*;
 
 public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     order order;
-    orderBLL orderBLL = new orderBLL();
-    vegetableBLL vegetableBLL;
-    categoryBLL categoryBLL;
-    customerBLL customerBLL;
+    
+    vegetableBLL vegetableBLL;// = new vegetableBLL();
+    categoryBLL categoryBLL = new categoryBLL();
+    customerBLL customerBLL= new customerBLL();
+    orderBLL orderBLL;
     JComboBox cbb_cate_add_vege, cbb_customer;
     
-    
-    public ChiTietHoaDonGUI(String add) {
-        vegetableBLL = new vegetableBLL();
-        categoryBLL = new categoryBLL();
-        customerBLL = new customerBLL();
+    public ChiTietHoaDonGUI(orderBLL odBLL) {
+        vegetableBLL= new vegetableBLL();
+        this.orderBLL = odBLL;
         order = new order();
         initComponents();
         CustomCode();
         NewOrderGUI();
     }
 
-    public ChiTietHoaDonGUI(order order) {
+    public ChiTietHoaDonGUI(order order, orderBLL odBLL) {
+        vegetableBLL= new vegetableBLL();
+        this.orderBLL = odBLL;
         this.order = order;
         initComponents();
         CustomCode();
@@ -221,9 +221,9 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             table_product.getColumnModel().getColumn(6).setMinWidth(100);
             table_product.getColumnModel().getColumn(6).setPreferredWidth(100);
             table_product.getColumnModel().getColumn(6).setMaxWidth(100);
-            table_product.getColumnModel().getColumn(7).setMinWidth(70);
-            table_product.getColumnModel().getColumn(7).setPreferredWidth(70);
-            table_product.getColumnModel().getColumn(7).setMaxWidth(70);
+            table_product.getColumnModel().getColumn(7).setMinWidth(100);
+            table_product.getColumnModel().getColumn(7).setPreferredWidth(100);
+            table_product.getColumnModel().getColumn(7).setMaxWidth(100);
         }
 
         container_all.add(scroll_tableProduct);
@@ -301,6 +301,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         pnl_customer.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer"));
         pnl_customer.setForeground(new java.awt.Color(0, 0, 0));
 
+        text_customer.setEditable(false);
         text_customer.setBackground(java.awt.Color.white);
         text_customer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_customer.setForeground(new java.awt.Color(0, 0, 0));
@@ -331,6 +332,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         pnl_date.setMinimumSize(new java.awt.Dimension(300, 60));
         pnl_date.setPreferredSize(new java.awt.Dimension(300, 60));
 
+        text_date.setEditable(false);
         text_date.setBackground(java.awt.Color.white);
         text_date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_date.setForeground(new java.awt.Color(0, 0, 0));
@@ -361,6 +363,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         pnl_address.setMinimumSize(new java.awt.Dimension(300, 60));
         pnl_address.setPreferredSize(new java.awt.Dimension(300, 60));
 
+        text_address.setEditable(false);
         text_address.setBackground(java.awt.Color.white);
         text_address.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_address.setForeground(new java.awt.Color(0, 0, 0));
@@ -391,6 +394,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         pnl_city.setMinimumSize(new java.awt.Dimension(300, 60));
         pnl_city.setPreferredSize(new java.awt.Dimension(300, 60));
 
+        text_city.setEditable(false);
         text_city.setBackground(java.awt.Color.white);
         text_city.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         text_city.setForeground(new java.awt.Color(0, 0, 0));
@@ -453,10 +457,10 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         });
         pnl_action.add(btn_edit);
 
+        btn_saveAdd.setVisible(false);
         btn_saveAdd.setBackground(new java.awt.Color(0, 0, 60));
         btn_saveAdd.setForeground(new java.awt.Color(255, 255, 255));
         btn_saveAdd.setText("Save");
-        btn_saveAdd.setVisible(false);
         btn_saveAdd.setFocusPainted(false);
         btn_saveAdd.setOpaque(true);
         btn_saveAdd.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -500,6 +504,48 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CustomCode(){
+        CategoryModel categoryInputCBModel = new CategoryModel(
+                categoryBLL.convertListComboBox(categoryBLL.loadCategory()));
+        cbb_cate_add_vege = new JComboBox(categoryInputCBModel);
+        container_searchProduct.add(cbb_cate_add_vege);
+        cbb_cate_add_vege.setBounds(470, 10, 140, 30);
+        cbb_cate_add_vege.insertItemAt("All Category", 0);
+        cbb_cate_add_vege.setSelectedItem("All Category");
+        cbb_cate_add_vege.setLightWeightPopupEnabled(true);
+        cbb_cate_add_vege.addActionListener((ActionEvent e) -> {
+            loadVegetableAddProduct();
+        }); 
+        
+        table_add_vegetable.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());;
+        table_add_vegetable.getColumnModel().getColumn(5).setCellEditor(new ButtonEditor(new JTextField()));
+        table_product.getColumnModel().getColumn(7).setCellRenderer(new ButtonDeleteRenderer());;
+        table_product.getColumnModel().getColumn(7).setCellEditor(new ButtonDeleteEditor(new JTextField()));
+        
+        CustomerModel customerCBModel = new CustomerModel(
+                customerBLL.convertListComboBox(customerBLL.loadCustomers()));
+        cbb_customer = new JComboBox(customerCBModel);
+        pnl_customer.add(cbb_customer);
+        cbb_customer.setBounds(10, 20, 400, 30);
+        cbb_customer.setVisible(false);
+        cbb_customer.insertItemAt("Customer", 0);
+        cbb_customer.setSelectedItem("Customer");
+        cbb_customer.setLightWeightPopupEnabled(true);
+        cbb_customer.setBackground(java.awt.Color.white);
+        cbb_customer.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        cbb_customer.setForeground(new java.awt.Color(0, 0, 0));
+        cbb_customer.setBorder(null);
+        cbb_customer.addActionListener((ActionEvent e) -> {
+            try {
+                customers c = (customers) cbb_customer.getSelectedItem();
+                text_address.setText(c.getAddress());
+                text_city.setText(c.getCity());
+                text_customer.setText(c.toString());
+            } catch (Exception ex) {
+                text_address.setText("");
+                text_city.setText("");
+                text_customer.setText("");
+            }
+        }); 
         text_id.setEditable(false);
         dialog_searchProduct.setLocationRelativeTo(this);     
         this.setVisible(true);
@@ -512,21 +558,26 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
                 String price = (String) table_product.getValueAt(rowChange, 5);
                 String value = String.valueOf(quantity*Float.parseFloat(price));
                 table_product.setValueAt(value, rowChange, 6);
+            }else
+            if (e.getType()==-1) {
+                float total=0;
+                for (int i = 0; i < table_product.getRowCount()-1; i++) {
+                    total += Float.parseFloat((String)table_product.getValueAt(i,6));                
+                }
+                label_total.setText(String.valueOf(total));  
+            }else{          
+                float total=0;
+                for (int i = 0; i < table_product.getRowCount(); i++) {
+                    total += Float.parseFloat((String)table_product.getValueAt(i,6));                
+                }
+                label_total.setText(String.valueOf(total));  
             }
-            float total=0;
-            for (int i = 0; i < table_product.getRowCount(); i++) {
-                total += Float.parseFloat((String)table_product.getValueAt(i,6));                
-            }
-            label_total.setText(String.valueOf(total));  
         });
-}   
-    private void SetInfomation(){
-        text_date.setEditable(false);
-        text_address.setEditable(false);
-        text_city.setEditable(false);
-        text_note.setEditable(false);
-        text_customer.setEditable(false);
         
+} 
+    
+    private void SetInfomation(){
+        text_note.setEditable(false);
         this.setTitle("Order "+String.valueOf(order.getOrderID()));
         text_id.setText(String.valueOf(order.getOrderID()));
         text_date.setText(String.valueOf(order.getDate()));
@@ -535,6 +586,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         text_note.setText(order.getNote());
         text_customer.setText(order.getCustomer().toString());
         label_total.setText(order.getTotal());
+        cbb_customer.setSelectedItem(order.getCustomer());
         
     }
     
@@ -551,48 +603,14 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     
     private void NewOrderGUI(){
         text_date.setText(String.valueOf(java.time.LocalDate.now()));
-        text_date.setEnabled(false);
         this.setTitle("New Order");
-        CategoryModel categoryInputCBModel = new CategoryModel(
-                categoryBLL.convertListComboBox(categoryBLL.loadCategory()));
-        cbb_cate_add_vege = new JComboBox(categoryInputCBModel);
-        container_searchProduct.add(cbb_cate_add_vege);
-        cbb_cate_add_vege.setBounds(470, 10, 140, 30);
-        cbb_cate_add_vege.insertItemAt("All Category", 0);
-        cbb_cate_add_vege.setSelectedItem("All Category");
-        cbb_cate_add_vege.setLightWeightPopupEnabled(true);
-        cbb_cate_add_vege.addActionListener((ActionEvent e) -> {
-            loadVegetableAddProduct();
-        }); 
         btn_edit.setVisible(false);
-        btn_saveAdd.setVisible(true);
+        btn_saveEdit.setVisible(false);
         text_customer.setVisible(false);
         table_product.setEnabled(true);
-        btn_addProduct.setVisible(true);
-        table_add_vegetable.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());;
-        table_add_vegetable.getColumnModel().getColumn(5).setCellEditor(new ButtonEditor(new JTextField()));
-        CustomerModel customerCBModel = new CustomerModel(
-                customerBLL.convertListComboBox(customerBLL.loadCustomers()));
-        cbb_customer = new JComboBox(customerCBModel);
-        pnl_customer.add(cbb_customer);
-        cbb_customer.setBounds(10, 20, 400, 30);
-        cbb_customer.insertItemAt("Customer", 0);
-        cbb_customer.setSelectedItem("Customer");
-        cbb_customer.setLightWeightPopupEnabled(true);
-        cbb_customer.setBackground(java.awt.Color.white);
-        cbb_customer.setFont(new java.awt.Font("Segoe UI", 0, 14));
-        cbb_customer.setForeground(new java.awt.Color(0, 0, 0));
-        cbb_customer.setBorder(null);
-        cbb_customer.addActionListener((ActionEvent e) -> {
-            try {
-                customers c = (customers) cbb_customer.getSelectedItem();
-                text_address.setText(c.getAddress());
-                text_city.setText(c.getCity());
-            } catch (Exception ex) {
-                text_address.setText("");
-                text_city.setText("");
-            }
-        });    
+        btn_addProduct.setVisible(true); 
+        btn_saveAdd.setVisible(true);
+        cbb_customer.setVisible(true);
     }
     
     public void loadVegetableAddProduct(){
@@ -655,10 +673,39 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         }
         boolean status = orderBLL.insertOrder(order);
         if(status){
+            text_id.setText(String.valueOf(order.getOrderID()));
+            this.setTitle("Order "+String.valueOf(order.getOrderID()));
             JOptionPane.showMessageDialog(null,"Add successfully","Insert",
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.INFORMATION_MESSAGE); 
         }else{
             JOptionPane.showMessageDialog(null,"Add failure","Insert",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void EditOrder(){
+        List list = order.getOrderVegetable();
+        order=new order();
+        order.setOrderID(Integer.parseInt(text_id.getText()));
+        order.setCustomer((customers) cbb_customer.getSelectedItem());
+        order.setDate(new Date());
+        order.setTotal(label_total.getText());
+        order.setNote(text_note.getText()); 
+        for (int i = 0; i < table_product.getRowCount(); i++) {
+            int id = (int) table_product.getValueAt(i, 1);
+            OrderVegetable orderVegetable = new OrderVegetable();
+            orderVegetable.setOrder(order);
+            orderVegetable.setVegetable(vegetableBLL.getVegetable(id));
+            orderVegetable.setPrice((String) table_product.getValueAt(i, 6));
+            orderVegetable.setQuantity((String) table_product.getValueAt(i, 3));
+            order.addOrderVegetable(orderVegetable);
+        }
+        boolean status = orderBLL.editOrder(order, list);
+        if(status){
+            JOptionPane.showMessageDialog(null,"Save successfully","Edit",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null,"Save failure","Edit",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -677,36 +724,46 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_text_search_vegetableKeyReleased
 
     private void btn_editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editMouseClicked
-        text_date.setEditable(true);
-        text_address.setEditable(true);
-        text_city.setEditable(true);
         text_note.setEditable(true);
-        text_customer.setEditable(true);
+        text_customer.setVisible(false);
+        cbb_customer.setVisible(true);
         btn_addProduct.setVisible(true);
         btn_edit.setVisible(false);
         btn_saveEdit.setVisible(true);
+        btn_saveAdd.setVisible(false);
+        table_product.setEnabled(true);
     }//GEN-LAST:event_btn_editMouseClicked
 
     private void btn_saveAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_saveAddMouseClicked
         btn_addProduct.setVisible(false);
+        cbb_customer.setVisible(false);
+        text_note.setEditable(false);
+        text_customer.setVisible(true);
         btn_edit.setVisible(true);
         btn_saveAdd.setVisible(false);
+        table_product.setEnabled(false);
         AddNewOrder();
     }//GEN-LAST:event_btn_saveAddMouseClicked
 
     private void btn_saveEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_saveEditMouseClicked
         btn_addProduct.setVisible(false);
+        text_note.setEditable(false);
         btn_edit.setVisible(true);
+        cbb_customer.setVisible(false);
+        text_customer.setVisible(true);
         btn_saveEdit.setVisible(false);
+        table_product.setEnabled(false);
+        System.err.println("/////////////////////");
+        EditOrder();
     }//GEN-LAST:event_btn_saveEditMouseClicked
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ChiTietHoaDonGUI("").setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ChiTietHoaDonGUI("").setVisible(true);
+//            }
+//        });
+//    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addProduct;
@@ -755,6 +812,7 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
             return this;
         }
     }
+    
     //BUTTON EDITOR CLASS
     class ButtonEditor extends DefaultCellEditor{
         protected JButton btn;
@@ -770,6 +828,72 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     AddVegetableToOrder(table_add_vegetable.getSelectedRow());
+                }
+            });
+        }
+        //OVERRIDE A COUPLE OF METHODS
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object obj,
+                boolean selected, int row, int col) {
+            //SET TEXT TO BUTTON,SET CLICKED TO TRUE,THEN RETURN THE BTN OBJECT
+            lbl=(obj==null) ? "":obj.toString();
+            btn.setText(lbl);
+            clicked=true;
+            return btn;
+        }
+
+        //IF BUTTON CELL VALUE CHNAGES,IF CLICKED THAT IS
+        @Override
+        public Object getCellEditorValue() {
+            if(clicked){
+            }
+            //SET IT TO FALSE NOW THAT ITS CLICKED
+            clicked=false;
+            return new String(lbl);
+        }
+        @Override
+        public boolean stopCellEditing() {
+            //SET CLICKED TO FALSE FIRST
+            clicked=false;
+            return super.stopCellEditing();
+        }
+        @Override
+        protected void fireEditingStopped() {
+            // TODO Auto-generated method stub
+            super.fireEditingStopped();
+        }
+    }
+    
+    class ButtonDeleteRenderer extends JButton implements TableCellRenderer{
+        //CONSTRUCTOR
+        public ButtonDeleteRenderer() {
+            //SET BUTTON PROPERTIES
+            setOpaque(true);
+        }
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object obj,
+                boolean selected, boolean focused, int row, int col) {
+            //SET PASSED OBJECT AS BUTTON TEXT
+            setText((obj==null) ? "":obj.toString());
+            return this;
+        }
+    }
+    //BUTTON EDITOR CLASS
+    class ButtonDeleteEditor extends DefaultCellEditor{
+        protected JButton btn;
+        private String lbl;
+        private Boolean clicked;
+        
+        public ButtonDeleteEditor(JTextField txt) {
+            super(txt);
+            btn=new JButton();
+            btn.setOpaque(true);
+            //WHEN BUTTON IS CLICKED
+            btn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    DefaultTableModel d = (DefaultTableModel) table_product.getModel();
+                    d.removeRow(table_product.getSelectedRow());
                 }
             });
         }

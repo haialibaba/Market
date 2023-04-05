@@ -14,6 +14,7 @@ public class categoryDAL {
     }
     public List loadCategory() {
         List<category> list;
+        session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         list = session.createQuery("FROM category", category.class).list();
         transaction.commit();
