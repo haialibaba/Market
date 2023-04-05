@@ -32,6 +32,7 @@ public class menuleftBLL implements MouseListener {
         }
         if (e.getSource().equals(lfm.btn[0])) {
             flag = 1;
+         
             lfm.btn[0].setBorder(new MatteBorder(0, 4, 0, 0, Color.yellow));
             content.pnl_content.removeAll();
             new innercontent();

@@ -23,7 +23,7 @@ import javax.swing.border.EmptyBorder;
  * @author DELL
  */
 public class menuLeft {
-     public String [] danhmuc={"Quản lý khóa học","Quản lý giảng dạy","Quản lý KQ học"};
+     public String [] danhmuc={"Quản lý khách hàng","Quản lý giảng dạy","Quản lý KQ học"};
     public JLabel[] btn= new JLabel[danhmuc.length];
     JLabel user;
     JPanel pnl_menuleft;

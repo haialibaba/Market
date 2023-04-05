@@ -4,11 +4,8 @@
  */
 package GUI;
 
-import GUI.menuleftBLL;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.event.MouseListener;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -18,9 +15,7 @@ import javax.swing.JPanel;
 public class innercontent {
     public  JPanel pnl_input,pnl_tuongtac,top_content;
     public  JPanel pnl_information,pnl_contentbottom;
-    
     public  JPanel pnl_contentmenu_ncc;
-    
     
     public innercontent()
     {
@@ -57,9 +52,10 @@ public class innercontent {
             pnl_information.setOpaque(true);
             pnl_information.setLayout(new FlowLayout());
             pnl_contentbottom.add(pnl_information);
-         if(menuleftBLL.flag == 1){
-             new vegetableGUI(pnl_input,  pnl_tuongtac,  top_content,  pnl_information, pnl_contentbottom);
-        }       
+
+        if(menuleftBLL.flag == 1 ){
+            new QLKhachHangGUI(pnl_input,  pnl_tuongtac,  top_content,  pnl_information, pnl_contentbottom);    
+        }     
     }
 }
 

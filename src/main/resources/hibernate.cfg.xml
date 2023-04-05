@@ -17,9 +17,8 @@
         <!-- Disable the second-level cache -->
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property> 
         <!-- Show all executed SQL to console -->
-        <property name="show_sql">true</property>
-        <mapping class="DAL.category" />
-        <mapping class="DAL.vegetable" />
+        <property name="show_sql">true</property>      
+        <mapping class="DAL.customers" />
         
     </session-factory>
 </hibernate-configuration>
