@@ -4,16 +4,16 @@
  */
 package GUI;
 
-import DAL.category;
+import BLL_ThongKe.Category;
 import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author caothanh
  */
-public class CategoryModel extends DefaultComboBoxModel<category>{
+public class CategoryModel extends DefaultComboBoxModel<Category>{
     
-    public CategoryModel(category[] listCate)
+    public CategoryModel(Category[] listCate)
     {
         super(listCate);
     }

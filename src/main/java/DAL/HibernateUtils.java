@@ -5,6 +5,7 @@
 package DAL;
 
 
+import BLL_ThongKe.Category;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -48,7 +49,7 @@ public class HibernateUtils {
         try (Session session = HibernateUtils.getSessionFactory().openSession();) {
             // Begin a unit of work
             session.beginTransaction();
-            List<category> category = session.createQuery("FROM Category", category.class).list();
+            List<Category> category = session.createQuery("FROM Category", Category.class).list();
             
             //xem danh sách
             category.forEach(System.out::println);

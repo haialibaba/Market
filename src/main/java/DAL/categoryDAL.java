@@ -4,6 +4,7 @@
  */
 package DAL;
 
+import BLL_ThongKe.Category;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -20,17 +21,19 @@ public class categoryDAL {
     }
 
     public List loadCategory() {
-        List<category> category;
+        List<Category> category;
         session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        category = session.createQuery("FROM category", category.class).list();
+        category = session.createQuery("FROM category", Category.class).list();
         transaction.commit();
         return category;
 
     }
-    public category getCategory(int CategoryID)
+    public Category getCategory(int CategoryID)
     {
-        category c = session.get(category.class, CategoryID);
+        Category c = session.get(Category.class, CategoryID);
         return c;
     }
+    
+    
 }

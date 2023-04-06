@@ -6,8 +6,7 @@ package GUI;
 
 import BLL.categoryBLL;
 import BLL.vegetableBLL;
-import DAL.category;
-import DAL.vegetable;
+import BLL_ThongKe.Category;
 import DAL.vegetableDAL;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -191,7 +190,7 @@ public class vegetableGUI {
              
     public void loadNV(int cateID){
               tblm.setRowCount(0);
-      List vegetableList = cateBLL.getCategory(cateID).getListVegetable();
+      List vegetableList = cateBLL.getCategory(cateID).getVegetables();
  
         // Load vegetable data from database
 
@@ -206,7 +205,7 @@ public class vegetableGUI {
     }
          public void inner_combobox_vegeType(){
                 List listCate = cateBLL.loadCategory();
-        category[] newList = cateBLL.convertList1(listCate);
+        Category[] newList = cateBLL.convertList1(listCate);
         CategoryModel model= new CategoryModel(newList);
 
             combobox_vegeType=new JComboBox(model);
@@ -218,7 +217,7 @@ public class vegetableGUI {
         {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                category cate = (category ) e.getItem();
+                Category cate = (Category ) e.getItem();
                 int cateid = cate.getCatagoryID();
                 loadNV(cateid);
             }

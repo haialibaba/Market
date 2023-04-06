@@ -23,7 +23,7 @@ import javax.swing.border.EmptyBorder;
  * @author DELL
  */
 public class menuLeft {
-     public String [] danhmuc={"Quản lý khóa học","Quản lý giảng dạy","Quản lý KQ học"};
+     public String [] danhmuc={ "Thống kê doanh thu", "Thống kê sản phẩm"};
     public JLabel[] btn= new JLabel[danhmuc.length];
     JLabel user;
     JPanel pnl_menuleft;
@@ -32,6 +32,8 @@ public class menuLeft {
     String[] danhmuc_img={
         "study_96px.png",
         "training_96px.png",
+        "pass_fail_96px.png",
+        "pass_fail_96px.png",
         "pass_fail_96px.png"};
     ImageIcon[] ImageIcon=new ImageIcon[danhmuc_img.length];
     Image[] Icon=new Image[danhmuc_img.length];

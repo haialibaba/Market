@@ -4,7 +4,7 @@
  */
 package BLL;
 
-import DAL.vegetable;
+import BLL_ThongKe.Vegetable;
 import DAL.vegetableDAL;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class vegetableBLL {
       vegetableDAL = new vegetableDAL();
   }
        
-         public Object[][] converVegetable(List<vegetable> list)
+         public Object[][] converVegetable(List<Vegetable> list)
   {
       int rows = list.size();
         int cols = 6;

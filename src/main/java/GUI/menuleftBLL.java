@@ -52,6 +52,20 @@ public class menuleftBLL implements MouseListener {
             new innercontent();
             content.pnl_content.repaint();
             content.pnl_content.validate();
+        }  else if (e.getSource().equals(lfm.btn[3])) {
+            lfm.btn[3].setBorder(new MatteBorder(0, 4, 0, 0, Color.yellow));
+            flag = 4;
+            content.pnl_content.removeAll();
+            new innercontent();
+            content.pnl_content.repaint();
+            content.pnl_content.validate();
+        }  else if (e.getSource().equals(lfm.btn[4])) {
+            lfm.btn[4].setBorder(new MatteBorder(0, 4, 0, 0, Color.yellow));
+            flag = 5;
+            content.pnl_content.removeAll();
+            new innercontent();
+            content.pnl_content.repaint();
+            content.pnl_content.validate();
         } 
 
     }

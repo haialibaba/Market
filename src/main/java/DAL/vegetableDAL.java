@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAL;
+import BLL_ThongKe.Vegetable;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Session;
@@ -20,12 +21,12 @@ public class vegetableDAL {
     {
         this.session = session;
     }
-    public vegetable getVegetable(int vegetableID)
+    public Vegetable getVegetable(int vegetableID)
     {
-        vegetable obj;
+        Vegetable obj;
         
         session.beginTransaction();
-        obj = session.get(vegetable.class, vegetableID);
+        obj = session.get(Vegetable.class, vegetableID);
         session.getTransaction().commit();
         return obj;
         
@@ -41,15 +42,15 @@ public class vegetableDAL {
         transaction.commit();
         return list;
     }
-    public void addVegetable(vegetable obj)
+    public void addVegetable(Vegetable obj)
     {
         session.save(obj);
     }
-    public void updateVegetable(vegetable obj)
+    public void updateVegetable(Vegetable obj)
     {
         session.update(obj);
     }
-    public void deleteVegetable(vegetable obj)
+    public void deleteVegetable(Vegetable obj)
     {
         session.delete(obj);
     }
@@ -62,7 +63,7 @@ public class vegetableDAL {
         List list = dal.getVegetableInCategory(1);
         
         for (Iterator iterator = list.iterator(); iterator.hasNext();){
-             vegetable v = (vegetable) iterator.next(); 
+             Vegetable v = (Vegetable) iterator.next(); 
              System.out.print("ID: " + v.getVegetableID()); 
              System.out.print("Name: " + v.getVegetable_Name()); 
              

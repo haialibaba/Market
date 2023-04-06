@@ -4,7 +4,7 @@
  */
 package BLL;
 
-import DAL.category;
+import BLL_ThongKe.Category;
 import DAL.categoryDAL;
 import java.util.List;
 
@@ -30,10 +30,10 @@ public class categoryBLL {
         
         return list;
     }
-    public category[] convertList1 (List<category> list)
+    public Category[] convertList1 (List<Category> list)
     {
         int rows = list.size();
-        category[] newList = new category[rows];
+        Category[] newList = new Category[rows];
         for(int i = 0; i < rows; i++)
         {
             newList[i] = list.get(i);
@@ -41,7 +41,7 @@ public class categoryBLL {
         }
         return newList;
     }
-    public Object[][] convertList(List<category> list)
+    public Object[][] convertList(List<Category> list)
     {
         int rows = list.size();
         int cols = 4;
@@ -51,14 +51,14 @@ public class categoryBLL {
             obj[i][0] = list.get(i).getCatagoryID();
             obj[i][1] = list.get(i).getName();
             obj[i][2] = list.get(i).getDescription();
-            obj[i][3] = list.get(i).getListVegetable().size();
+            obj[i][3] = list.get(i).getVegetables().size();
         }
         return obj;
     }
 
-    public category getCategory(int CategoryID)
+    public Category getCategory(int CategoryID)
     {
-        category c = cateDAL.getCategory(CategoryID);
+        Category c = (Category) cateDAL.getCategory(CategoryID);
         return c;
     }
 }

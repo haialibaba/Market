@@ -5,6 +5,8 @@
 package GUI;
 
 import GUI.menuleftBLL;
+import GUI_ThongKe.ThongKeDoanhThu_VIEW;
+import GUI_ThongKe.ThongKeSanPham_VIEW;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.MouseListener;
@@ -57,9 +59,14 @@ public class innercontent {
             pnl_information.setOpaque(true);
             pnl_information.setLayout(new FlowLayout());
             pnl_contentbottom.add(pnl_information);
-         if(menuleftBLL.flag == 1){
-             new vegetableGUI(pnl_input,  pnl_tuongtac,  top_content,  pnl_information, pnl_contentbottom);
-        }       
+//         if(menuleftBLL.flag == 1){
+//             new vegetableGUI(pnl_input,  pnl_tuongtac,  top_content,  pnl_information, pnl_contentbottom);
+//        } else 
+             if (menuleftBLL.flag == 1){
+            new ThongKeDoanhThu_VIEW(pnl_input, pnl_tuongtac, top_content, pnl_contentbottom, pnl_information);
+        } else if (menuleftBLL.flag == 2){
+            new ThongKeSanPham_VIEW(pnl_input, pnl_tuongtac, top_content, pnl_contentbottom, pnl_information);
+        }
     }
 }
 

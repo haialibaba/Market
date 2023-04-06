@@ -18,8 +18,16 @@
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property> 
         <!-- Show all executed SQL to console -->
         <property name="show_sql">true</property>
-        <mapping class="DAL.category" />
-        <mapping class="DAL.vegetable" />
+       <mapping class="BLL_ThongKe.Order"/>
+       <mapping class="BLL_ThongKe.Category"/>
+       
+       <mapping class="BLL_ThongKe.Vegetable"/>
+       <mapping class="BLL_ThongKe.Orderdetail"/>
+        
+        
+        
+        
+        
         
     </session-factory>
 </hibernate-configuration>
