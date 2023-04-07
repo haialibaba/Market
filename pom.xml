@@ -12,6 +12,34 @@
             <version>8.0.26</version>
         </dependency>
         <dependency>
+            <groupId>be.yildiz-games</groupId>
+            <artifactId>bom-lombok</artifactId>
+            <version>1.0.3</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.30.Final</version>
+        </dependency>
+    </dependencies>
+    <!--    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.4.21.Final</version>
@@ -22,7 +50,7 @@
             <version>1.0.3</version>
             <type>pom</type>
         </dependency>
-    </dependencies>
+    </dependencies>-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
