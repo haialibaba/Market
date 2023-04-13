@@ -7,6 +7,8 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 @Embeddable
 public class OrderVegetableID implements Serializable { 
@@ -23,6 +25,7 @@ public class OrderVegetableID implements Serializable {
     }
  
     @ManyToOne(cascade = CascadeType.ALL, fetch =FetchType.LAZY)
+    @NotFound(action =  NotFoundAction.IGNORE)
     public vegetable getVegetable() {
         return vegetable;
     }

@@ -4,6 +4,7 @@ package GUI;
 import DAL.category;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class BtnResetHoaDonListener extends MouseAdapter {  
     
@@ -13,6 +14,8 @@ public class BtnResetHoaDonListener extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e){
-        context.loadOrders(context.orderBLL.loadOrder());  
+        List list = context.orderBLL.loadOrder();
+        Object[][] data = context.orderBLL.convertListTableOrder(list);
+        context.loadOrders(data);  
     }
 }

@@ -4,6 +4,7 @@ package GUI;
 import DAL.vegetable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class BtnDeleteVegetableNHListener extends MouseAdapter {
@@ -31,7 +32,9 @@ public class BtnDeleteVegetableNHListener extends MouseAdapter {
                             JOptionPane.INFORMATION_MESSAGE);
                     context.setNullAllInfo();
                     Object category = context.getCateFilter();
-                    context.loadVegetable(context.vegetableBLL.loadVegetable(category));
+                    List list = context.vegetableBLL.loadVegetable(category);
+                    Object[][] data = context.vegetableBLL.convertListTable(list);
+                    context.loadVegetable(data);
                 }else{
                     JOptionPane.showMessageDialog(null,"Delete failure","Delete",
                             JOptionPane.ERROR_MESSAGE);

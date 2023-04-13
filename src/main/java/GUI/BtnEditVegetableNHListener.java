@@ -6,6 +6,7 @@ import DAL.vegetable;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -44,7 +45,9 @@ public class BtnEditVegetableNHListener extends MouseAdapter {
                 context.ds_lbl_congcu[2].setVisible(true);
                 context.ds_lbl_congcu[4].setVisible(false);
                 Object category = context.getCateFilter();
-                context.loadVegetable(context.vegetableBLL.loadVegetable(category));
+                List list = context.vegetableBLL.loadVegetable(category);
+                Object[][] data = context.vegetableBLL.convertListTable(list);
+                context.loadVegetable(data);
             }else{
                 JOptionPane.showMessageDialog(null,"Save failure","Save",
                         JOptionPane.ERROR_MESSAGE);

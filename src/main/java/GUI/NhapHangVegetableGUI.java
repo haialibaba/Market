@@ -194,12 +194,13 @@ public class NhapHangVegetableGUI {
         pnl_information.add(new JScrollPane(table_vege));   
         table_vege.addMouseListener(new TableVegetableNHListener(this));
         inner_combobox_vegeTypeFilter();
-        //load vegetable
-        loadVegetable(vegetableBLL.loadVegetable(getCateFilter()));
+        //load vegetable 
+        List list = vegetableBLL.loadVegetable(getCateFilter());
+        Object[][] data = vegetableBLL.convertListTable(list);
+        loadVegetable(data);
     }
         
-    public void loadVegetable(List list){
-        Object[][] data = vegetableBLL.convertListTable(list);
+    public void loadVegetable(Object[][] data){
         tb_vege_model.setRowCount(0);
         for (Object[] row : data) {
             tb_vege_model.addRow(row);
@@ -219,7 +220,8 @@ public class NhapHangVegetableGUI {
         cb_categoryFilter.addActionListener((ActionEvent e) -> {
             String name = txt_timkiem.getText();
             List list = vegetableBLL.searchVegetable(name, getCateFilter());
-            loadVegetable(list);
+            Object[][] data = vegetableBLL.convertListTable(list);
+            loadVegetable(data);
         });   
     }
     

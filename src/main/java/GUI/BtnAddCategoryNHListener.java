@@ -5,6 +5,7 @@ import DAL.category;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -31,7 +32,9 @@ public class BtnAddCategoryNHListener extends MouseAdapter {
                 if(status){
                     JOptionPane.showMessageDialog(null,"Add successfully","Insert",
                             JOptionPane.INFORMATION_MESSAGE);
-                    context.loadCategory(context.categoryBLL.loadCategory());
+                    List list = context.categoryBLL.loadCategory();
+                    Object[][] data = context.categoryBLL.convertListTable(list); 
+                    context.loadCategory(data);
                     context.setNullAllInfo();
                     context.ds_lbl_congcu[0].setText("ADD");
                     context.ds_lbl_congcu[0].setBorder(null);

@@ -581,13 +581,14 @@ public class ChiTietHoaDonGUI extends javax.swing.JFrame {
         this.setTitle("Order "+String.valueOf(order.getOrderID()));
         text_id.setText(String.valueOf(order.getOrderID()));
         text_date.setText(String.valueOf(order.getDate()));
-        text_address.setText(order.getCustomer().getAddress());
-        text_city.setText(order.getCustomer().getCity());
+        if(order.getCustomer()!=null){
+            text_address.setText(order.getCustomer().getAddress());
+            text_city.setText(order.getCustomer().getCity());
+            text_customer.setText(order.getCustomer().toString());
+            cbb_customer.setSelectedItem(order.getCustomer());
+        }
         text_note.setText(order.getNote());
-        text_customer.setText(order.getCustomer().toString());
         label_total.setText(order.getTotal());
-        cbb_customer.setSelectedItem(order.getCustomer());
-        
     }
     
     private void LoadVegtableOrder(){

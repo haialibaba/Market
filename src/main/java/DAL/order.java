@@ -23,6 +23,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 
 @Entity
@@ -71,6 +73,7 @@ public class order{
     
     @ManyToOne
     @JoinColumn(name = "CustomerID")
+    @NotFound(action =  NotFoundAction.IGNORE)
     public customers getCustomer() {
         return Customer;
     }

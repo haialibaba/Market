@@ -41,11 +41,16 @@ public class orderBLL {
         Object[][] obj = new Object[rows][cols];
         for(int i = 0; i < rows; i++){
             obj[i][0] = i+1;
-            obj[i][1] = list.get(i).getVegetable().getVegetableID();
-            obj[i][2] = list.get(i).getVegetable().getVegetable_Name();
-            obj[i][3] = list.get(i).getQuantity();
-            obj[i][4] = list.get(i).getVegetable().getUnit();
-            obj[i][5] = list.get(i).getVegetable().getPrice();
+            if (list.get(i).getVegetable()!=null) {
+                obj[i][1] = list.get(i).getVegetable().getVegetableID();
+                obj[i][2] = list.get(i).getVegetable().getVegetable_Name();
+                obj[i][4] = list.get(i).getVegetable().getUnit();
+                obj[i][5] = list.get(i).getVegetable().getPrice();
+            } else {
+                obj[i][2] = "Null";
+                obj[i][1] = list.get(i).getVegetable();
+            }
+            obj[i][3] = list.get(i).getQuantity(); 
             obj[i][6] = list.get(i).getPrice();
             obj[i][7] = "Delete";
         }

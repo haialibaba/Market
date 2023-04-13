@@ -3,6 +3,7 @@ package GUI;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class BtnResetVegetableNHListener extends MouseAdapter {
     NhapHangVegetableGUI context;
@@ -18,7 +19,9 @@ public class BtnResetVegetableNHListener extends MouseAdapter {
             }else{
                 context.setNullAllInfo();
                 Object category = context.getCateFilter();
-                context.loadVegetable(context.vegetableBLL.loadVegetable(category));
+                List list = context.vegetableBLL.loadVegetable(category);
+                Object[][] data = context.vegetableBLL.convertListTable(list);        
+                context.loadVegetable(data);
             }
         }
 }

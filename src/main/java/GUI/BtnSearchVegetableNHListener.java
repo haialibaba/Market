@@ -14,6 +14,7 @@ public class BtnSearchVegetableNHListener extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         String name = context.txt_timkiem.getText();
         List list = context.vegetableBLL.searchVegetable(name,context.getCateFilter());
-        context.loadVegetable(list);
+        Object[][] data = context.vegetableBLL.convertListTable(list);
+        context.loadVegetable(data);
     }
 }

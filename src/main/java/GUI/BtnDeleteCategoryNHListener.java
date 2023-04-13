@@ -4,6 +4,7 @@ package GUI;
 import DAL.category;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class BtnDeleteCategoryNHListener extends MouseAdapter {
@@ -29,8 +30,10 @@ public class BtnDeleteCategoryNHListener extends MouseAdapter {
                 if(status){
                     JOptionPane.showMessageDialog(null,"Delete successfully","Delete",
                             JOptionPane.INFORMATION_MESSAGE);
-                    context.setNullAllInfo();
-                    context.loadCategory(context.categoryBLL.loadCategory());
+                    context.setNullAllInfo();  
+                    List list = context.categoryBLL.loadCategory();
+                    Object[][] data = context.categoryBLL.convertListTable(list); 
+                    context.loadCategory(data);
                 }else{
                     JOptionPane.showMessageDialog(null,"Delete failure","Delete",
                             JOptionPane.ERROR_MESSAGE);

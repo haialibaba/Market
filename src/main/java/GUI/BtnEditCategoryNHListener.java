@@ -5,6 +5,7 @@ import DAL.category;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -36,7 +37,9 @@ public class BtnEditCategoryNHListener extends MouseAdapter {
                 context.ds_lbl_congcu[0].setVisible(true);
                 context.ds_lbl_congcu[2].setVisible(true);
                 context.ds_lbl_congcu[4].setVisible(false);
-                context.loadCategory(context.categoryBLL.loadCategory());
+                List list = context.categoryBLL.loadCategory();
+                Object[][] data = context.categoryBLL.convertListTable(list); 
+                context.loadCategory(data);
             }else{
                 JOptionPane.showMessageDialog(null,"Save failure","Save",
                         JOptionPane.ERROR_MESSAGE);

@@ -124,11 +124,13 @@ public class HoaDonGUI {
         table.setPreferredScrollableViewportSize(new Dimension(970, 470));
         pnl_information.add(new JScrollPane(table));   
         table.addMouseListener(new TableHoaDonListener(this));
-        loadOrders(orderBLL.loadOrder());
+        List list = orderBLL.loadOrder();
+        Object[][] data = orderBLL.convertListTableOrder(list);
+        loadOrders(data);
     }
 
-    public void loadOrders(List list){
-        Object[][] data = orderBLL.convertListTableOrder(list);
+    public void loadOrders(Object[][] data){
+        
         table_model.setRowCount(0);
         for (Object[] row : data) {
             table_model.addRow(row);

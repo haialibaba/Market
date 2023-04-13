@@ -164,11 +164,12 @@ public class NhapHangCategoryGUI {
         table_category.setPreferredScrollableViewportSize(new Dimension(970, 320));
         pnl_information.add(new JScrollPane(table_category));   
         table_category.addMouseListener(new TableCategoryNHListener(this));
-        loadCategory(categoryBLL.loadCategory());
+        List list = categoryBLL.loadCategory();
+        Object[][] data = categoryBLL.convertListTable(list); 
+        loadCategory(data);
     }
 
-    public void loadCategory(List list){
-        Object[][] data = categoryBLL.convertListTable(list);
+    public void loadCategory(Object[][] data){
         table_model_category.setRowCount(0);
         for (Object[] row : data) {
             table_model_category.addRow(row);

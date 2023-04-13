@@ -3,6 +3,7 @@ package GUI;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class BtnResetCategoryNHListener extends MouseAdapter {
     
@@ -19,7 +20,9 @@ public class BtnResetCategoryNHListener extends MouseAdapter {
                 context.setNullAllInput();
             }else{
                 context.setNullAllInfo();
-                context.loadCategory(context.categoryBLL.loadCategory());
+                List list = context.categoryBLL.loadCategory();
+                Object[][] data = context.categoryBLL.convertListTable(list); 
+                context.loadCategory(data);
             }
         }
 }
